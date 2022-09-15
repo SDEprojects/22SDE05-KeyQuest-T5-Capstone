@@ -23,6 +23,7 @@ public class GameClient implements java.io.Serializable {
         System.out.println(introduction.getObjective());
         System.out.println(introduction.getWin());
         Screen.DivideScreen();
+        GUI gui = new GUI();
 
         while (true) {
             String firstCommand = GameManager.start();
