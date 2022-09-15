@@ -1,5 +1,7 @@
-package com.game;
+package com.test;
 
+import com.game.model.Location;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -21,20 +23,20 @@ class LocationTest {
     void getItems() {
         String[] items = {"drumstick", "cucumber"};
         Location loc = new Location("kitchen");
-        assertEquals(Arrays.toString(items),Arrays.toString(loc.getItems()));
+        Assertions.assertEquals(Arrays.toString(items),Arrays.toString(loc.getItems()));
     }
     @Test
     void getItemsCloset() {
-        String[] items = {"wool", "shoes"};
+        String[] items = {"shoes", "wool"};
         Location loc = new Location("closet");
-        assertEquals(Arrays.toString(items),Arrays.toString(loc.getItems()));
+        Assertions.assertEquals(Arrays.toString(items),Arrays.toString(loc.getItems()));
     }
 
     @Test
     public void getFurniture() {
         String furniture = "cabinet";
         Location loc = new Location("kitchen");
-        assertEquals(furniture,loc.getFurniture()[0]);
+        Assertions.assertEquals(furniture,loc.getFurniture()[0]);
       /*  String[] furniture = {"cabinet"};
         Location loc = new Location("kitchen");
         assertEquals(furniture,loc.getFurniture());*/

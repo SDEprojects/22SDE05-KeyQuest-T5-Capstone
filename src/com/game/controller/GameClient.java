@@ -1,12 +1,19 @@
-package com.game;
+package com.game.controller;
 
+import com.game.model.Introduction;
+import com.game.view.MessageArt;
+import com.game.view.Screen;
+import com.game.model.TextParser;
+import com.game.model.Character;
+import com.game.model.Item;
+import com.game.model.Location;
 import com.gui.GUI;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.*;
 
-import static com.game.JSONParser.*;
+import static com.game.model.JSONParser.*;
 
 public class GameClient implements java.io.Serializable {
 

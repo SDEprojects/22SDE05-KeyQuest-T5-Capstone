@@ -1,4 +1,4 @@
-package com.game;
+package com.game.controller;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

@@ -1,5 +1,6 @@
-package com.game;
+package com.test;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +10,7 @@ class TextParserTest {
     @Test
     public short read() {
         String[] test = {"test",};
-        assertEquals("test",read() );
+        Assertions.assertEquals("test",read() );
         return 0;
     }
 }

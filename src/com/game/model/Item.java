@@ -1,7 +1,6 @@
-package com.game;
+package com.game.model;
 
-import org.json.JSONObject;
-import static com.game.JSONParser.*;
+import static com.game.model.JSONParser.*;
 
 public class Item {
     private final String name;// = getItemName() ;

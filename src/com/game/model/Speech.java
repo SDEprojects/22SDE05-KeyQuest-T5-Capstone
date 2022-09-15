@@ -1,4 +1,4 @@
-package com.game;
+package com.game.model;
 
 public class Speech {
     private final String speech1 = getSpeech1();

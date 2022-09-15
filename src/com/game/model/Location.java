@@ -1,8 +1,8 @@
-package com.game;
+package com.game.model;
 
 import java.util.Arrays;
 
-import static com.game.JSONParser.*;
+import static com.game.model.JSONParser.*;
 
 public class Location {
 

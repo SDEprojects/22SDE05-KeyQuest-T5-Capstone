@@ -1,4 +1,4 @@
-package com.game;
+package com.game.view;
 
 public class MessageArt {
     static String artWin =
