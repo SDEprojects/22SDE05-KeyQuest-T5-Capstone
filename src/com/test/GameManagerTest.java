@@ -1,19 +1,17 @@
-package com.game;
+package com.test;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.game.controller.GameManager;
+import org.junit.jupiter.api.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
 
 class GameManagerTest {
@@ -35,7 +33,7 @@ class GameManagerTest {
     @Test
     void start() throws IOException, InterruptedException {
         String fileContent = getOutputLogs();
-        assertTrue(fileContent.contains("Would you like to start the game"));
+        Assertions.assertTrue(fileContent.contains("Would you like to start the game"));
         GameManager.quit();
     }
 
@@ -43,22 +41,22 @@ class GameManagerTest {
     void quit() throws IOException, InterruptedException {
         GameManager.quit();
         String fileContent = getOutputLogs();
-        assertTrue(fileContent.contains("Closing game"));
-        assertTrue(fileContent.contains("Game closed"));
+        Assertions.assertTrue(fileContent.contains("Closing game"));
+        Assertions.assertTrue(fileContent.contains("Game closed"));
     }
 
     @Test
     void confirmQuit() throws IOException {
         GameManager.confirmQuit();
         String fileContent = getOutputLogs();
-        assertTrue(fileContent.contains("Confirm exit the game? Enter 'yes' to confirm exit, 'no' to return"));
+        Assertions.assertTrue(fileContent.contains("Confirm exit the game? Enter 'yes' to confirm exit, 'no' to return"));
     }
 
     @Test
     void look() throws IOException, InterruptedException {
         GameManager.look();
         String fileContent = getOutputLogs();
-        assertTrue(fileContent.contains("What would you like to look at?"));
+        Assertions.assertTrue(fileContent.contains("What would you like to look at?"));
         GameManager.quit();
     }
 
