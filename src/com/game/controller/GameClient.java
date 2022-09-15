@@ -7,6 +7,7 @@ import com.game.model.TextParser;
 import com.game.model.Character;
 import com.game.model.Item;
 import com.game.model.Location;
+import com.gui.GUI;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -30,6 +31,7 @@ public class GameClient implements java.io.Serializable {
         System.out.println(introduction.getObjective());
         System.out.println(introduction.getWin());
         Screen.DivideScreen();
+        GUI gui = new GUI();
 
         while (true) {
             String firstCommand = GameManager.start();
@@ -103,6 +105,7 @@ public class GameClient implements java.io.Serializable {
                     else if (Objects.equals(phrase[0], "load")) {
                         GameManager.loadGame();
                     }
+                    // TODO: Update validation with objects on screen
                     else if (isValidVerb && isValidLocation) {
                         JSONArray nextCommandsJsonArray = jsonObjectCommand.getJSONArray(phrase[0]);
                         String[] nextLocations = location.getDirections();
@@ -110,6 +113,8 @@ public class GameClient implements java.io.Serializable {
                         for (String nextLocation : nextLocations) {
                             Location nextRoomLocation = new Location(phrase[1]);
                             String[] charactersInNextLocation = nextRoomLocation.getCharacter();
+
+                            // TODO: This will be an action coming from Java Swing, object clicked on screen will trigger these checks
                             if (Arrays.asList(nextLocations).contains(phrase[1]) && (Arrays.asList(nextCommands).contains(phrase[1]))) {
                                 if (inventory.contains("key") && Objects.equals(currentLocation, "garage") && Objects.equals(phrase[1], "garden")) {
                                     System.out.println(introduction.getWin());
