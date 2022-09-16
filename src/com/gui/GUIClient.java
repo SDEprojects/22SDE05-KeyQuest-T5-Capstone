@@ -1,9 +1,10 @@
-package com.game.controller;
+package com.gui;
 
+import com.game.controller.GameManager;
 import com.game.model.Introduction;
 import com.game.view.MessageArt;
 import com.game.view.Screen;
-import com.game.utility.TextParser;
+import com.game.model.TextParser;
 import com.game.model.Character;
 import com.game.model.Item;
 import com.game.model.Location;
@@ -13,9 +14,9 @@ import org.json.JSONObject;
 
 import java.util.*;
 
-import static com.game.utility.JSONParser.*;
+import static com.game.model.JSONParser.*;
 
-public class GameClient implements java.io.Serializable {
+public class GUIClient implements java.io.Serializable {
 
     public static void main(String[] args) throws InterruptedException {
         JSONObject jsonObjectCommand = getJsonObjectCommand(); // Load command.json.
@@ -40,7 +41,7 @@ public class GameClient implements java.io.Serializable {
                 GameManager.quit();
                 break;
             }
-            if (Objects.equals(firstCommand, "load")){ // Enter load to load game.
+            if (Objects.equals(firstCommand, "load")) { // Enter load to load game.
                 GameManager.loadGame();
             }
 
@@ -108,8 +109,7 @@ public class GameClient implements java.io.Serializable {
                     if (Objects.equals(phrase[0], "save")) {
                         GameManager.saveGame();
                         break;
-                    }
-                    else if (Objects.equals(phrase[0], "load")) {
+                    } else if (Objects.equals(phrase[0], "load")) {
                         GameManager.loadGame();
                     }
                     // TODO: Update validation with objects on screen
@@ -185,33 +185,33 @@ public class GameClient implements java.io.Serializable {
                         if ((inventory.contains(phrase[1]) && Objects.equals(phrase[0], "get")) || (inventory.contains(phrase[1]) && Objects.equals(phrase[0], "pick")) || (inventory.contains(phrase[1]) && Objects.equals(phrase[0], "collect")) || (inventory.contains(phrase[1]) && Objects.equals(phrase[0], "grab")) || (inventory.contains(phrase[1]) && Objects.equals(phrase[0], "take"))) {
                             System.out.println("Inventory already has " + phrase[1]);
                             System.out.println(inventory);
-                        // Consume an item by drop or eat.
+                            // Consume an item by drop or eat.
                         } else if (inventory.contains(phrase[1]) && (Objects.equals(phrase[0], "drop") || Objects.equals(phrase[0], "eat") || Objects.equals(phrase[0], "throw"))) {
                             inventory.remove(phrase[1]);
                             System.out.println(phrase[0] + " " + phrase[1] + " done");
                             System.out.println("Removed " + phrase[1] + " from the inventory");
                             System.out.println(inventory);
-                        // Get the item.
+                            // Get the item.
                         } else if ((!inventory.contains(phrase[1]) && Objects.equals(phrase[0], "get")) || (!inventory.contains(phrase[1]) && Objects.equals(phrase[0], "pick")) || (!inventory.contains(phrase[1]) && Objects.equals(phrase[0], "collect")) || (!inventory.contains(phrase[1]) && Objects.equals(phrase[0], "grab")) || (!inventory.contains(phrase[1]) && Objects.equals(phrase[0], "take"))) {
                             inventory.add(phrase[1]);
                             System.out.println("Added " + phrase[1] + " to the inventory");
                             System.out.println(inventory);
-                        // Interaction check with the item.
+                            // Interaction check with the item.
                         } else if (inventory.contains(phrase[1]) && (!Objects.equals(phrase[0], "get") || !Objects.equals(phrase[0], "pick") || !Objects.equals(phrase[0], "collect") || !Objects.equals(phrase[0], "grab") || !Objects.equals(phrase[0], "take"))) {
                             System.out.println("Cannot " + phrase[0] + " " + phrase[1]);
-                        // Inventory check when try to use the item.
+                            // Inventory check when try to use the item.
                         } else if ((!inventory.contains(phrase[1]) && Objects.equals(phrase[0], "drop")) || (!inventory.contains(phrase[1]) && Objects.equals(phrase[0], "eat")) || (!inventory.contains(phrase[1]) && Objects.equals(phrase[0], "throw"))) {
                             System.out.println("Inventory doesn't  contain " + phrase[1]);
                             System.out.println(inventory);
-                        // Cover all else situation that can't be executed.
+                            // Cover all else situation that can't be executed.
                         } else {
                             System.out.println("Cannot " + phrase[0] + " " + phrase[1]);
                         }
-                    // Show inventory.
-                    // ================================================ SHOWING INVENTORY ========================================================//
+                        // Show inventory.
+                        // ================================================ SHOWING INVENTORY ========================================================//
                     } else if ((Objects.equals(phrase[0], "inventory") || (Objects.equals(phrase[0], "show") && Objects.equals(phrase[1], "inventory")))) {
                         System.out.println("List of inventory items " + inventory);
-                    // Text return when talk to NPC.
+                        // Text return when talk to NPC.
                     } else if (Objects.equals(phrase[0], "talk")) {
                         //System.out.println("\nWho would you like to talk to: " + getCharacters());
                         if (isValidCharacter && Objects.equals(phrase[1], "dog")) {
@@ -221,7 +221,7 @@ public class GameClient implements java.io.Serializable {
                             System.out.println("You are talking to " + phrase[1]);
                             System.out.println(getCatSpeech());
                         }
-                    // Help text.
+                        // Help text.
                     } else if (Objects.equals(phrase[0], "help")) {
                         System.out.println("\nList of available commands: " + getKeyCommands());
                         System.out.println("List of all items " + allItems);
@@ -232,11 +232,11 @@ public class GameClient implements java.io.Serializable {
                             System.out.println(getLookItem(phrase[1]));
                             System.out.println(itemInformation.getUsage());
                         }
-                    // Look function, didn't use in the current version of game.
+                        // Look function, didn't use in the current version of game.
                     } else if (Objects.equals(phrase[0], "look") && phrase.length == 1) {
                         System.out.println("You are looking at " + Arrays.toString(location.getFurniture()));
                         System.out.println("There are following items in this room " + Arrays.toString(location.getItems()));
-                    // Quit function with confirmation check.
+                        // Quit function with confirmation check.
                     } else if (Objects.equals(phrase[0], "quit")) {
                         String confirmation = GameManager.confirmQuit();
                         if (Objects.equals(confirmation, "yes")) {
