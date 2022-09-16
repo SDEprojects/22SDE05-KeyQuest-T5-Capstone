@@ -29,7 +29,7 @@ public class GameManager {
         return scanner.nextLine();
     }
 
-    static void saveGame(){
+    public static void saveGame(){
         try{
             FileOutputStream fos = new FileOutputStream("Key.sav");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -42,7 +42,7 @@ public class GameManager {
                     + e.getClass() + ": " + e.getMessage() + "\n");
         }
     }
-    static void loadGame(){
+    public static void loadGame(){
         try {
             FileInputStream fis = new FileInputStream("Key.sav");
             ObjectInputStream ois = new ObjectInputStream(fis);
