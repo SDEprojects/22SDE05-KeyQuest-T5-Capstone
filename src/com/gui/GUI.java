@@ -41,16 +41,7 @@ public class GUI {
         messageText.setLineWrap(true);
         messageText.setFont(new Font("Book Antiqua", Font.PLAIN, 26));
         window.add(messageText);
-        // TODO Henry add the following code to test background picture.
-        window.setLayout(new BorderLayout());
-        JLabel background=new JLabel(new ImageIcon("/GUI/pages/intro.jpg"));
-        window.add(background);
-        background.setLayout(new FlowLayout());
-//        l1=new JLabel("Here is a button");
-//        b1=new JButton("I am a button");
-//        background.add(l1);
-//        background.add(b1);
-        // TODO Henry background code ends here.
+
     }
 
     /**
