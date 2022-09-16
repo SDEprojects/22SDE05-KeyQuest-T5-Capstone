@@ -4,7 +4,7 @@ import com.game.controller.GameManager;
 import com.game.model.Introduction;
 import com.game.view.MessageArt;
 import com.game.view.Screen;
-import com.game.model.TextParser;
+import com.game.utility.TextParser;
 import com.game.model.Character;
 import com.game.model.Item;
 import com.game.model.Location;
@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 import java.util.*;
 
-import static com.game.model.JSONParser.*;
+import static com.game.utility.JSONParser.*;
 
 public class GUIClient implements java.io.Serializable {
 

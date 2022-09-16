@@ -1,6 +1,6 @@
 package com.game.model;
 
-import static com.game.model.JSONParser.*;
+import static com.game.utility.JSONParser.*;
 
 public class Introduction {
     private final String story = getIntroductionStory();
