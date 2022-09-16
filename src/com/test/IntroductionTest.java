@@ -1,3 +1,5 @@
+package com.test;
+
 import com.game.model.Introduction;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
