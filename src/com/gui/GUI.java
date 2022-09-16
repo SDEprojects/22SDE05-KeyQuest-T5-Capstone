@@ -28,13 +28,13 @@ public class GUI {
         // window size should be:
         // width = width of background image,
         // height = height of image + chat bar + UI
-        window.setSize(800, 600);
+        window.setSize(1060, 863);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
 //        window.setLayout(null);
 
         messageText = new JTextArea("----THIS IS SOME SAMPLE TEXT----");
-        messageText.setBounds(50, 400, 700, 150);
+        messageText.setBounds(50, 663, 700, 150);
         messageText.setBackground(Color.BLUE);
         messageText.setForeground(Color.WHITE);
         messageText.setEditable(false);
@@ -60,16 +60,18 @@ public class GUI {
     public void createBackground(int bgNum, String bgFileName) {
 
         bgPanel.add(new JPanel());
-        bgPanel.get(0).setBounds(50, 50, 700, 350);
+        bgPanel.get(0).setBounds(50, 50, 1060, 663);
         bgPanel.get(0).setBackground(Color.BLUE);
         bgPanel.get(0).setLayout(null);
         window.add(bgPanel.get(0));
 
         bgLabel.add(new JLabel());
-        bgLabel.get(0).setBounds(0, 0, 100, 350);
+        bgLabel.get(0).setBounds(0, 0, 1060, 663);
 
         // TODO: Load Image Icon with class resource loader
 
+        ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("foyer2.jpg"));
+        bgLabel.get(0).setIcon(bgIcon);
         //------------
 
     }
@@ -196,6 +198,7 @@ public class GUI {
          * create objects can be done as many times as we need objects
          * to be located on the screen
          * createObject(1, 400, 140, 200, 200, FileName to object, "throw", "pick", "eat")*/
+        createBackground(1, "foyer2.jpg");
         createObject_menu(1, 400, 140, 200, "boots.png",  "throw", "pick", "eat");
 
 
