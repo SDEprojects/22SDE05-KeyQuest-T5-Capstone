@@ -77,7 +77,7 @@ public class GUI {
     /**
      * TODO: create objects that can be added to the background as interactive items.
      */
-    public void createObject(int objx, int objy, int objWidth, int objHeight, String objFileName,
+    public void createObject_menu(int objx, int objy, int objWidth, int objHeight, String objFileName,
                              String choice1Name, String choice2Name, String choice3Name) {
 
         // CREATE POPUP MENU
@@ -117,6 +117,55 @@ public class GUI {
             public void mousePressed(MouseEvent e) {
                 if(SwingUtilities.isRightMouseButton(e)){
                     popupMenu.show(objectLabel, e.getX(), e.getY());
+                    // what happens after they push the button.
+                }
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+        bgPanel.get(0).add(objectLabel);
+        bgPanel.get(0).add(bgLabel.get(0));
+        //---------------------
+        // - End
+    }
+
+    public void createObject_noMenu(int objx, int objy, int objWidth, int objHeight, String objFileName) {
+
+        // CREATE 1 OBJECT - Start
+        JLabel objectLabel = new JLabel();
+        objectLabel.setBounds(400, 150, 200, 200);
+
+        /** TODO: Load Image Icon with class resource loader
+         * ImageIcon objectIcon = new ImageIcon(getClass().getClassLoader().getResource(FileName));
+         * objectLabel.setIcon(objectIcon);
+         * to ensure to object will show we have to layer the containers properly.
+         * Object gets placed into background panel, then the background*/
+
+        // CREATE MOUSE LISTENER AND ATTACH MENU
+        objectLabel.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if(SwingUtilities.isLeftMouseButton(e)){
+                    //popupMenu.show(objectLabel, e.getX(), e.getY());
+                    // generateScreen();
                 }
             }
 
@@ -146,7 +195,8 @@ public class GUI {
          * createBackground(1, FileName for background);
          * create objects can be done as many times as we need objects
          * to be located on the screen
-         * createObject(1, 400, 140, 200, 200, FileName to object, "throw", "pick", ect)*/
+         * createObject(1, 400, 140, 200, 200, FileName to object, "throw", "pick", "eat")*/
+        createObject_menu(1, 400, 140, 200, "boots.png",  "throw", "pick", "eat");
 
 
     }
