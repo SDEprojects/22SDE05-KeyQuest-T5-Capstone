@@ -1,5 +1,3 @@
-package com.test;
-
 import com.game.model.Location;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
