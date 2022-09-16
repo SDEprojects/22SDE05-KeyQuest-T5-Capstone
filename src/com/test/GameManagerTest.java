@@ -1,5 +1,3 @@
-package com.test;
-
 import com.game.controller.GameManager;
 import org.junit.jupiter.api.*;
 
