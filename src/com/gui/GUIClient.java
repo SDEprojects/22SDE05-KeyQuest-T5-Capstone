@@ -32,7 +32,7 @@ public class GUIClient implements java.io.Serializable {
         System.out.println(introduction.getObjective());
         System.out.println(introduction.getWin()); // TODO I believe this is an extra statement should be deleted.
         Screen.DivideScreen();
-        //GUI gui = new GUI();
+        GUI gui = new GUI();
 
         while (true) {
             String firstCommand = GameManager.start();
