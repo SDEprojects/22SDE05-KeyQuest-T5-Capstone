@@ -2,7 +2,7 @@ package com.game.model;
 
 import java.util.Arrays;
 
-import static com.game.model.JSONParser.*;
+import static com.game.utility.JSONParser.*;
 
 public class Location {
 

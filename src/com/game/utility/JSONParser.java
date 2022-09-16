@@ -1,4 +1,4 @@
-package com.game.model;
+package com.game.utility;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

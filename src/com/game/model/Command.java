@@ -1,6 +1,6 @@
 package com.game.model;
 
-import static com.game.model.JSONParser.getCommands;
+import static com.game.utility.JSONParser.getCommands;
 
 public class Command {
     private final String name;
