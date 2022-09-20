@@ -11,6 +11,7 @@ public class GUIClient{
 
     private GUI gui = new GUI(this);
 
+
     public static void main(String[] args) throws InterruptedException {
         new GUIClient();
 
@@ -37,8 +38,9 @@ public class GUIClient{
     public EventHandler geteHandler() {
         return eHandler;
     }
-
     public void seteHandler(EventHandler eHandler) {
         this.eHandler = eHandler;
     }
+
+
 }

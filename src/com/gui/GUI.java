@@ -1,13 +1,19 @@
 package com.gui;
 
+import com.game.model.Character;
+import com.game.model.Location;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+
+import static com.game.utility.JSONParser.getStartingRoom;
 
 public class GUI {
     private static final int NUM_OF_SCREENS = 1;
@@ -35,7 +41,7 @@ public class GUI {
         // window size should be:
         // width = width of background image,
         // height = height of image + chat bar + UI
-        window.setSize(1000, 863);
+        window.setSize(1000, 850);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
         window.setLayout(null);
@@ -56,7 +62,7 @@ public class GUI {
      */
     private void initializeBackgroundPanels() {
         for (int i = 1; i < NUM_OF_SCREENS; i++){
-            String fileName = "bg_" + i + ".jpg";
+            String fileName = "bg_" + i + ".png";
 
             bgPanel.add(new JPanel());
             bgPanel.get(i).setBounds(50, 50, 1000, 700);
@@ -240,6 +246,29 @@ public class GUI {
         bgPanel.get(0).add(objectLabel);
         bgPanel.get(0).add(bgLabel.get(0));
 
+    }
+
+    public void setupRoom(){
+        Character cat = new Character("cat");
+        Character dog = new Character("dog");
+        Location location = new Location(getStartingRoom());
+        String[] listNextLocations = location.getDirections();
+        String[] characters = location.getCharacter();
+        if (characters.length != 0) {
+            if (Arrays.asList(characters).contains("cat")) {
+                guiClient.getGui().getMessageText().setText("Current location is " + getStartingRoom() +
+                        "\n" + location.getDescription() + "\n" + cat.getDescription()+
+                        "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
+            } else if (Arrays.asList(characters).contains("dog")) {
+                guiClient.getGui().getMessageText().setText("Current location is " + getStartingRoom() +
+                        "\n" + location.getDescription() + "\n" + dog.getDescription()+
+                        "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
+            }
+        } else {
+            guiClient.getGui().getMessageText().setText("Current location is " + getStartingRoom() +
+                    "\n" + location.getDescription() +
+             "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
+        }
     }
     // TODO Henry adds button function ends;
 
