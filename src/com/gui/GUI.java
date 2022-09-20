@@ -1,12 +1,19 @@
 package com.gui;
 
+import com.game.model.Character;
+import com.game.model.Location;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+
+import static com.game.utility.JSONParser.getStartingRoom;
 
 public class GUI {
     private static final int NUM_OF_BGS = 9;
@@ -244,6 +251,29 @@ public class GUI {
         bgPanel.get(0).add(objectLabel);
         bgPanel.get(0).add(bgLabel.get(0));
 
+    }
+
+    public void setupRoom(){
+        Character cat = new Character("cat");
+        Character dog = new Character("dog");
+        Location location = new Location(getStartingRoom());
+        String[] listNextLocations = location.getDirections();
+        String[] characters = location.getCharacter();
+        if (characters.length != 0) {
+            if (Arrays.asList(characters).contains("cat")) {
+                guiClient.getGui().getMessageText().setText("Current location is " + getStartingRoom() +
+                        "\n" + location.getDescription() + "\n" + cat.getDescription()+
+                        "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
+            } else if (Arrays.asList(characters).contains("dog")) {
+                guiClient.getGui().getMessageText().setText("Current location is " + getStartingRoom() +
+                        "\n" + location.getDescription() + "\n" + dog.getDescription()+
+                        "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
+            }
+        } else {
+            guiClient.getGui().getMessageText().setText("Current location is " + getStartingRoom() +
+                    "\n" + location.getDescription() +
+             "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
+        }
     }
     // TODO Henry adds button function ends;
 
