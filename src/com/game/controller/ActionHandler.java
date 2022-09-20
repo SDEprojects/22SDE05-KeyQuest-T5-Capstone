@@ -14,9 +14,10 @@ public class ActionHandler implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String selection = e.getActionCommand();
+        System.out.println(e.getSource().getClass().getCanonicalName()); //javax.swing.JButton
 
         switch(selection){
-            case "talkboot":
+            case "1":
                 guiClient.getGui().getMessageText().setText("Why are you talking to your boots");
                 break;
             case "lookboot":

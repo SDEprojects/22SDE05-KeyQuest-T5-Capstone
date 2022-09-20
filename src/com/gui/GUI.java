@@ -2,6 +2,7 @@ package com.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -55,6 +56,7 @@ public class GUI {
     public void createBackground(int bgNum, String bgFileName) {
 
         bgPanel.add(new JPanel());
+
         bgPanel.get(0).setBounds(50, 50, 1060, 663);
         bgPanel.get(0).setBackground(Color.BLUE);
         bgPanel.get(0).setLayout(null);
@@ -75,7 +77,7 @@ public class GUI {
      * TODO: create objects that can be added to the background as interactive items.
      */
     public void createObject_menu(int bgNum, int objx, int objy, int objWidth, int objHeight, String objFileName,
-                             String choice1Name, String choice2Name, String choice3Name,
+                                  String choice1Name, String choice2Name, String choice3Name,
                                   String choice1Command, String choice2Command, String choice3Command) {
 
         // CREATE POPUP MENU
@@ -86,7 +88,7 @@ public class GUI {
 
         menuItem[1] = new JMenuItem(choice1Name);
         menuItem[1].addActionListener(guiClient.getaHandler());
-        menuItem[1].setActionCommand(choice1Command);
+        menuItem[1].setActionCommand("1");
         popupMenu.add(menuItem[1]);
 
         menuItem[2] = new JMenuItem(choice2Name);
@@ -120,7 +122,7 @@ public class GUI {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if(SwingUtilities.isRightMouseButton(e)){
+                if (SwingUtilities.isRightMouseButton(e)) {
                     popupMenu.show(objectLabel, e.getX(), e.getY());
                     // what happens after they push the button.
                 }
@@ -147,7 +149,7 @@ public class GUI {
         // - End
     }
 
-    public void generateScreen(){
+    public void generateScreen() {
         /** SCREEN1
          * createBackground(1, FileName for background);
          * create objects can be done as many times as we need objects
@@ -157,9 +159,10 @@ public class GUI {
         createObject_menu(1, 355, 55, 511, 511, "boots.png",
                 "throw", "pick", "eat",
                 "talkboot", "lookboot", "attackboot");
-
-
-
+        createObject_button(2,100,200,267,73, "newGame.png");
+        createObject_button(3,100,280,285,74, "loadGame.png");
+        createObject_button(4,100,360,236,73, "settings.png");
+        createObject_button(5,100,440,145,71, "help.png");
     }
 
     public JTextArea getMessageText() {
@@ -169,4 +172,58 @@ public class GUI {
     public void setMessageText(JTextArea messageText) {
         this.messageText = messageText;
     }
+
+    // TODO Henry adds button function;
+    public void createObject_button(int bgNum, int objx, int objy, int objWidth, int objHeight, String objFileName) {
+
+
+        JLabel objectLabel = new JLabel();
+        objectLabel.setBounds(objx, objy, objWidth, objHeight);
+        ImageIcon objectIcon = new ImageIcon(getClass().getClassLoader().getResource(objFileName));
+        objectLabel.setIcon(objectIcon);
+
+        JButton btn = new JButton();
+        // Set button size and location.
+        btn.addActionListener(guiClient.getaHandler());
+        btn.setActionCommand(String.valueOf(bgNum));
+
+//        btn.setBounds(objx, objy, objWidth, objHeight);
+//        container.add(btn);
+        objectLabel.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (SwingUtilities.isLeftMouseButton(e)){
+                    btn.doClick();
+
+                }
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+        bgPanel.get(0).add(objectLabel);
+        bgPanel.get(0).add(bgLabel.get(0));
+
+    }
+    // TODO Henry adds button function ends;
+
+
 }
