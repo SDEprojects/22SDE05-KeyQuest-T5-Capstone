@@ -1,10 +1,13 @@
 package com.gui;
 
 import com.game.controller.ActionHandler;
+import com.game.controller.EventHandler;
 
 public class GUIClient{
 
     private ActionHandler aHandler = new ActionHandler(this);
+
+    private EventHandler eHandler = new EventHandler(this);
 
     private GUI gui = new GUI(this);
 
@@ -30,5 +33,12 @@ public class GUIClient{
 
     public GUI getGui() {
         return gui;
+    }
+    public EventHandler geteHandler() {
+        return eHandler;
+    }
+
+    public void seteHandler(EventHandler eHandler) {
+        this.eHandler = eHandler;
     }
 }
