@@ -2,7 +2,6 @@ package com.gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -10,11 +9,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class GUI {
-    private static final int NUM_OF_SCREENS = 1;
+    private static final int NUM_OF_BGS = 9;
+    private static final int NUM_OF_OBJECTS = 8;
     private JFrame window;
     private JTextArea messageText;
     private List<JPanel> bgPanel;
     private List<JLabel> bgLabel;
+    private List<JLabel> objLabel;
 
     private GUIClient guiClient;
 
@@ -22,11 +23,20 @@ public class GUI {
         this.guiClient = guiClient;
         bgPanel = new ArrayList<>();
         bgLabel = new ArrayList<>();
+        objLabel = new ArrayList<>();
 
         createMainField();
         initializeBackgroundPanels();
         initializeBackgroundObjects();
 
+        bgPanel.get(0).add(objLabel.get(0));
+        bgPanel.get(0).add(objLabel.get(1));
+        bgPanel.get(0).add(objLabel.get(2));
+        bgPanel.get(0).add(objLabel.get(3));
+
+        bgPanel.get(0).add(bgLabel.get(0));
+
+        window.add(bgPanel.get(0));
         window.setVisible(true);
     }
 
@@ -55,8 +65,8 @@ public class GUI {
      *  add to the window for display
      */
     private void initializeBackgroundPanels() {
-        for (int i = 1; i < NUM_OF_SCREENS; i++){
-            String fileName = "bg_" + i + ".jpg";
+        for (int i = 0; i < NUM_OF_BGS; i++){
+            String fileName = "bg_" + (i + 1) + ".png";
 
             bgPanel.add(new JPanel());
             bgPanel.get(i).setBounds(50, 50, 1000, 700);
@@ -76,59 +86,53 @@ public class GUI {
     }
 
     private void initializeBackgroundObjects(){
-        /**
-         * TODO: Create objects for each background
-         * Foyer
-         * 1. Kitchen Directional
-         * 2. Living room Directional
-         * 3. Go back or Exit game Directional
-         * Kitchen
-         * 4. Loft Directional
-         * 5. Foyer Directional
-         * 6. Living room Directional
-         * 7. Food Item
-         * 8. Exit Game Directional?
-         * Living Room
-         * 9. Cat Item
-         * 10. Foyer Directional
-         * 11. Kitchen Directional
-         * 12. Loft Directional
-         * 13. Bathroom Directional
-         * Bathroom
-         * 14. Walk-in Closet Directional
-         * 15. Living room directional
-         * Walk-in Closet
-         * 16. Dog Item
-         * 17. Cat Item
-         * 18. Food Item
-         * 19. Bathroom Directional
-         * Garage
-         * 20. Key Item
-         * 21. Loft Directional
-         * 22. Garden Directional
-         * Loft
-         * 23. Dog Item
-         * 24. Living Room Directional
-         * 25. Garage Directional
-         * Garden
-         * Actual Objects to build
-         * 1. left Directional
-         * 2. right Directional
-         * 3. back directional
-         * 4. up directional
-         * 6. Food Item
-         * 7. Food Item # 2
-         * 8. Dog Item
-         * 9. Cat Item
-         * 14. Key Item
-         * 15. Boot Item
-         */
+
+        for(int i = 0; i < NUM_OF_OBJECTS; i++){
+            objLabel.add(new JLabel());
+            String fileName = "btn_" + (i + 1) + ".png";
+
+            switch(i){
+                case 0:
+                    objLabel.get(i).setBounds(1, 1, 350, 50);
+                    break;
+                case 1:
+                    objLabel.get(i).setBounds(1, 1, 325, 100);
+                    break;
+                case 2:
+                    objLabel.get(i).setBounds(1, 1, 300, 150);
+                    break;
+                case 3:
+                    objLabel.get(i).setBounds(1, 1, 275, 200);
+                    break;
+                case 4:
+                    objLabel.get(i).setBounds(1, 1, 250, 225);
+                    break;
+                case 5:
+                    objLabel.get(i).setBounds(1, 1, 225, 250);
+                    break;
+                case 6:
+                    objLabel.get(i).setBounds(1, 1, 200, 275);
+                    break;
+                case 7:
+                    objLabel.get(i).setBounds(1, 1, 175, 300);
+                    break;
+            }
+            ImageIcon objectIcon = new ImageIcon(getClass().getClassLoader().getResource(fileName));
+            objLabel.get(i).setIcon(objectIcon);
+        }
     }
 
-    private void generateStartScreen(){
+    private void generateScreen(int bgNum){
+
         // TODO: ADD THIS BACK SOMEWHERE
         // Adds the background panel to the window as though it's a list.
         // window.add(bgPanel.get(0));
+        bgPanel.get(bgNum).add(objLabel.get(5));
+        bgPanel.get(bgNum).add(objLabel.get(6));
+        bgPanel.get(bgNum).add(objLabel.get(7));
+        bgPanel.get(bgNum).add(objLabel.get(8));
+
+        bgPanel.get(bgNum).add(bgLabel.get(0));
     }
 
     /**
@@ -244,4 +248,27 @@ public class GUI {
     // TODO Henry adds button function ends;
 
 
+    public List<JPanel> getBgPanel() {
+        return bgPanel;
+    }
+
+    public void setBgPanel(List<JPanel> bgPanel) {
+        this.bgPanel = bgPanel;
+    }
+
+    public List<JLabel> getBgLabel() {
+        return bgLabel;
+    }
+
+    public void setBgLabel(List<JLabel> bgLabel) {
+        this.bgLabel = bgLabel;
+    }
+
+    public List<JLabel> getObjLabel() {
+        return objLabel;
+    }
+
+    public void setObjLabel(List<JLabel> objLabel) {
+        this.objLabel = objLabel;
+    }
 }
