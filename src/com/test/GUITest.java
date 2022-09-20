@@ -16,7 +16,7 @@ class GUITest extends AssertJSwingTestCaseTemplate {
     @BeforeEach
     void setUp() { //initializes test fixtures, runs everytime before test method is executed
         GUIClient frame = GuiActionRunner.execute(() -> new GUIClient());
-        window = new FrameFixture(robot(), );
+        //window = new FrameFixture(robot(), );
         window.show(); //shows test frame
     }
 
