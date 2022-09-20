@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class GUI {
+    private static final int NUM_OF_SCREENS = 1;
     private JFrame window;
     private JTextArea messageText;
     private List<JPanel> bgPanel;
@@ -23,7 +24,8 @@ public class GUI {
         bgLabel = new ArrayList<>();
 
         createMainField();
-        generateScreen();
+        initializeBackgroundPanels();
+        initializeBackgroundObjects();
 
         window.setVisible(true);
     }
@@ -33,7 +35,7 @@ public class GUI {
         // window size should be:
         // width = width of background image,
         // height = height of image + chat bar + UI
-        window.setSize(1060, 863);
+        window.setSize(1000, 863);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
         window.setLayout(null);
@@ -53,11 +55,11 @@ public class GUI {
      *  add to the window for display
      */
     private void initializeBackgroundPanels() {
-        for (int i = 0; i < NUM_OF_SCREENS; i++){
-            String fileName = "background_" + i + ".jpg";
+        for (int i = 1; i < NUM_OF_SCREENS; i++){
+            String fileName = "bg_" + i + ".jpg";
 
             bgPanel.add(new JPanel());
-            bgPanel.get(i).setBounds(50, 50, 1060, 663);
+            bgPanel.get(i).setBounds(50, 50, 1000, 700);
             bgPanel.get(i).setBackground(Color.BLUE);
             bgPanel.get(i).setLayout(null);
 
