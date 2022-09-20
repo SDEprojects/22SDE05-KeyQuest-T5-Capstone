@@ -1,0 +1,5 @@
+1. Dog picture
+2. Cat picture
+3. * Dog icon
+4. * Cat picture
+5. * Dog icon

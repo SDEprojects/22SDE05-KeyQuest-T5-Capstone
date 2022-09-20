@@ -27,25 +27,25 @@ public class EventHandler {
     }
 
     public void eventRequest_btn(String lableType, String actionValue) {
-        String objClicked = e.getActionCommand();
+//        String objClicked = e.getActionCommand();
 
         // For Start page;
-        switch (objClicked) {
-            case "2":
-                // TODO Generate game page Foyer. Then go to page Foyer.
-
-                break;
-            case "3":
-                // TODO Load game, future feature.
-                break;
-            case "4":
-                // TODO Settings, future feature.
-                break;
-            case "5":
-                guiClient.getGui().getMessageText().setText("New Game clicked");
-                guiClient.getGui().getMessageText().setText("Click 'help' to get available commands, right click items to see what you can do with them.");
-                break;
-        }
+//        switch (objClicked) {
+//            case "2":
+//                // TODO Generate game page Foyer. Then go to page Foyer.
+//
+//                break;
+//            case "3":
+//                // TODO Load game, future feature.
+//                break;
+//            case "4":
+//                // TODO Settings, future feature.
+//                break;
+//            case "5":
+//                guiClient.getGui().getMessageText().setText("New Game clicked");
+//                guiClient.getGui().getMessageText().setText("Click 'help' to get available commands, right click items to see what you can do with them.");
+//                break;
+//        }
 
 
     }
