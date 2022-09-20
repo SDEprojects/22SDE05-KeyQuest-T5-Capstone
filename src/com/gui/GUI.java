@@ -28,7 +28,7 @@ public class GUI {
         window.setVisible(true);
     }
 
-    public void createMainField() {
+    private void createMainField() {
         window = new JFrame();
         // window size should be:
         // width = width of background image,
@@ -36,7 +36,7 @@ public class GUI {
         window.setSize(1060, 863);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
-//        window.setLayout(null);
+        window.setLayout(null);
 
         messageText = new JTextArea("----THIS IS SOME SAMPLE TEXT----");
         messageText.setBounds(50, 663, 700, 150);
@@ -46,31 +46,87 @@ public class GUI {
         messageText.setLineWrap(true);
         messageText.setFont(new Font("Book Antiqua", Font.PLAIN, 26));
         window.add(messageText);
-
     }
 
     /**
      * TODO: create/load all the backgrounds and labels into their containers, set required fields,
      *  add to the window for display
      */
-    public void createBackground(int bgNum, String bgFileName) {
+    private void initializeBackgroundPanels() {
+        for (int i = 0; i < NUM_OF_SCREENS; i++){
+            String fileName = "background_" + i + ".jpg";
 
-        bgPanel.add(new JPanel());
+            bgPanel.add(new JPanel());
+            bgPanel.get(i).setBounds(50, 50, 1060, 663);
+            bgPanel.get(i).setBackground(Color.BLUE);
+            bgPanel.get(i).setLayout(null);
 
-        bgPanel.get(0).setBounds(50, 50, 1060, 663);
-        bgPanel.get(0).setBackground(Color.BLUE);
-        bgPanel.get(0).setLayout(null);
-        window.add(bgPanel.get(0));
+            bgLabel.add(new JLabel());
+            bgLabel.get(i).setBounds(0, 0, 1060, 663);
 
-        bgLabel.add(new JLabel());
-        bgLabel.get(0).setBounds(0, 0, 1060, 663);
+            ImageIcon bgIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)));
+            bgLabel.get(i).setIcon(bgIcon);
+        }
 
-        // TODO: Load Image Icon with class resource loader
+        // TODO: ADD THIS BACK SOMEWHERE
+        // Adds the background panel to the window as though it's a list.
+        // window.add(bgPanel.get(0));
+    }
 
-        ImageIcon bgIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("foyer2.jpg")));
-        bgLabel.get(0).setIcon(bgIcon);
-        //------------
+    private void initializeBackgroundObjects(){
+        /**
+         * TODO: Create objects for each background
+         * Foyer
+         * 1. Kitchen Directional
+         * 2. Living room Directional
+         * 3. Go back or Exit game Directional
+         * Kitchen
+         * 4. Loft Directional
+         * 5. Foyer Directional
+         * 6. Living room Directional
+         * 7. Food Item
+         * 8. Exit Game Directional?
+         * Living Room
+         * 9. Cat Item
+         * 10. Foyer Directional
+         * 11. Kitchen Directional
+         * 12. Loft Directional
+         * 13. Bathroom Directional
+         * Bathroom
+         * 14. Walk-in Closet Directional
+         * 15. Living room directional
+         * Walk-in Closet
+         * 16. Dog Item
+         * 17. Cat Item
+         * 18. Food Item
+         * 19. Bathroom Directional
+         * Garage
+         * 20. Key Item
+         * 21. Loft Directional
+         * 22. Garden Directional
+         * Loft
+         * 23. Dog Item
+         * 24. Living Room Directional
+         * 25. Garage Directional
+         * Garden
+         * Actual Objects to build
+         * 1. left Directional
+         * 2. right Directional
+         * 3. back directional
+         * 4. up directional
+         * 6. Food Item
+         * 7. Food Item # 2
+         * 8. Dog Item
+         * 9. Cat Item
+         * 14. Key Item
+         * 15. Boot Item
+         */
+    }
 
+    private void generateStartScreen(){
+        // TODO: ADD THIS BACK SOMEWHERE
+        // Adds the background panel to the window as though it's a list.
+        // window.add(bgPanel.get(0));
     }
 
     /**
@@ -88,7 +144,7 @@ public class GUI {
 
         menuItem[1] = new JMenuItem(choice1Name);
         menuItem[1].addActionListener(guiClient.getaHandler());
-        menuItem[1].setActionCommand("1");
+        menuItem[1].setActionCommand(choice1Command);
         popupMenu.add(menuItem[1]);
 
         menuItem[2] = new JMenuItem(choice2Name);
@@ -116,53 +172,25 @@ public class GUI {
         // CREATE MOUSE LISTENER AND ATTACH MENU
         objectLabel.addMouseListener(new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
+            public void mouseClicked(MouseEvent e) {}
             @Override
             public void mousePressed(MouseEvent e) {
-                if (SwingUtilities.isRightMouseButton(e)) {
+                if(SwingUtilities.isRightMouseButton(e)){
                     popupMenu.show(objectLabel, e.getX(), e.getY());
                     // what happens after they push the button.
                 }
             }
-
             @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
+            public void mouseReleased(MouseEvent e) {}
             @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
+            public void mouseEntered(MouseEvent e) {}
             @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
+            public void mouseExited(MouseEvent e) {}
         });
-        bgPanel.get(0).add(objectLabel);
-        bgPanel.get(0).add(bgLabel.get(0));
-        //---------------------
-        // - End
-    }
 
-    public void generateScreen() {
-        /** SCREEN1
-         * createBackground(1, FileName for background);
-         * create objects can be done as many times as we need objects
-         * to be located on the screen
-         * createObject(1, 400, 140, 200, 200, FileName to object, "throw", "pick", "eat")*/
-        createBackground(1, "foyer2.jpg");
-        createObject_menu(1, 355, 55, 511, 511, "boots.png",
-                "throw", "pick", "eat",
-                "talkboot", "lookboot", "attackboot");
-        createObject_button(2,100,200,267,73, "newGame.png");
-        createObject_button(3,100,280,285,74, "loadGame.png");
-        createObject_button(4,100,360,236,73, "settings.png");
-        createObject_button(5,100,440,145,71, "help.png");
+        // TODO: ADD THIS BACK SOMEWHERE
+        // bgPanel.get(0).add(objectLabel);
+        // bgPanel.get(0).add(bgLabel.get(0));
     }
 
     public JTextArea getMessageText() {
@@ -191,10 +219,7 @@ public class GUI {
 //        container.add(btn);
         objectLabel.addMouseListener(new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
+            public void mouseClicked(MouseEvent e) {}
             @Override
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isLeftMouseButton(e)){
@@ -203,21 +228,12 @@ public class GUI {
                 }
 
             }
-
             @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
+            public void mouseReleased(MouseEvent e) {}
             @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
+            public void mouseEntered(MouseEvent e) {}
             @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
+            public void mouseExited(MouseEvent e) {}
         });
         bgPanel.get(0).add(objectLabel);
         bgPanel.get(0).add(bgLabel.get(0));
