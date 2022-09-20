@@ -2,6 +2,7 @@ package com.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -9,7 +10,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class GUI {
-    private static final int NUM_OF_SCREENS = 1;
     private JFrame window;
     private JTextArea messageText;
     private List<JPanel> bgPanel;
@@ -23,9 +23,7 @@ public class GUI {
         bgLabel = new ArrayList<>();
 
         createMainField();
-        initializeBackgroundPanels();
-        initializeBackgroundObjects();
-        generateStartScreen();
+        generateScreen();
 
         window.setVisible(true);
     }
@@ -202,4 +200,46 @@ public class GUI {
     public void setMessageText(JTextArea messageText) {
         this.messageText = messageText;
     }
+
+    // TODO Henry adds button function;
+    public void createObject_button(int bgNum, int objx, int objy, int objWidth, int objHeight, String objFileName) {
+
+
+        JLabel objectLabel = new JLabel();
+        objectLabel.setBounds(objx, objy, objWidth, objHeight);
+        ImageIcon objectIcon = new ImageIcon(getClass().getClassLoader().getResource(objFileName));
+        objectLabel.setIcon(objectIcon);
+
+        JButton btn = new JButton();
+        // Set button size and location.
+        btn.addActionListener(guiClient.getaHandler());
+        btn.setActionCommand(String.valueOf(bgNum));
+
+//        btn.setBounds(objx, objy, objWidth, objHeight);
+//        container.add(btn);
+        objectLabel.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {}
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (SwingUtilities.isLeftMouseButton(e)){
+                    btn.doClick();
+
+                }
+
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
+        bgPanel.get(0).add(objectLabel);
+        bgPanel.get(0).add(bgLabel.get(0));
+
+    }
+    // TODO Henry adds button function ends;
+
+
 }

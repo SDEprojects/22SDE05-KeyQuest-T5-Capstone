@@ -16,12 +16,13 @@ public class ActionHandler implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String selection = e.getActionCommand();
+        System.out.println(e.getSource().getClass().getCanonicalName()); //javax.swing.JButton
 
         // String response = eManager.actionRequest(e.getActionCommand()); --> public boolean actionRequest(String request)
         // eManager.actionResponse(response); --> public void actionResponse(String response){if(response){do something...}}
         // possible event triggers: sub-menu will do a text response.
         switch(selection){
-            case "talkboot":
+            case "1":
                 guiClient.getGui().getMessageText().setText("Why are you talking to your boots");
                 break;
             case "lookboot":
