@@ -2,6 +2,7 @@ package com.gui;
 
 import com.game.model.Character;
 import com.game.model.Location;
+import com.sound.Sound;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,6 +64,8 @@ public class GUI {
         messageText.setLineWrap(true);
         messageText.setFont(new Font("Book Antiqua", Font.PLAIN, 26));
         window.add(messageText);
+
+        playMusic(0);
     }
 
     /**
@@ -198,6 +201,15 @@ public class GUI {
         menuItem[3].setActionCommand("testinging");
         popupMenu.add(menuItem[3]);
 
+    }
+
+    public void playMusic(int i){
+
+        Sound sound = new Sound();
+
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
     }
 
     public JTextArea getMessageText() {
