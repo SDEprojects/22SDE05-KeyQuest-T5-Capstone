@@ -33,7 +33,7 @@ public class EventHandler {
 
         if (lableID == "foyer") {
             // TODO Generate game page *Foyer*. Then go to Foyer.
-            guiClient.getGui().generateScreen(2);
+//            guiClient.getGui().generateScreen(2);
             guiClient.getGui().setupRoom();
 
         } else if (lableID == "kitchen") {

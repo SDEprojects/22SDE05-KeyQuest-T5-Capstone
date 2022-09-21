@@ -58,7 +58,7 @@ public class GUI {
         window.setLayout(null);
 
         messageText = new JTextArea("----THIS IS SOME SAMPLE TEXT----");
-        messageText.setBounds(50, 663, 700, 150);
+        messageText.setBounds(0, 663, 700, 150);
         messageText.setBackground(Color.BLUE);
         messageText.setForeground(Color.WHITE);
         messageText.setEditable(false);
@@ -76,7 +76,7 @@ public class GUI {
             String fileName = "bg_" + (i + 1) + ".png";
 
             bgPanel.add(new JPanel());
-            bgPanel.get(i).setBounds(50, 50, 1000, 700);
+            bgPanel.get(i).setBounds(0, 0, 1000, 700);
             bgPanel.get(i).setBackground(Color.BLUE);
             bgPanel.get(i).setLayout(null);
 
@@ -100,16 +100,16 @@ public class GUI {
 
             switch(i){
                 case 0:
-                    objLabel.get(i).setBounds(1, 1, 350, 50);
+                    objLabel.get(i).setBounds(15, 150, 350, 100);
                     break;
                 case 1:
-                    objLabel.get(i).setBounds(1, 1, 325, 100);
+                    objLabel.get(i).setBounds(15, 220, 325, 100);
                     break;
                 case 2:
-                    objLabel.get(i).setBounds(1, 1, 300, 150);
+                    objLabel.get(i).setBounds(15, 290, 300, 100);
                     break;
                 case 3:
-                    objLabel.get(i).setBounds(1, 1, 275, 200);
+                    objLabel.get(i).setBounds(15, 360, 275, 100);
                     break;
                 case 4:
                     objLabel.get(i).setBounds(1, 1, 250, 225);
@@ -129,7 +129,7 @@ public class GUI {
         }
     }
 
-    private void generateScreen(int bgNum){
+    public void generateScreen(int bgNum){
 
         // TODO: ADD THIS BACK SOMEWHERE
         // Adds the background panel to the window as though it's a list.
