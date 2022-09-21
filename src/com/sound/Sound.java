@@ -6,17 +6,13 @@ import javax.swing.*;
 import java.net.URL;
 
 public class Sound {
-    JFrame frame;
-    JPanel panel;
+
 
     Clip clip;
     URL[] soundURL =new URL[10]; //stores sound files
 
     public Sound() {
-        frame = new JFrame("Audio");
-        panel = new JPanel();
-        frame.add(panel);
-        frame.setVisible(true);
+
 
         soundURL[0] = getClass().getResource("/Sound/arcade-game.wav");
         soundURL[1] = getClass().getResource("/Sound/audio001.wav");
@@ -44,19 +40,11 @@ public class Sound {
         clip.stop();
     }
 
-    public static void playMusic(int i){
 
-        Sound sound = new Sound();
-
-        sound.setFile(i);
-        sound.play();
-        sound.loop();
-    }
 
 
     public static void main(String[] args) {
-        new Sound();
-        playMusic(0);
+
 
     }
 }
