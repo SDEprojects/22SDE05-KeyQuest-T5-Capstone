@@ -7,10 +7,7 @@ public class GUIClient{
 
     private ActionHandler aHandler = new ActionHandler(this);
 
-    private EventHandler eHandler = new EventHandler(this);
-
     private GUI gui = new GUI(this);
-
 
     public static void main(String[] args) throws InterruptedException {
         new GUIClient();
@@ -28,19 +25,11 @@ public class GUIClient{
         this.aHandler = aHandler;
     }
 
-    public void setGui(GUI gui) {
-        this.gui = gui;
-    }
-
     public GUI getGui() {
         return gui;
     }
-    public EventHandler geteHandler() {
-        return eHandler;
-    }
-    public void seteHandler(EventHandler eHandler) {
-        this.eHandler = eHandler;
-    }
 
-
+    public void setGui(GUI gui) {
+        this.gui = gui;
+    }
 }
