@@ -2,17 +2,13 @@ package com.game.controller;
 
 import com.game.model.Character;
 import com.gui.GUIClient;
-import com.game.controller.ActionHandler;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 
 import static com.game.utility.JSONParser.getAllItems;
-import static com.game.utility.JSONParser.getStartingRoom;
 
 
 public class EventHandler {
@@ -27,19 +23,22 @@ public class EventHandler {
     }
 
     // Response to clicking on the buttons.
-    public void eventRequest_btn(String lableID, String actionValue) {
+    public void eventRequest(String lableID, String actionValue) {
         //TODO actionValue from ActionHandler when the label type is Jbutton;
         // When actionValue == click or do.
 
         if (lableID == "foyer") {
             // TODO Generate game page *Foyer*. Then go to Foyer.
-//            guiClient.getGui().generateScreen(2);
-            guiClient.getGui().setupRoom();
+            //guiClient.getGui().generateScreen(2);
+            //guiClient.getGui().setupRoom();
 
-        } else if (lableID == "kitchen") {
+        } else if (lableID.equals("foyer")) {
             // TODO Generate game page *Kitchen*. Then go to Kitchen.
-        } else if (lableID == "loft") {
+            System.out.println("I AM HEERRRRE");
+        } else if (actionValue.equals("new game")) {
             // TODO Generate game page *Loft*. Then go to Loft.
+            guiClient.getGui().generateScreen(1);
+            //gui.getMessageText().setText("Click on the items to see what you can do with them.");
         } else if (lableID == "garage") {
             // TODO Generate game page *Garage*. Then go to Garage.
         } else if (lableID == "lounge") {

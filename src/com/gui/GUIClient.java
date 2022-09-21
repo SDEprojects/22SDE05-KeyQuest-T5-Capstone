@@ -3,17 +3,13 @@ package com.gui;
 import com.game.controller.ActionHandler;
 import com.game.controller.EventHandler;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-public class GUIClient {
+public class GUIClient{
 
     private ActionHandler aHandler = new ActionHandler(this);
 
     private EventHandler eHandler = new EventHandler(this);
 
     private GUI gui = new GUI(this);
-
 
     public static void main(String[] args) throws InterruptedException {
         new GUIClient();
@@ -31,7 +27,7 @@ public class GUIClient {
         // TODO Henry's eye-burning code ends here, carry on.
     }
 
-    public GUIClient() {
+    public GUIClient(){
     }
 
     public ActionHandler getaHandler() {
@@ -57,6 +53,5 @@ public class GUIClient {
     public void seteHandler(EventHandler eHandler) {
         this.eHandler = eHandler;
     }
-
 
 }

@@ -5,7 +5,6 @@ import com.game.model.Location;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -18,19 +17,20 @@ import static com.game.utility.JSONParser.getStartingRoom;
 public class GUI {
     private static final int NUM_OF_BGS = 9;
     private static final int NUM_OF_OBJECTS = 8;
+    private GUIClient guiClient;
     private JFrame window;
     private JTextArea messageText;
     private List<JPanel> bgPanel;
     private List<JLabel> bgLabel;
     private List<JLabel> objLabel;
 
-    private GUIClient guiClient;
-
     public GUI(GUIClient guiClient) {
         this.guiClient = guiClient;
         bgPanel = new ArrayList<>();
         bgLabel = new ArrayList<>();
         objLabel = new ArrayList<>();
+        window = new JFrame();
+        messageText = new JTextArea("--- SOMETHING TO SAY ---");
 
         createMainField();
         initializeBackgroundPanels();
@@ -48,7 +48,6 @@ public class GUI {
     }
 
     private void createMainField() {
-        window = new JFrame();
         // window size should be:
         // width = width of background image,
         // height = height of image + chat bar + UI
@@ -57,8 +56,7 @@ public class GUI {
         window.getContentPane().setBackground(Color.BLACK);
         window.setLayout(null);
 
-        messageText = new JTextArea("----THIS IS SOME SAMPLE TEXT----");
-        messageText.setBounds(0, 663, 700, 150);
+        messageText.setBounds(50, 663, 700, 150);
         messageText.setBackground(Color.BLUE);
         messageText.setForeground(Color.WHITE);
         messageText.setEditable(false);
@@ -124,8 +122,31 @@ public class GUI {
                     objLabel.get(i).setBounds(1, 1, 175, 300);
                     break;
             }
-            ImageIcon objectIcon = new ImageIcon(getClass().getClassLoader().getResource(fileName));
+            ImageIcon objectIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)));
             objLabel.get(i).setIcon(objectIcon);
+
+            JButton btn = new JButton();
+            // Set button size and location.
+            btn.addActionListener(guiClient.getaHandler());
+            btn.setActionCommand("new game");
+            objLabel.get(i).addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {}
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    if (SwingUtilities.isLeftMouseButton(e)){
+                        btn.doClick();
+
+                    }
+
+                }
+                @Override
+                public void mouseReleased(MouseEvent e) {}
+                @Override
+                public void mouseEntered(MouseEvent e) {}
+                @Override
+                public void mouseExited(MouseEvent e) {}
+            });
         }
     }
 
@@ -134,20 +155,27 @@ public class GUI {
         // TODO: ADD THIS BACK SOMEWHERE
         // Adds the background panel to the window as though it's a list.
         // window.add(bgPanel.get(0));
+        System.out.println("DID WE GET HERE");
+        //createMainField();
+        bgPanel.get(bgNum).add(objLabel.get(4));
         bgPanel.get(bgNum).add(objLabel.get(5));
         bgPanel.get(bgNum).add(objLabel.get(6));
         bgPanel.get(bgNum).add(objLabel.get(7));
-        bgPanel.get(bgNum).add(objLabel.get(8));
 
         bgPanel.get(bgNum).add(bgLabel.get(0));
+        /*for (JPanel panel: bgPanel) {
+            panel.setVisible(false);
+        }*/
+
+        bgPanel.get(bgNum).setVisible(true);
+        window.add(bgPanel.get(bgNum));
+        //window.setVisible(true);
     }
 
     /**
      * TODO: create objects that can be added to the background as interactive items.
      */
-    public void createObject_menu(int bgNum, int objx, int objy, int objWidth, int objHeight, String objFileName,
-                                  String choice1Name, String choice2Name, String choice3Name,
-                                  String choice1Command, String choice2Command, String choice3Command) {
+    public void createMenu() {
 
         // CREATE POPUP MENU
         JPopupMenu popupMenu = new JPopupMenu();
@@ -155,55 +183,21 @@ public class GUI {
         // CREATE POPUP MENU ITEMS
         JMenuItem menuItem[] = new JMenuItem[4];
 
-        menuItem[1] = new JMenuItem(choice1Name);
+        menuItem[1] = new JMenuItem();
         menuItem[1].addActionListener(guiClient.getaHandler());
-        menuItem[1].setActionCommand(choice1Command);
+        menuItem[1].setActionCommand("testing");
         popupMenu.add(menuItem[1]);
 
-        menuItem[2] = new JMenuItem(choice2Name);
+        menuItem[2] = new JMenuItem();
         menuItem[2].addActionListener(guiClient.getaHandler());
-        menuItem[2].setActionCommand(choice2Command);
+        menuItem[2].setActionCommand("test");
         popupMenu.add(menuItem[2]);
 
-        menuItem[3] = new JMenuItem(choice3Name);
+        menuItem[3] = new JMenuItem();
         menuItem[3].addActionListener(guiClient.getaHandler());
-        menuItem[3].setActionCommand(choice3Command);
+        menuItem[3].setActionCommand("testinging");
         popupMenu.add(menuItem[3]);
 
-        // CREATE 1 OBJECT - Start
-        JLabel objectLabel = new JLabel();
-        objectLabel.setBounds(objx, objy, objWidth, objHeight);
-
-        /** TODO: Load Image Icon with class resource loader
-         * ImageIcon objectIcon = new ImageIcon(getClass().getClassLoader().getResource(FileName));
-         * objectLabel.setIcon(objectIcon);
-         * to ensure to object will show we have to layer the containers properly.
-         * Object gets placed into background panel, then the background*/
-
-        ImageIcon objectIcon = new ImageIcon(getClass().getClassLoader().getResource(objFileName));
-        objectLabel.setIcon(objectIcon);
-        // CREATE MOUSE LISTENER AND ATTACH MENU
-        objectLabel.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {}
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if(SwingUtilities.isRightMouseButton(e)){
-                    popupMenu.show(objectLabel, e.getX(), e.getY());
-                    // what happens after they push the button.
-                }
-            }
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-            @Override
-            public void mouseEntered(MouseEvent e) {}
-            @Override
-            public void mouseExited(MouseEvent e) {}
-        });
-
-        // TODO: ADD THIS BACK SOMEWHERE
-        // bgPanel.get(0).add(objectLabel);
-        // bgPanel.get(0).add(bgLabel.get(0));
     }
 
     public JTextArea getMessageText() {
@@ -214,45 +208,6 @@ public class GUI {
         this.messageText = messageText;
     }
 
-    // TODO Henry adds button function;
-    public void createObject_button(int bgNum, int objx, int objy, int objWidth, int objHeight, String objFileName) {
-
-
-        JLabel objectLabel = new JLabel();
-        objectLabel.setBounds(objx, objy, objWidth, objHeight);
-        ImageIcon objectIcon = new ImageIcon(getClass().getClassLoader().getResource(objFileName));
-        objectLabel.setIcon(objectIcon);
-
-        JButton btn = new JButton();
-        // Set button size and location.
-        btn.addActionListener(guiClient.getaHandler());
-        btn.setActionCommand(String.valueOf(bgNum));
-
-//        btn.setBounds(objx, objy, objWidth, objHeight);
-//        container.add(btn);
-        objectLabel.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {}
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if (SwingUtilities.isLeftMouseButton(e)){
-                    btn.doClick();
-
-                }
-
-            }
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-            @Override
-            public void mouseEntered(MouseEvent e) {}
-            @Override
-            public void mouseExited(MouseEvent e) {}
-        });
-        bgPanel.get(0).add(objectLabel);
-        bgPanel.get(0).add(bgLabel.get(0));
-
-    }
-
     public void setupRoom(){
         Character cat = new Character("cat");
         Character dog = new Character("dog");
@@ -261,16 +216,16 @@ public class GUI {
         String[] characters = location.getCharacter();
         if (characters.length != 0) {
             if (Arrays.asList(characters).contains("cat")) {
-                guiClient.getGui().getMessageText().setText("Current location is " + getStartingRoom() +
+                getMessageText().setText("Current location is " + getStartingRoom() +
                         "\n" + location.getDescription() + "\n" + cat.getDescription()+
                         "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
             } else if (Arrays.asList(characters).contains("dog")) {
-                guiClient.getGui().getMessageText().setText("Current location is " + getStartingRoom() +
+                getMessageText().setText("Current location is " + getStartingRoom() +
                         "\n" + location.getDescription() + "\n" + dog.getDescription()+
                         "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
             }
         } else {
-            guiClient.getGui().getMessageText().setText("Current location is " + getStartingRoom() +
+            getMessageText().setText("Current location is " + getStartingRoom() +
                     "\n" + location.getDescription() +
              "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
         }
