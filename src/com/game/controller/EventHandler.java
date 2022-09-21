@@ -1,6 +1,6 @@
 package com.game.controller;
 
-import com.gui.GUI;
+import com.game.model.Character;
 import com.gui.GUIClient;
 
 import java.util.ArrayList;
