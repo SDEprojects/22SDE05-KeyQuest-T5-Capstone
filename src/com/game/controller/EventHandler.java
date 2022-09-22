@@ -39,7 +39,7 @@ public class EventHandler {
             // TODO Generate game page *Loft*. Then go to Loft.
             guiClient.getGui().generateScreen(1);
             //gui.getMessageText().setText("Click on the items to see what you can do with them.");
-        } else if (lableID == "garage") {
+        } else if (lableID == "music controller") {
             // TODO Generate game page *Garage*. Then go to Garage.
         } else if (lableID == "lounge") {
             // TODO Generate game page *Lounge*. Then go to Lounge.
