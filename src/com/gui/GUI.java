@@ -134,7 +134,7 @@ public class GUI {
             JButton btn = new JButton();
             // Set button size and location.
             btn.addActionListener(guiClient.getaHandler());
-            btn.setActionCommand("new game");
+            btn.setActionCommand("foyer"); // Change from "new game" to "foyer",so the function could be use later.
             objLabel.get(i).addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {}
@@ -211,6 +211,7 @@ public class GUI {
         sound.setFile(i);
         sound.play();
         sound.loop();
+
     }
 
     public JTextArea getMessageText() {

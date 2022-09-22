@@ -7,3 +7,4 @@
 7. Bathroom
 8. Closet
 9. Garden
+10. GameOver
