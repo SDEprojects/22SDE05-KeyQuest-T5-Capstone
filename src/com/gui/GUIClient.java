@@ -28,6 +28,9 @@ public class GUIClient{
     }
 
     public GUIClient(){
+        // intro to screen 1
+        // dialog to help player
+        // tutorial
     }
 
     public ActionHandler getaHandler() {
