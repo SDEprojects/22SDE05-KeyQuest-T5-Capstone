@@ -52,6 +52,7 @@ public class GUI {
         // window size should be:
         // width = width of background image,
         // height = height of image + chat bar + UI
+        // TODO: Change this back to 863
         window.setSize(1000, 863);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
@@ -65,7 +66,10 @@ public class GUI {
         messageText.setFont(new Font("Book Antiqua", Font.PLAIN, 26));
         window.add(messageText);
 
-        playMusic(0);
+        messageText.setVisible(false);
+
+        //TODO uncheck this before launch
+        //playMusic(0);
     }
 
     /**
@@ -73,11 +77,11 @@ public class GUI {
      *  add to the window for display
      */
     private void initializeBackgroundPanels() {
-        for (int i = 0; i < NUM_OF_BGS; i++){
+        for (int i = 0; i < NUM_OF_BGS; i++) {
             String fileName = "bg_" + (i + 1) + ".png";
 
             bgPanel.add(new JPanel());
-            bgPanel.get(i).setBounds(0, 0, 1000, 700);
+            bgPanel.get(i).setBounds(0, 0, 1000, 663);
             bgPanel.get(i).setBackground(Color.BLUE);
             bgPanel.get(i).setLayout(null);
             bgPanel.get(i).setVisible(false);
@@ -96,78 +100,165 @@ public class GUI {
         // window.add(bgPanel.get(0));
     }
 
-    private void initializeBackgroundObjects(){
+    private void initializeBackgroundObjects() {
 
-        for(int i = 0; i < NUM_OF_OBJECTS; i++){
+        for (int i = 0; i < NUM_OF_OBJECTS; i++) {
             objLabel.add(new JLabel());
+            JButton btn = new JButton();
             String fileName = "btn_" + (i + 1) + ".png";
 
-            switch(i){
+            switch (i) {
                 case 0:
                     objLabel.get(i).setBounds(15, 150, 350, 100);
+                    btn.setActionCommand("foyer");
                     break;
                 case 1:
                     objLabel.get(i).setBounds(15, 220, 325, 100);
+                    btn.setActionCommand("settings");
                     break;
                 case 2:
                     objLabel.get(i).setBounds(15, 290, 300, 100);
+                    btn.setActionCommand("load game");
                     break;
                 case 3:
                     objLabel.get(i).setBounds(15, 360, 275, 100);
+                    btn.setActionCommand("music player");
                     break;
                 case 4:
-                    objLabel.get(i).setBounds(1, 1, 250, 225);
+                    objLabel.get(i).setBounds(-77, 350, 250, 125);
+                    btn.setActionCommand("lounge");
                     break;
                 case 5:
-                    objLabel.get(i).setBounds(1, 1, 225, 250);
+                    objLabel.get(i).setBounds(777, 350, 250, 125);
+                    btn.setActionCommand("kitchen");
                     break;
                 case 6:
-                    objLabel.get(i).setBounds(1, 1, 200, 275);
+                    objLabel.get(i).setBounds(350, -7, 210, 190);
+                    btn.setActionCommand("foyer");
                     break;
                 case 7:
-                    objLabel.get(i).setBounds(1, 1, 175, 300);
+                    objLabel.get(i).setBounds(350, 500, 220, 190);
+                    btn.setActionCommand("loft");
                     break;
             }
+
+
             ImageIcon objectIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)));
             objLabel.get(i).setIcon(objectIcon);
 
-            JButton btn = new JButton();
             // Set button size and location.
             btn.addActionListener(guiClient.getaHandler());
-            btn.setActionCommand("foyer"); // Change from "new game" to "foyer",so the function could be use later.
+            // TODO: upon creation, ensure the action command give the right value to each object.
+            // move up into the switch case
             objLabel.get(i).addMouseListener(new MouseListener() {
                 @Override
-                public void mouseClicked(MouseEvent e) {}
+                public void mouseClicked(MouseEvent e) {
+                }
+
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    if (SwingUtilities.isLeftMouseButton(e)){
+                    if (SwingUtilities.isLeftMouseButton(e)) {
                         btn.doClick();
-
                     }
-
                 }
+
                 @Override
-                public void mouseReleased(MouseEvent e) {}
+                public void mouseReleased(MouseEvent e) {
+                }
+
                 @Override
-                public void mouseEntered(MouseEvent e) {}
+                public void mouseEntered(MouseEvent e) {
+                }
+
                 @Override
-                public void mouseExited(MouseEvent e) {}
+                public void mouseExited(MouseEvent e) {
+                }
+            });
+        }
+        for (int i = 0; i < 4; i++) {
+            objLabel.add(new JLabel());
+            JButton btn = new JButton();
+
+            switch (i) {
+                case 0:
+                    objLabel.get(i + 8).setBounds(15, 150, 350, 100);
+                    btn.setActionCommand("garage");
+                    objLabel.get(i + 8).setIcon(objLabel.get(4).getIcon());
+                    break;
+                case 1:
+                    objLabel.get(i + 8).setBounds(15, 220, 325, 100);
+                    btn.setActionCommand("bathroom");
+                    objLabel.get(i + 8).setIcon(objLabel.get(5).getIcon());
+                    break;
+                case 2:
+                    objLabel.get(i + 8).setBounds(15, 290, 300, 100);
+                    btn.setActionCommand("garden");
+                    objLabel.get(i + 8).setIcon(objLabel.get(6).getIcon());
+                    break;
+                case 3:
+                    objLabel.get(i + 8).setBounds(15, 360, 275, 100);
+                    btn.setActionCommand("closet");
+                    objLabel.get(i + 8).setIcon(objLabel.get(7).getIcon());
+                    break;
+            }
+
+            btn.addActionListener(guiClient.getaHandler());
+            objLabel.get(i + 8).addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    if (SwingUtilities.isLeftMouseButton(e)) {
+                        btn.doClick();
+                    }
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                }
             });
         }
     }
 
-    public void generateScreen(int bgNum){
+    public void generateScreen(int bgNum) {
 
-        // TODO: ADD THIS BACK SOMEWHERE
-        // Adds the background panel to the window as though it's a list.
-        // window.add(bgPanel.get(0));
-        for (JPanel panel: bgPanel) {
+        messageText.setVisible(true);
+        for (JPanel panel : bgPanel) {
             panel.setVisible(false);
         }
-        bgPanel.get(bgNum).add(objLabel.get(4));
-        bgPanel.get(bgNum).add(objLabel.get(5));
-        bgPanel.get(bgNum).add(objLabel.get(6));
-        bgPanel.get(bgNum).add(objLabel.get(7));
+
+        switch(bgNum){
+            case 1:
+                bgPanel.get(bgNum).add(objLabel.get(4));
+                bgPanel.get(bgNum).add(objLabel.get(5));
+                break;
+            case 2:
+                bgPanel.get(bgNum).add(objLabel.get(4));
+                bgPanel.get(bgNum).add(objLabel.get(6));
+                bgPanel.get(bgNum).add(objLabel.get(7));
+                break;
+            case 3:
+                bgPanel.get(bgNum).add(objLabel.get(4));
+                bgPanel.get(bgNum).add(objLabel.get(5));
+                bgPanel.get(bgNum).add(objLabel.get(8));
+                break;
+            case 4:
+                bgPanel.get(bgNum).add(objLabel.get(10));
+                bgPanel.get(bgNum).add(objLabel.get(7));
+                break;
+        }
+
+        // TODO: new action command values for the new arrow buttons, and any other object that's being created.
 
         bgPanel.get(bgNum).add(bgLabel.get(bgNum));
 
@@ -204,7 +295,7 @@ public class GUI {
 
     }
 
-    public void playMusic(int i){
+    public void playMusic(int i) {
 
         Sound sound = new Sound();
 
@@ -222,7 +313,7 @@ public class GUI {
         this.messageText = messageText;
     }
 
-    public void setupRoom(){
+    public void setupRoom() {
         Character cat = new Character("cat");
         Character dog = new Character("dog");
         Location location = new Location(getStartingRoom());
@@ -231,17 +322,17 @@ public class GUI {
         if (characters.length != 0) {
             if (Arrays.asList(characters).contains("cat")) {
                 getMessageText().setText("Current location is " + getStartingRoom() +
-                        "\n" + location.getDescription() + "\n" + cat.getDescription()+
+                        "\n" + location.getDescription() + "\n" + cat.getDescription() +
                         "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
             } else if (Arrays.asList(characters).contains("dog")) {
                 getMessageText().setText("Current location is " + getStartingRoom() +
-                        "\n" + location.getDescription() + "\n" + dog.getDescription()+
+                        "\n" + location.getDescription() + "\n" + dog.getDescription() +
                         "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
             }
         } else {
             getMessageText().setText("Current location is " + getStartingRoom() +
                     "\n" + location.getDescription() +
-             "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
+                    "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
         }
     }
     // TODO Henry adds button function ends;
