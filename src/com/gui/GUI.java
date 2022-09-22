@@ -41,9 +41,9 @@ public class GUI {
         bgPanel.get(0).add(objLabel.get(1));
         bgPanel.get(0).add(objLabel.get(2));
         bgPanel.get(0).add(objLabel.get(3));
-
         bgPanel.get(0).add(bgLabel.get(0));
 
+        bgPanel.get(0).setVisible(true);
         window.add(bgPanel.get(0));
         window.setVisible(true);
     }
@@ -80,12 +80,15 @@ public class GUI {
             bgPanel.get(i).setBounds(0, 0, 1000, 700);
             bgPanel.get(i).setBackground(Color.BLUE);
             bgPanel.get(i).setLayout(null);
+            bgPanel.get(i).setVisible(false);
 
+            //--------------------------------
             bgLabel.add(new JLabel());
             bgLabel.get(i).setBounds(0, 0, 1060, 663);
 
             ImageIcon bgIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)));
             bgLabel.get(i).setIcon(bgIcon);
+
         }
 
         // TODO: ADD THIS BACK SOMEWHERE
@@ -158,17 +161,15 @@ public class GUI {
         // TODO: ADD THIS BACK SOMEWHERE
         // Adds the background panel to the window as though it's a list.
         // window.add(bgPanel.get(0));
-        System.out.println("DID WE GET HERE");
-        //createMainField();
+        for (JPanel panel: bgPanel) {
+            panel.setVisible(false);
+        }
         bgPanel.get(bgNum).add(objLabel.get(4));
         bgPanel.get(bgNum).add(objLabel.get(5));
         bgPanel.get(bgNum).add(objLabel.get(6));
         bgPanel.get(bgNum).add(objLabel.get(7));
 
-        bgPanel.get(bgNum).add(bgLabel.get(0));
-        /*for (JPanel panel: bgPanel) {
-            panel.setVisible(false);
-        }*/
+        bgPanel.get(bgNum).add(bgLabel.get(bgNum));
 
         bgPanel.get(bgNum).setVisible(true);
         window.add(bgPanel.get(bgNum));
