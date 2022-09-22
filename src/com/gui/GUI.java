@@ -52,7 +52,6 @@ public class GUI {
         // window size should be:
         // width = width of background image,
         // height = height of image + chat bar + UI
-        // TODO: Change this back to 863
         window.setSize(1000, 863);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
@@ -109,35 +108,35 @@ public class GUI {
 
             switch (i) {
                 case 0:
-                    objLabel.get(i).setBounds(15, 150, 350, 100);
+                    objLabel.get(i).setBounds(7, 150, 350, 100);
                     btn.setActionCommand("foyer");
                     break;
                 case 1:
-                    objLabel.get(i).setBounds(15, 220, 325, 100);
+                    objLabel.get(i).setBounds(7, 220, 325, 100);
                     btn.setActionCommand("settings");
                     break;
                 case 2:
-                    objLabel.get(i).setBounds(15, 290, 300, 100);
+                    objLabel.get(i).setBounds(7, 290, 400, 100);
                     btn.setActionCommand("load game");
                     break;
                 case 3:
-                    objLabel.get(i).setBounds(15, 360, 275, 100);
+                    objLabel.get(i).setBounds(7, 360, 275, 100);
                     btn.setActionCommand("music player");
                     break;
                 case 4:
-                    objLabel.get(i).setBounds(-77, 350, 250, 125);
+                    objLabel.get(i).setBounds(7, 320, 100, 71);
                     btn.setActionCommand("lounge");
                     break;
                 case 5:
-                    objLabel.get(i).setBounds(777, 350, 250, 125);
+                    objLabel.get(i).setBounds(892, 320, 100, 71);
                     btn.setActionCommand("kitchen");
                     break;
                 case 6:
-                    objLabel.get(i).setBounds(350, -7, 210, 190);
+                    objLabel.get(i).setBounds(457, 7, 71, 100);
                     btn.setActionCommand("foyer");
                     break;
                 case 7:
-                    objLabel.get(i).setBounds(350, 500, 220, 190);
+                    objLabel.get(i).setBounds(457, 552, 71, 100);
                     btn.setActionCommand("loft");
                     break;
             }
@@ -154,7 +153,6 @@ public class GUI {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                 }
-
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (SwingUtilities.isLeftMouseButton(e)) {
@@ -295,14 +293,15 @@ public class GUI {
 
     }
 
+    Sound sound = new Sound();
+
     public void playMusic(int i) {
-
-        Sound sound = new Sound();
-
         sound.setFile(i);
         sound.play();
         sound.loop();
-
+    }
+    public void stopMusic(){
+        sound.stop();
     }
 
     public JTextArea getMessageText() {
@@ -312,31 +311,6 @@ public class GUI {
     public void setMessageText(JTextArea messageText) {
         this.messageText = messageText;
     }
-
-    public void setupRoom() {
-        Character cat = new Character("cat");
-        Character dog = new Character("dog");
-        Location location = new Location(getStartingRoom());
-        String[] listNextLocations = location.getDirections();
-        String[] characters = location.getCharacter();
-        if (characters.length != 0) {
-            if (Arrays.asList(characters).contains("cat")) {
-                getMessageText().setText("Current location is " + getStartingRoom() +
-                        "\n" + location.getDescription() + "\n" + cat.getDescription() +
-                        "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
-            } else if (Arrays.asList(characters).contains("dog")) {
-                getMessageText().setText("Current location is " + getStartingRoom() +
-                        "\n" + location.getDescription() + "\n" + dog.getDescription() +
-                        "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
-            }
-        } else {
-            getMessageText().setText("Current location is " + getStartingRoom() +
-                    "\n" + location.getDescription() +
-                    "\nLooks like there are some items here: " + Arrays.toString(location.getItems()));
-        }
-    }
-    // TODO Henry adds button function ends;
-
 
     public List<JPanel> getBgPanel() {
         return bgPanel;
