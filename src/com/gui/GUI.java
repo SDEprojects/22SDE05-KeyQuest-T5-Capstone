@@ -16,7 +16,7 @@ import java.util.Objects;
 import static com.game.utility.JSONParser.getStartingRoom;
 
 public class GUI {
-    private static final int NUM_OF_BGS = 9;
+    private static final int NUM_OF_BGS = 10;
     private static final int NUM_OF_OBJECTS = 8;
     private GUIClient guiClient;
     private JFrame window;
@@ -173,35 +173,35 @@ public class GUI {
                 }
             });
         }
-        for (int i = 0; i < 4; i++) {
+        for (int i = 8; i < 12; i++) {
             objLabel.add(new JLabel());
             JButton btn = new JButton();
 
             switch (i) {
                 case 0:
-                    objLabel.get(i + 8).setBounds(15, 150, 350, 100);
+                    objLabel.get(i).setBounds(15, 150, 350, 100);
                     btn.setActionCommand("garage");
-                    objLabel.get(i + 8).setIcon(objLabel.get(4).getIcon());
+                    objLabel.get(i).setIcon(objLabel.get(4).getIcon());
                     break;
                 case 1:
-                    objLabel.get(i + 8).setBounds(15, 220, 325, 100);
+                    objLabel.get(i).setBounds(15, 220, 325, 100);
                     btn.setActionCommand("bathroom");
-                    objLabel.get(i + 8).setIcon(objLabel.get(5).getIcon());
+                    objLabel.get(i).setIcon(objLabel.get(5).getIcon());
                     break;
                 case 2:
-                    objLabel.get(i + 8).setBounds(15, 290, 300, 100);
+                    objLabel.get(i).setBounds(15, 290, 300, 100);
                     btn.setActionCommand("garden");
-                    objLabel.get(i + 8).setIcon(objLabel.get(6).getIcon());
+                    objLabel.get(i).setIcon(objLabel.get(6).getIcon());
                     break;
                 case 3:
-                    objLabel.get(i + 8).setBounds(15, 360, 275, 100);
+                    objLabel.get(i).setBounds(15, 360, 275, 100);
                     btn.setActionCommand("closet");
-                    objLabel.get(i + 8).setIcon(objLabel.get(7).getIcon());
+                    objLabel.get(i).setIcon(objLabel.get(7).getIcon());
                     break;
             }
 
             btn.addActionListener(guiClient.getaHandler());
-            objLabel.get(i + 8).addMouseListener(new MouseListener() {
+            objLabel.get(i).addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                 }
