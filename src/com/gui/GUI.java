@@ -315,6 +315,12 @@ public class GUI {
         sound.stop();
     }
 
+    //TODO add sound effects
+    public void playSE(int i) { // for Sound Effects
+        sound.setFile(i);
+        sound.play();
+    }
+
     public JTextArea getMessageText() {
         return messageText;
     }
