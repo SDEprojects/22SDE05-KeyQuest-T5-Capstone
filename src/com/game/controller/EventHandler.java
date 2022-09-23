@@ -24,6 +24,7 @@ public class EventHandler {
     String currentLocation = getStartingRoom();
     Location location = new Location(currentLocation);
     String[] listNextLocations = location.getDirections();
+
     String[] characters = location.getCharacter();
     int musicCounter = 2;
     // Set up game actions ends.
@@ -32,22 +33,40 @@ public class EventHandler {
         this.guiClient = guiClient;
     }
 
+    // Create function to track the location.
+    public void roomSetup(String actionValue) {
+        // Track location and items.
+        currentLocation = actionValue;
+        listNextLocations = getLocationDirections(actionValue);
+        // Set text box.
+        String[] itemsHere = getLocationItems(actionValue);
+        String roomName = currentLocation.substring(0, 1).toUpperCase() + currentLocation.substring(1); // Capitalize the first letter of room name.
+        guiClient.getGui().getMessageText().setText(getLocationDescription(actionValue));
+
+        if (itemsHere.length == 0) {
+            guiClient.getGui().getMessageText().setText(roomName + ": " + getLocationDescription(actionValue) + ".\nNo items found here.\nYou can go to: " + Arrays.toString(listNextLocations));
+        } else if (itemsHere.length > 0) {
+            guiClient.getGui().getMessageText().setText(roomName + ": " + getLocationDescription(actionValue) + ".\nItems that can be found in this room: " + Arrays.toString(itemsHere) + ".\nYou can go to: " + Arrays.toString(listNextLocations));
+        }
+        // TODO Will add Cat and dog later.
+    }
+
+
     // Response to clicking on the buttons.
-    public void eventRequest(String lableID, String actionValue) {
+    public void eventRequest(String actionValue)  {
         //TODO actionValue from ActionHandler when the label type is Jbutton;
         // When actionValue == click or do.
-
+        Location nextRoomLocation = new Location(actionValue);
         if (actionValue.equals("foyer")) {
             System.out.println("Create a new page of Foyer");
             guiClient.getGui().generateScreen(1); // Set up the page with direction arrows.
-            // Inventory slots remain empty. Only action here is going to the kitchen.
-//            guiClient.getGui().getMessageText().setText(JSONParser.getRooms("foyer").toString(1));
-            guiClient.getGui().getMessageText().setText("You don't see anything valuable here.\nYou can go to " + Arrays.toString(listNextLocations));
+
+            roomSetup(actionValue);
 
         } else if (actionValue.equals("kitchen")) {
             System.out.println("Create a new page of Kitchen");
             guiClient.getGui().generateScreen(2);
-            guiClient.getGui().getMessageText().setText("You are in the Kitchen, there is a drumstick and cucumber.\n You can go to " + Arrays.toString(listNextLocations));
+            roomSetup(actionValue);
             if (actionValue.equals("drumstick")) {
                 inventory.add("drumstick");
                 guiClient.getGui().getMessageText().setText("Drumstick is added to inventory");
@@ -58,8 +77,7 @@ public class EventHandler {
             // TODO move items to inventory slots.
         } else if (actionValue.equals("loft")) {
             guiClient.getGui().generateScreen(3);
-            // Don't generate until user throw the item to the dog.
-
+            // TODO Don't generate until user throw the item to the dog.
             guiClient.getGui().getMessageText().setText("An alert dog watching out for lurking intruders.");
             Character dog = new Character("dog");
             // If click on the dog, means talk to the dag, if click the item, means throw.
@@ -72,7 +90,7 @@ public class EventHandler {
 
         } else if (actionValue.equals("garage")) {
             guiClient.getGui().generateScreen(4);
-            guiClient.getGui().getMessageText().setText("You are in the Garage. There are a lot of shiny items in here!");
+            roomSetup(actionValue);
             if (actionValue.equals("key")) {
                 inventory.add("key");
                 guiClient.getGui().getMessageText().setText("You got a key!!");
@@ -92,14 +110,15 @@ public class EventHandler {
                 }
             }
             guiClient.getGui().generateScreen(9);
+            // Play a sad sound.
             guiClient.getGui().getMessageText().setText(getIntroductionLose() + "\nGet items to distract cat and dog, before going to Lounge");
 
         } else if (actionValue.equals("bathroom")) {
             guiClient.getGui().generateScreen(6);
-            guiClient.getGui().getMessageText().setText("You are reached the bathroom, it smells like someone had one too many carrots!");
+            roomSetup(actionValue);
         } else if (actionValue.equals("closet")) {
             guiClient.getGui().generateScreen(7);
-            guiClient.getGui().getMessageText().setText("You are in the closet...I wonder what can be of use in here.");
+            roomSetup(actionValue);
             if (actionValue.equals("shoes")) {
                 inventory.add("shoes");
                 guiClient.getGui().getMessageText().setText("Shoes are added to inventory");
