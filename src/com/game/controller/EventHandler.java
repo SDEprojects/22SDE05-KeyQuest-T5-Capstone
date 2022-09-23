@@ -97,6 +97,7 @@ public class EventHandler {
             }
 
         } else if (actionValue.equals("lounge")) {
+
             if (inventory.size() != 0) {
                 guiClient.getGui().generateScreen(5);
                 guiClient.getGui().getMessageText().setText("A curious and sneaky cat looking for the next toy to play and scratch with.");

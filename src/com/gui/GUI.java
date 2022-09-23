@@ -177,6 +177,7 @@ public class GUI {
             objLabel.add(new JLabel());
             JButton btn = new JButton();
 
+            // TODO: GARAGE and LOUNGE mapped to the same button and they both get called in the loft. fix
             switch (i) {
                 case 0:
                     objLabel.get(i).setBounds(15, 150, 350, 100);
@@ -254,6 +255,16 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(10));
                 bgPanel.get(bgNum).add(objLabel.get(7));
                 break;
+            case 5:
+                bgPanel.get(bgNum).add(objLabel.get(5));
+                bgPanel.get(bgNum).add(objLabel.get(7));
+                bgPanel.get(bgNum).add(objLabel.get(9));
+                break;
+            case 6:
+                bgPanel.get(bgNum).add(objLabel.get(4));
+                bgPanel.get(bgNum).add(objLabel.get(11));
+            case 7:
+                bgPanel.get(bgNum).add(objLabel.get(9));
         }
 
         // TODO: new action command values for the new arrow buttons, and any other object that's being created.
