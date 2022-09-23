@@ -101,6 +101,8 @@ public class GUI {
 
     private void initializeBackgroundObjects() {
 
+        // Loop to setup first 8 objects: startscreen items and arrow directionals
+        // (objectLabel: new arrow positions 0 - 7)
         for (int i = 0; i < NUM_OF_OBJECTS; i++) {
             objLabel.add(new JLabel());
             JButton btn = new JButton();
@@ -153,6 +155,7 @@ public class GUI {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                 }
+
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (SwingUtilities.isLeftMouseButton(e)) {
@@ -173,30 +176,34 @@ public class GUI {
                 }
             });
         }
+
+
+        // Loop to setup last 4 arrow objects that are needed for the rooms
+        // (objectLabel: new arrow positions 8 - 11)
         for (int i = 8; i < 12; i++) {
             objLabel.add(new JLabel());
             JButton btn = new JButton();
 
             // TODO: GARAGE and LOUNGE mapped to the same button and they both get called in the loft. fix
             switch (i) {
-                case 0:
-                    objLabel.get(i).setBounds(15, 150, 350, 100);
-                    btn.setActionCommand("garage");
+                case 8:
+                    objLabel.get(i).setBounds(7, 320, 100, 71);
+                    btn.setActionCommand("bathroom");
                     objLabel.get(i).setIcon(objLabel.get(4).getIcon());
                     break;
-                case 1:
-                    objLabel.get(i).setBounds(15, 220, 325, 100);
-                    btn.setActionCommand("bathroom");
+                case 9:
+                    objLabel.get(i).setBounds(892, 320, 100, 71);
+                    btn.setActionCommand("closet");
                     objLabel.get(i).setIcon(objLabel.get(5).getIcon());
                     break;
-                case 2:
-                    objLabel.get(i).setBounds(15, 290, 300, 100);
+                case 10:
+                    objLabel.get(i).setBounds(457, 7, 71, 100);
                     btn.setActionCommand("garden");
                     objLabel.get(i).setIcon(objLabel.get(6).getIcon());
                     break;
-                case 3:
-                    objLabel.get(i).setBounds(15, 360, 275, 100);
-                    btn.setActionCommand("closet");
+                case 11:
+                    objLabel.get(i).setBounds(457, 552, 71, 100);
+                    btn.setActionCommand("garage");
                     objLabel.get(i).setIcon(objLabel.get(7).getIcon());
                     break;
             }
@@ -227,7 +234,112 @@ public class GUI {
                 }
             });
         }
+
+        // TODO: Setup objects that interact with the player in the game
+        // loop to set up the cat and dog objects (objectLabel: cat and dog are in position 12 and 13)
+        for (int i = 12; i < 14; i++) {
+            objLabel.add(new JLabel());
+            JButton btn = new JButton();
+            String fileName = "ch_" + (i - 11) + ".png";
+            switch (i) {
+                case 12:
+                    objLabel.get(i).setBounds(0, 0, 600, 700);
+                    btn.setActionCommand("dog");
+                    break;
+                case 13:
+                    objLabel.get(i).setBounds(0, 0, 600, 700);
+                    btn.setActionCommand("cat");
+                    break;
+            }
+            ImageIcon objectIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)));
+            objLabel.get(i).setIcon(objectIcon);
+
+            btn.addActionListener(guiClient.getaHandler());
+            objLabel.get(i).addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    if (SwingUtilities.isLeftMouseButton(e)) {
+                        btn.doClick();
+                    }
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                }
+            });
+        }
+
+        // Loop to setup the food objects in the game (objectlabel: items object positions 14 - 18)
+        for(int i = 14; i < 19; i++){
+            objLabel.add(new JLabel());
+            JButton btn = new JButton();
+            String fileName = "obj_" + (i - 13) + ".png";
+
+            switch (i) {
+                case 14:
+                    objLabel.get(i).setBounds(7, 150, 350, 100);
+                    btn.setActionCommand("drumstick");
+                    break;
+                case 15:
+                    objLabel.get(i).setBounds(7, 220, 325, 100);
+                    btn.setActionCommand("cucumber");
+                    break;
+                case 16:
+                    objLabel.get(i).setBounds(7, 290, 400, 100);
+                    btn.setActionCommand("shoes");
+                    break;
+                case 17:
+                    objLabel.get(i).setBounds(10, 290, 400, 100);
+                    btn.setActionCommand("wool");
+                    break;
+                case 18:
+                    objLabel.get(i).setBounds(20, 290, 400, 100);
+                    btn.setActionCommand("key");
+                    break;
+            }
+            ImageIcon objectIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)));
+            objLabel.get(i).setIcon(objectIcon);
+
+            btn.addActionListener(guiClient.getaHandler());
+            objLabel.get(i).addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    if (SwingUtilities.isLeftMouseButton(e)) {
+                        btn.doClick();
+                    }
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                }
+            });
+        }
     }
+
 
     public void generateScreen(int bgNum) {
 
@@ -236,7 +348,7 @@ public class GUI {
             panel.setVisible(false);
         }
 
-        switch(bgNum){
+        switch (bgNum) {
             case 1:
                 bgPanel.get(bgNum).add(objLabel.get(4));
                 bgPanel.get(bgNum).add(objLabel.get(5));
@@ -245,26 +357,36 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(4));
                 bgPanel.get(bgNum).add(objLabel.get(6));
                 bgPanel.get(bgNum).add(objLabel.get(7));
+                bgPanel.get(bgNum).add(objLabel.get(14));
+                bgPanel.get(bgNum).add(objLabel.get(15));
                 break;
             case 3:
+                // mix between directional arrows 1-4 and 8-11
                 bgPanel.get(bgNum).add(objLabel.get(4));
                 bgPanel.get(bgNum).add(objLabel.get(5));
-                bgPanel.get(bgNum).add(objLabel.get(8));
+                bgPanel.get(bgNum).add(objLabel.get(11));
+                bgPanel.get(bgNum).add(objLabel.get(12));
                 break;
             case 4:
                 bgPanel.get(bgNum).add(objLabel.get(10));
                 bgPanel.get(bgNum).add(objLabel.get(7));
+                bgPanel.get(bgNum).add(objLabel.get(18));
                 break;
             case 5:
                 bgPanel.get(bgNum).add(objLabel.get(5));
                 bgPanel.get(bgNum).add(objLabel.get(7));
-                bgPanel.get(bgNum).add(objLabel.get(9));
+                bgPanel.get(bgNum).add(objLabel.get(8));
+                bgPanel.get(bgNum).add(objLabel.get(13));
                 break;
             case 6:
                 bgPanel.get(bgNum).add(objLabel.get(4));
-                bgPanel.get(bgNum).add(objLabel.get(11));
-            case 7:
                 bgPanel.get(bgNum).add(objLabel.get(9));
+                break;
+            case 7:
+                bgPanel.get(bgNum).add(objLabel.get(8));
+                bgPanel.get(bgNum).add(objLabel.get(16));
+                bgPanel.get(bgNum).add(objLabel.get(17));
+                break;
         }
 
         // TODO: new action command values for the new arrow buttons, and any other object that's being created.
@@ -311,7 +433,8 @@ public class GUI {
         sound.play();
         sound.loop();
     }
-    public void stopMusic(){
+
+    public void stopMusic() {
         sound.stop();
     }
 
