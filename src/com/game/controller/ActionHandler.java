@@ -18,7 +18,7 @@ public class ActionHandler implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         String selection = e.getActionCommand();
         //System.out.println(e.getSource().getClass().getCanonicalName()); //javax.swing.JButton
-        eHandler.eventRequest(Room.KITCHEN.toString().toLowerCase(), selection);
+        eHandler.eventRequest(selection);
         // eManager.actionRequest(Map.LOUNGE, selection); --> public boolean actionRequest(String request)
         // possible event triggers: sub-menu will do a text response.
     }

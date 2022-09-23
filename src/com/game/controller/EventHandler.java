@@ -42,6 +42,7 @@ public class EventHandler {
         String[] itemsHere = getLocationItems(actionValue);
         String roomName = currentLocation.substring(0, 1).toUpperCase() + currentLocation.substring(1); // Capitalize the first letter of room name.
         guiClient.getGui().getMessageText().setText(getLocationDescription(actionValue));
+
         if (itemsHere.length == 0) {
             guiClient.getGui().getMessageText().setText(roomName + ": " + getLocationDescription(actionValue) + ".\nNo items found here.\nYou can go to: " + Arrays.toString(listNextLocations));
         } else if (itemsHere.length > 0) {
@@ -52,13 +53,14 @@ public class EventHandler {
 
 
     // Response to clicking on the buttons.
-    public void eventRequest(String lableID, String actionValue)  {
+    public void eventRequest(String actionValue)  {
         //TODO actionValue from ActionHandler when the label type is Jbutton;
         // When actionValue == click or do.
         Location nextRoomLocation = new Location(actionValue);
         if (actionValue.equals("foyer")) {
             System.out.println("Create a new page of Foyer");
             guiClient.getGui().generateScreen(1); // Set up the page with direction arrows.
+
             roomSetup(actionValue);
 
         } else if (actionValue.equals("kitchen")) {
@@ -108,6 +110,7 @@ public class EventHandler {
                 }
             }
             guiClient.getGui().generateScreen(9);
+            // Play a sad sound.
             guiClient.getGui().getMessageText().setText(getIntroductionLose() + "\nGet items to distract cat and dog, before going to Lounge");
 
         } else if (actionValue.equals("bathroom")) {
