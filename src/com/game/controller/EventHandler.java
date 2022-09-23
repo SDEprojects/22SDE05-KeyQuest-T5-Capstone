@@ -53,7 +53,7 @@ public class EventHandler {
 
 
     // Response to clicking on the buttons.
-    public void eventRequest(String actionValue)  {
+    public void eventRequest(String actionValue) {
         //TODO actionValue from ActionHandler when the label type is Jbutton;
         // When actionValue == click or do.
         Location nextRoomLocation = new Location(actionValue);
@@ -98,21 +98,21 @@ public class EventHandler {
 
         } else if (actionValue.equals("lounge")) {
 
-            if (inventory.size() != 0) {
-                guiClient.getGui().generateScreen(5);
-                guiClient.getGui().getMessageText().setText("A curious and sneaky cat looking for the next toy to play and scratch with.");
-                Character cat = new Character("cat");
-                // If click on the dog, means talk to the dag, if click the item, means throw.
-                if (actionValue.equals("cat")) {
-                    guiClient.getGui().getMessageText().setText(String.valueOf(cat.getSpeech()));
-                } else if (actionValue.equals("cucumber") || actionValue.equals("wool") || actionValue.equals("drumstick") || actionValue.equals("shoes")) {
-                    //TODO populate direction arrows.
-                    guiClient.getGui().getMessageText().setText("You distracted cat, you can go to Bathroom, Kitchen, Loft or Foyer.");
-                }
-            }
-            guiClient.getGui().generateScreen(9);
+//            if (inventory.size() != 0) {
+            guiClient.getGui().generateScreen(5);
+            guiClient.getGui().getMessageText().setText("A curious and sneaky cat looking for the next toy to play and scratch with.");
+//                Character cat = new Character("cat");
+//                // If click on the dog, means talk to the dag, if click the item, means throw.
+//                if (actionValue.equals("cat")) {
+//                    guiClient.getGui().getMessageText().setText(String.valueOf(cat.getSpeech()));
+//                } else if (actionValue.equals("cucumber") || actionValue.equals("wool") || actionValue.equals("drumstick") || actionValue.equals("shoes")) {
+//                    //TODO populate direction arrows.
+//                    guiClient.getGui().getMessageText().setText("You distracted cat, you can go to Bathroom, Kitchen, Loft or Foyer.");
+//                }
+//            }
+            //guiClient.getGui().generateScreen(9);
             // Play a sad sound.
-            guiClient.getGui().getMessageText().setText(getIntroductionLose() + "\nGet items to distract cat and dog, before going to Lounge");
+            //guiClient.getGui().getMessageText().setText(getIntroductionLose() + "\nGet items to distract cat and dog, before going to Lounge");
 
         } else if (actionValue.equals("bathroom")) {
             guiClient.getGui().generateScreen(6);
