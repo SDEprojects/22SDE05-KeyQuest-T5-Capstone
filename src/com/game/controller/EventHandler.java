@@ -1,16 +1,11 @@
 package com.game.controller;
-
+import com.sound.*;
+import com.gui.*;
 import com.game.model.Character;
 import com.game.model.Location;
 import com.game.utility.JSONParser;
 import com.game.utility.Room;
-import com.gui.GUIClient;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-
+import java.util.*;
 import static com.game.utility.JSONParser.*;
 
 
@@ -18,7 +13,7 @@ public class EventHandler {
     private GUIClient guiClient;
     // To initialize game elements.
     private List<String> inventory = new ArrayList<>(); // Initialize the inventory slots.
-
+    private GUI gui;
     private Set<String> listOfItems = getAllItems(); // Initialize the items.
     // Set up the game actions.
     String currentLocation = getStartingRoom();
@@ -156,5 +151,19 @@ public class EventHandler {
         } else if (actionValue.equals("ch_1") || actionValue.equals("ch_2")) {
             // TODO Talk to dog or cat.
         }
+
+
     }
+
+    /*public void winGame(String actionValue) {
+        //while the player is in the garage, if they have the key, game goes to win screen
+        //while (location.equals("garage")) {
+            if (inventory.equals("key") && location.equals("garage")) {
+                guiClient.getGui().generateScreen(9);
+                guiClient.getGui().playSE(9);
+                guiClient.getGui().getMessageText().setText("Congratulations! You win the game!");
+
+            }else {
+                    ///stay in garage? with current inventory?
+    }*/
 }
