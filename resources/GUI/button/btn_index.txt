@@ -6,4 +6,6 @@
 6. Right 15 - 19
 7. Up 20 - 21
 8. Down
+9. Play again
+10. Quit
 backup Settings

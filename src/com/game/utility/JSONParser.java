@@ -138,7 +138,7 @@ public class JSONParser {
             case 2:
                 return dogSpeech.getString("speech3");
         }
-        return null;
+        return "done";
     }
 
     public static String getCatSpeech () {
@@ -150,7 +150,7 @@ public class JSONParser {
             case 2:
                 return catSpeech.getString("speech3");
         }
-        return null;
+        return "done";
     }
 
     public static Set<String> getKeyCommands() {
@@ -199,6 +199,11 @@ public class JSONParser {
     public static String getCharacterName(String character) {
         JSONObject information  = jsonObjectCharacter.getJSONObject(character);
         return information.getString("name");
+    }
+
+    public static String getCharacterRoom(String character){
+        JSONObject information  = jsonObjectCharacter.getJSONObject(character);
+        return information.getString("room");
     }
 
     public static String getCharacterDescription(String character) {
