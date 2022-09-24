@@ -64,10 +64,12 @@ public class EventHandler {
             // If the item is clicked to distract dog.
             guiClient.getGui().getMessageText().setText("You distracted the dog.");
             dogDistracted = true;
+            // TODO Here should populate the navigation buttons.
         } else if (currentLocation.equals("lounge")) {
             // If the item is clicked to distract cat.
             guiClient.getGui().getMessageText().setText("You distracted the cat.");
             catDistracted = true;
+            // TODO Here should populate the navigation buttons.
         } else {
             guiClient.getGui().getMessageText().setText("You can't use this item here.");
         }
