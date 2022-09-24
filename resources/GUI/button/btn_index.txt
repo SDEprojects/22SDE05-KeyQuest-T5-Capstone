@@ -1,6 +1,6 @@
 1. New game
 2. Load game
-3. Settings
+3. Music on/off
 4. Help 22 - 28
 5. Left 9 - 14
 6. Right 15 - 19
