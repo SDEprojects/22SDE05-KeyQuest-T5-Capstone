@@ -62,6 +62,7 @@ public class GUI {
         messageText.setForeground(Color.WHITE);
         messageText.setEditable(false);
         messageText.setLineWrap(true);
+        messageText.setAutoscrolls(true); // TODO Henry added this to try if it can scroll the txt.
         messageText.setFont(new Font("Book Antiqua", Font.PLAIN, 26));
         window.add(messageText);
 

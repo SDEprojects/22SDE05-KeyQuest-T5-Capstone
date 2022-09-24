@@ -74,32 +74,32 @@ public class EventHandler {
     }
     // Talk NPC function.
     public void talkToCh(String actionValue) {
-    // Random speech, with one random kill, :).
-
+    // Random speech.
+        if (actionValue.equals("dog")){
+            guiClient.getGui().getMessageText().setText(getDogSpeech());
+        } else if (actionValue.equals("cat")){
+            guiClient.getGui().getMessageText().setText(getCatSpeech());
+        }
     }
-    // TODO
 
     // Response to clicking on the buttons.
     public void eventRequest(String actionValue) {
         //TODO actionValue from ActionHandler when the label type is Jbutton;
         // When actionValue == click or do.
 
-        if (stdRm.contains(actionValue)) {
+        if (stdRm.contains(actionValue)) { // Go through regular rooms.
             roomSetup(actionValue);
-
-        } else if(characters.contains(actionValue)){
+        } else if(characters.contains(actionValue)) { // When click on dog or cat, means talk to them.
             talkToCh(actionValue);
-        } else if (actionValue.equals("garden")) {
+        } else if (getAllItems().contains(actionValue)){ // When click on items, use or add to inventory.
+            itemAction(actionValue);
+        } else if (actionValue.equals("garden")) { // When try to go garden, if(key) win, no key, tell them find the key.
             if (inventory.contains("key")) {
                 guiClient.getGui().generateScreen(8);
                 guiClient.getGui().getMessageText().setText(getIntroductionWin());
             }
             guiClient.getGui().getMessageText().setText(getIntroductionPrompt());
-        } else if (actionValue.equals("help")) {
-            guiClient.getGui().getMessageText().setText("Click on the items to see what you can do with them.");
-        } else if (actionValue.equals("btn_2")) {
-            // TODO Load game, future feature.
-        } else if (actionValue.equals("music")) {
+        } else if (actionValue.equals("music")) { // To start or stop background music.
             musicCounter++;
             if (musicCounter % 2 == 0) {
                 guiClient.getGui().stopMusic();
@@ -108,18 +108,11 @@ public class EventHandler {
                 guiClient.getGui().playMusic(0);
                 System.out.println("play");
             }
-
         } else if (actionValue.equals("help")) {
+            //TODO Henry is here, will carry on tonight, 9/24.
+            // Help button, should give out game intro.
             guiClient.getGui().getMessageText().setText("TODO need to add help text.");
-        } else if (actionValue.equals("obj_1") || actionValue.equals("obj_2") || actionValue.equals("obj_3") || actionValue.equals("obj_4")) {
-            // TODO If the item at the first location, add to inventory, else if lounge or loft, distract dog or cat. else text "no need to use the item here".
-
-
-        } else if (actionValue.equals("ch_1") || actionValue.equals("ch_2")) {
-            // TODO Talk to dog or cat.
         }
-
-
     }
 
     /*public void winGame(String actionValue) {

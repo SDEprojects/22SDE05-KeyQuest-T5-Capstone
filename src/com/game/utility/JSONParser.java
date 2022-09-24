@@ -138,7 +138,7 @@ public class JSONParser {
             case 2:
                 return dogSpeech.getString("speech3");
         }
-        return "done";
+        return null;
     }
 
     public static String getCatSpeech () {
@@ -150,7 +150,7 @@ public class JSONParser {
             case 2:
                 return catSpeech.getString("speech3");
         }
-        return "done";
+        return null;
     }
 
     public static Set<String> getKeyCommands() {
@@ -189,7 +189,7 @@ public class JSONParser {
 
 
     public static int getRandomNumber(int numberOfKeys) {
-        return (int) (Math.random() * numberOfKeys + 1);
+        return (int) (Math.random() * numberOfKeys);
     }
 
     public static String getLookItem(String name) {
