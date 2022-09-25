@@ -1,11 +1,13 @@
-1. New game
-2. Load game
-3. Music on/off
-4. Help 22 - 28
-5. Left 9 - 14
-6. Right 15 - 19
-7. Up 20 - 21
+1. Start (foyer)
+2. Story
+3. Music
+4. Help 
+5. Left 
+6. Right 
+7. Up 
 8. Down
 9. Play again
 10. Quit
 backup Settings
+backup load game
+backup new game
