@@ -111,20 +111,20 @@ public class GUI {
 
             switch (i) {
                 case 0:
-                    objLabel.get(i).setBounds(7, 150, 350, 100);
+                    objLabel.get(i).setBounds(40, 150, 160, 60);
                     btn.setActionCommand("foyer");
                     break;
                 case 1:
-                    objLabel.get(i).setBounds(7, 220, 325, 100);
-                    btn.setActionCommand("settings");
+                    objLabel.get(i).setBounds(40, 220, 160, 60);
+                    btn.setActionCommand("story"); // TODO Henry replace this one from "settings" to "story". 9/24.
                     break;
                 case 2:
-                    objLabel.get(i).setBounds(7, 290, 400, 100);
-                    btn.setActionCommand("load game");
+                    objLabel.get(i).setBounds(40, 290, 170, 60);
+                    btn.setActionCommand("music player"); // TODO Henry replace this one from "load game" to "music player". 9/24.
                     break;
                 case 3:
-                    objLabel.get(i).setBounds(7, 360, 275, 100);
-                    btn.setActionCommand("music player");
+                    objLabel.get(i).setBounds(40, 360, 150, 60);
+                    btn.setActionCommand("help"); //TODO Henry replace this one from "music player" to "help". 9/24.
                     break;
                 case 4:
                     objLabel.get(i).setBounds(7, 320, 100, 71);

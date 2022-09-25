@@ -86,10 +86,29 @@ public class EventHandler {
 
     // Response to clicking on the buttons.
     public void eventRequest(String actionValue) {
-        //TODO actionValue from ActionHandler when the label type is Jbutton;
-        // When actionValue == click or do.
 
-        if (stdRm.contains(actionValue)) { // Go through regular rooms.
+        if (actionValue.equals("story")) { // Main page, click "story".
+            guiClient.getGui().getMessageText().setText(getIntroductionStory()); // TODO need to fix format, stroll or decrease the text.
+            guiClient.getGui().getMessageText().setVisible(true);
+        } else if (actionValue.equals("music player")) { // To start or stop background music.
+            musicCounter++;
+            if (musicCounter % 2 == 0) {
+                guiClient.getGui().stopMusic();
+                guiClient.getGui().getMessageText().setText("Music Off.");
+                guiClient.getGui().getMessageText().setVisible(true);
+            } else {
+                guiClient.getGui().playMusic(0);
+                guiClient.getGui().getMessageText().setText("Music On.");
+                guiClient.getGui().getMessageText().setVisible(true);
+            }
+        } else if (actionValue.equals("help")) { // Help in the main page.
+            guiClient.getGui().getMessageText().setText(getIntroductionPlayer() + "\nUse the items you found to distract mean animals, \nfind the key to unlock the garden, \nthen enjoy the carrot.");
+            guiClient.getGui().getMessageText().setVisible(true);
+        } else if(actionValue.equals("quit")) { // Quit the game.
+            System.exit(0);
+        } else if(actionValue.equals("play again")) { // Quit the game.
+            new GUIClient();
+        } else if(stdRm.contains(actionValue)) { // Go through regular rooms.
             roomSetup(actionValue);
         } else if(characters.contains(actionValue)) { // When click on dog or cat, means talk to them.
             talkToCh(actionValue);
@@ -101,19 +120,6 @@ public class EventHandler {
                 guiClient.getGui().getMessageText().setText(getIntroductionWin());
             }
             guiClient.getGui().getMessageText().setText(getIntroductionPrompt());
-        } else if (actionValue.equals("music")) { // To start or stop background music.
-            musicCounter++;
-            if (musicCounter % 2 == 0) {
-                guiClient.getGui().stopMusic();
-                System.out.println("stop");
-            } else {
-                guiClient.getGui().playMusic(0);
-                System.out.println("play");
-            }
-        } else if (actionValue.equals("help")) {
-            //TODO Henry is here, will carry on tonight, 9/24.
-            // Help button, should give out game intro.
-            guiClient.getGui().getMessageText().setText("TODO need to add help text.");
         }
     }
 
