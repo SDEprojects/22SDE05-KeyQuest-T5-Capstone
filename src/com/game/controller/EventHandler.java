@@ -1,11 +1,14 @@
 package com.game.controller;
+
 import com.sound.*;
 import com.gui.*;
 import com.game.model.Character;
 import com.game.model.Location;
 import com.game.utility.JSONParser;
 import com.game.utility.Room;
+
 import java.util.*;
+
 import static com.game.utility.JSONParser.*;
 
 
@@ -19,7 +22,8 @@ public class EventHandler {
     private String currentLocation = getStartingRoom();
     private Location location = new Location(currentLocation);
     private String[] listNextLocations = location.getDirections();
-    private List<String> stdRm = new ArrayList<>(Arrays.asList("foyer", "kitchen", "loft", "garage", "lounge", "bathroom", "closet")); // Use this to get the bgNum from the index number.
+    private List<String> stdRm = new ArrayList<>(Arrays.asList("foyer", "kitchen", "placeholder", "garage", "placeholder", "bathroom", "closet")); // Use this to get the bgNum from the index number.
+    private List<String> npcRm = new ArrayList<>(Arrays.asList("placeholder", "placeholder", "loft", "placeholder", "lounge")); // Use this to get the bgNum from the index number.
     private Set<String> characters = getCharacters();
     int musicCounter = 2;
     boolean dogDistracted = false;
@@ -30,7 +34,7 @@ public class EventHandler {
         this.guiClient = guiClient;
     }
 
-    // Create function to track the location.
+    // Create function to setup rooms.
     public void roomSetup(String actionValue) {
         // Track location and items.
         guiClient.getGui().generateScreen(stdRm.indexOf(actionValue) + 1);
@@ -45,7 +49,23 @@ public class EventHandler {
         } else if (itemsHere.length > 0) {
             guiClient.getGui().getMessageText().setText(roomName + ": " + getLocationDescription(actionValue) + ".\nItems that can be found in this room: " + Arrays.toString(itemsHere) + ".\nYou can go to: " + Arrays.toString(listNextLocations));
         }
-        // TODO Will add Cat and dog later.
+    }
+
+    // Create function to setup the rooms with dog and cat.
+    public void npcRmSetup(String actionValue) {
+        guiClient.getGui().generateScreen(npcRm.indexOf(actionValue) + 1);
+        currentLocation = actionValue;
+        listNextLocations = getLocationDirections(actionValue);
+
+        if (dogDistracted){
+            guiClient.getGui().generateNpcScreen(3, "dog");
+            guiClient.getGui().getMessageText().setText("You distracted the dog.\nYou can go to: " + Arrays.toString(listNextLocations));
+            dogDistracted = false;
+        } else if (catDistracted) {
+            guiClient.getGui().generateNpcScreen(5, "cat");
+            guiClient.getGui().getMessageText().setText("You distracted the cat.\nYou can go to: " + Arrays.toString(listNextLocations));
+            catDistracted = false;
+        }
     }
 
     // Use or pick the item.
@@ -62,24 +82,24 @@ public class EventHandler {
             }
         } else if (currentLocation.equals("loft")) {
             // If the item is clicked to distract dog.
-            guiClient.getGui().getMessageText().setText("You distracted the dog.");
             dogDistracted = true;
             // TODO Here should populate the navigation buttons.
         } else if (currentLocation.equals("lounge")) {
             // If the item is clicked to distract cat.
-            guiClient.getGui().getMessageText().setText("You distracted the cat.");
+
             catDistracted = true;
             // TODO Here should populate the navigation buttons.
         } else {
             guiClient.getGui().getMessageText().setText("You can't use this item here.");
         }
     }
+
     // Talk NPC function.
     public void talkToCh(String actionValue) {
-    // Random speech.
-        if (actionValue.equals("dog")){
+        // Random speech.
+        if (actionValue.equals("dog")) {
             guiClient.getGui().getMessageText().setText(getDogSpeech());
-        } else if (actionValue.equals("cat")){
+        } else if (actionValue.equals("cat")) {
             guiClient.getGui().getMessageText().setText(getCatSpeech());
         }
     }
@@ -104,15 +124,17 @@ public class EventHandler {
         } else if (actionValue.equals("help")) { // Help in the main page.
             guiClient.getGui().getMessageText().setText(getIntroductionPlayer() + "\nUse the items you found to distract mean animals, \nfind the key to unlock the garden, \nthen enjoy the carrot.");
             guiClient.getGui().getMessageText().setVisible(true);
-        } else if(actionValue.equals("quit")) { // Quit the game.
+        } else if (actionValue.equals("quit")) { // Quit the game.
             System.exit(0);
-        } else if(actionValue.equals("play again")) { // Quit the game.
+        } else if (actionValue.equals("play again")) { // Quit the game.
             new GUIClient();
-        } else if(stdRm.contains(actionValue)) { // Go through regular rooms.
+        } else if (stdRm.contains(actionValue)) { // Go through regular rooms.
             roomSetup(actionValue);
-        } else if(characters.contains(actionValue)) { // When click on dog or cat, means talk to them.
+        } else if (npcRm.contains(actionValue)) { // Go through regular rooms.
+            npcRmSetup(actionValue);
+        } else if (characters.contains(actionValue)) { // When click on dog or cat, means talk to them.
             talkToCh(actionValue);
-        } else if (getAllItems().contains(actionValue)){ // When click on items, use or add to inventory.
+        } else if (getAllItems().contains(actionValue)) { // When click on items, use or add to inventory.
             itemAction(actionValue);
         } else if (actionValue.equals("garden")) { // When try to go garden, if(key) win, no key, tell them find the key.
             if (inventory.contains("key")) {

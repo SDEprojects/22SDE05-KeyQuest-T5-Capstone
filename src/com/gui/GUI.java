@@ -283,7 +283,7 @@ public class GUI {
         }
 
         // Loop to setup the food objects in the game (objectlabel: items object positions 14 - 18)
-        for(int i = 14; i < 19; i++){
+        for (int i = 14; i < 19; i++) {
             objLabel.add(new JLabel());
             JButton btn = new JButton();
             String fileName = "obj_" + (i - 13) + ".png";
@@ -363,9 +363,9 @@ public class GUI {
                 break;
             case 3:
                 // mix between directional arrows 1-4 and 8-11
-                bgPanel.get(bgNum).add(objLabel.get(4));
-                bgPanel.get(bgNum).add(objLabel.get(5));
-                bgPanel.get(bgNum).add(objLabel.get(11));
+                bgPanel.get(bgNum).add(objLabel.get(4));// TODO Henry should disable after inventory slots work.
+                bgPanel.get(bgNum).add(objLabel.get(5));// TODO Henry should disable after inventory slots work.
+                bgPanel.get(bgNum).add(objLabel.get(11));// TODO Henry should disable after inventory slots work.
                 bgPanel.get(bgNum).add(objLabel.get(12));
                 break;
             case 4:
@@ -374,9 +374,9 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(18));
                 break;
             case 5:
-                bgPanel.get(bgNum).add(objLabel.get(5));
-                bgPanel.get(bgNum).add(objLabel.get(7));
-                bgPanel.get(bgNum).add(objLabel.get(8));
+                bgPanel.get(bgNum).add(objLabel.get(5));// TODO Henry should disable after inventory slots work.
+                bgPanel.get(bgNum).add(objLabel.get(7));// TODO Henry should disable after inventory slots work.
+                bgPanel.get(bgNum).add(objLabel.get(8));// TODO Henry should disable after inventory slots work.
                 bgPanel.get(bgNum).add(objLabel.get(13));
                 break;
             case 6:
@@ -443,6 +443,33 @@ public class GUI {
     public void playSE(int i) { // for Sound Effects
         sound.setFile(i);
         sound.play();
+    }
+
+    // TODO Henry added this function to enable the navigation arrows after npc is distracted.
+    // Not able to test since the inventory object is not set up.
+    public void generateNpcScreen(int bgNum, String npc) {
+
+        messageText.setVisible(true);
+        for (JPanel panel : bgPanel) {
+            panel.setVisible(false);
+
+            if (npc.equals("dog")) {
+                bgPanel.get(bgNum).add(objLabel.get(4));
+                bgPanel.get(bgNum).add(objLabel.get(5));
+                bgPanel.get(bgNum).add(objLabel.get(11));
+            } else if (npc.equals("cat")) {
+                bgPanel.get(bgNum).add(objLabel.get(5));
+                bgPanel.get(bgNum).add(objLabel.get(7));
+                bgPanel.get(bgNum).add(objLabel.get(8));
+            }
+        }
+
+        // TODO: new action command values for the new arrow buttons, and any other object that's being created.
+
+        bgPanel.get(bgNum).add(bgLabel.get(bgNum));
+        bgPanel.get(bgNum).setVisible(true);
+        window.add(bgPanel.get(bgNum));
+        //window.setVisible(true);
     }
 
     public JTextArea getMessageText() {
