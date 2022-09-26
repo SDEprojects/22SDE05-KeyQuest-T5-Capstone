@@ -101,7 +101,7 @@ public class GUI {
 
     private void initializeBackgroundObjects() {
 
-        // Loop to setup first 8 objects: startscreen items and arrow directionals
+        // Loop to set up first 8 objects: start-screen items and arrow directionals
         // (objectLabel: new arrow positions 0 - 7)
         for (int i = 0; i < NUM_OF_OBJECTS; i++) {
             objLabel.add(new JLabel());
@@ -178,7 +178,7 @@ public class GUI {
         }
 
 
-        // Loop to setup last 4 arrow objects that are needed for the rooms
+        // Loop to set up last 4 arrow objects that are needed for the rooms
         // (objectLabel: new arrow positions 8 - 11)
         for (int i = 8; i < 12; i++) {
             objLabel.add(new JLabel());

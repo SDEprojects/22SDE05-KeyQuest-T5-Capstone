@@ -28,6 +28,9 @@ public class EventHandler {
     boolean box2 = false;
     // Set up game actions ends.
 
+    public EventHandler(){
+        super();
+    }
     public EventHandler(GUIClient guiClient) {
         this.guiClient = guiClient;
     }
@@ -73,6 +76,52 @@ public class EventHandler {
             guiClient.getGui().generateScreen(9);
             guiClient.getGui().getMessageText().setText(getIntroductionLose() + "\nGet items to distract cat or dog, before going to their territory.");
         }
+
+    }
+
+    // used for testing the background number
+    public int roomSetup_forTestingInt(String actionValue) {
+        // Track location and items.
+        guiClient.getGui().generateScreen(stdRm.indexOf(actionValue) + 1);
+        currentLocation = actionValue;
+        listNextLocations = getLocationDirections(actionValue);
+        // Set text box.
+        String[] itemsHere = getLocationItems(actionValue);
+        String roomName = currentLocation.substring(0, 1).toUpperCase() + currentLocation.substring(1); // Capitalize the first letter of room name.
+//        guiClient.getGui().getMessageText().setText(getLocationDescription(actionValue));
+        if (itemsHere.length == 0) {
+            guiClient.getGui().getMessageText().setText(roomName + ": " + getLocationDescription(actionValue) + ".\nNo items found here.\nYou can go to: " + Arrays.toString(listNextLocations));
+        } else if (itemsHere.length > 0) {
+            guiClient.getGui().getMessageText().setText(roomName + ": " + getLocationDescription(actionValue) + ".\nItems that can be found in this room: " + Arrays.toString(itemsHere) + ".\nYou can go to: " + Arrays.toString(listNextLocations));
+        }
+        // TODO Will add Cat and dog later.
+        return (stdRm.indexOf(actionValue + 1));
+    }
+
+    public String roomSetup_forTestingString(String actionValue) {
+        // Track location and items.
+        //guiClient.getGui().generateScreen(stdRm.indexOf(actionValue) + 1);
+        System.out.println("We made it to the function");
+        currentLocation = actionValue;
+        listNextLocations = getLocationDirections(actionValue);
+        // Set text box.
+        String[] itemsHere = getLocationItems(actionValue);
+        String roomName = currentLocation.substring(0, 1).toUpperCase() + currentLocation.substring(1); // Capitalize the first letter of room name.
+//        guiClient.getGui().getMessageText().setText(getLocationDescription(actionValue));
+        System.out.println("room name set up and items in the room is setup");
+        if (itemsHere.length == 0) {
+            //guiClient.getGui().getMessageText().setText(roomName + ": " + getLocationDescription(actionValue) + ".\nNo items found here.\nYou can go to: " + Arrays.toString(listNextLocations));
+            System.out.println("This is the no items check");
+            return (roomName + ". " + getLocationDescription(actionValue) + ". " + Arrays.toString(listNextLocations) + ".");
+        } else if (itemsHere.length > 0) {
+            //guiClient.getGui().getMessageText().setText(roomName + ": " + getLocationDescription(actionValue) + ".\nItems that can be found in this room: " + Arrays.toString(itemsHere) + ".\nYou can go to: " + Arrays.toString(listNextLocations));
+            System.out.println("This is the items check");
+            return (roomName + ": " + getLocationDescription(actionValue) + ".\nItems that can be found in this room: " + Arrays.toString(itemsHere) + ".\nYou can go to: " + Arrays.toString(listNextLocations));
+        } else {
+            System.out.println("Something weird happened");
+            return null;
+        }
+        // TODO Will add Cat and dog later.
 
     }
 
