@@ -1,11 +1,7 @@
 package com.game.controller;
 
-import com.sound.*;
 import com.gui.*;
-import com.game.model.Character;
 import com.game.model.Location;
-import com.game.utility.JSONParser;
-import com.game.utility.Room;
 
 import java.util.*;
 
@@ -28,6 +24,8 @@ public class EventHandler {
     int musicCounter = 2;
     boolean dogDistracted = false;
     boolean catDistracted = false;
+    boolean box1 = false;
+    boolean box2 = false;
     // Set up game actions ends.
 
     public EventHandler(GUIClient guiClient) {
@@ -37,8 +35,10 @@ public class EventHandler {
     // Create function to setup rooms.
     public void roomSetup(String actionValue) {
         // Track location and items.
-//        guiClient.getGui().pickSaveItem("empty"); // TODO Not working right.
+
         guiClient.getGui().generateScreen(stdRm.indexOf(actionValue) + 1);
+        catDistracted = false;
+        dogDistracted = false;
         currentLocation = actionValue;
         listNextLocations = getLocationDirections(actionValue);
         // Set text box.
@@ -60,14 +60,14 @@ public class EventHandler {
             currentLocation = actionValue;
             listNextLocations = getLocationDirections(actionValue);
 
-            if (dogDistracted){
+            if (dogDistracted && actionValue.equals("loft")){
                 guiClient.getGui().generateNpcScreen(3, "dog");
                 guiClient.getGui().getMessageText().setText("You distracted the dog.\nYou can go to: " + Arrays.toString(listNextLocations));
-                dogDistracted = false;
-            } else if (catDistracted) {
+//                dogDistracted = false;
+            } else if (catDistracted && actionValue.equals("lounge")) {
                 guiClient.getGui().generateNpcScreen(5, "cat");
                 guiClient.getGui().getMessageText().setText("You distracted the cat.\nYou can go to: " + Arrays.toString(listNextLocations));
-                catDistracted = false;
+//                catDistracted = false;
             }
         } else if (inventory.size() == 0) {
             guiClient.getGui().generateScreen(9);
@@ -77,28 +77,31 @@ public class EventHandler {
     }
 
     // Use or pick the item.
-    public void itemAction(String actionValue) {
+    public void itemInventoryAction(String actionValue) {
 //        If the item is at the found location. Add to inventory, or if already has it, do something else.
         if (getItemRoom(actionValue).equals(currentLocation)) {
             // Already have it
             if (inventory.contains(actionValue)) {
                 guiClient.getGui().getMessageText().setText("You already have " + actionValue + " in your inventory.");
             } else {
-                // Do have it yet
-                inventory.add(actionValue);
-                guiClient.getGui().getMessageText().setText("Added " + actionValue + " to your inventory.");
-            }
-        } else if (currentLocation.equals("loft")) {
-            // If the item is clicked to distract dog.
-            dogDistracted = true;
-            // TODO Here should populate the navigation buttons.
-        } else if (currentLocation.equals("lounge")) {
-            // If the item is clicked to distract cat.
+                // Don't have it yet
+                if (!box1){
+                    inventory.add(actionValue);
+                    guiClient.getGui().setBox1(actionValue);
+                    guiClient.getGui().removeObj(actionValue);
+                    guiClient.getGui().getMessageText().setText("Added " + actionValue + " to your inventory.");
+                    box1 = true;
+                } else if (box1 && !box2) {
+                    inventory.add(actionValue);
+                    guiClient.getGui().setBox2(actionValue);
+                    guiClient.getGui().removeObj(actionValue);
+                    guiClient.getGui().getMessageText().setText("Added " + actionValue + " to your inventory.");
+                    box2 = true;
+                } else if (box1 && box2) {
+                    guiClient.getGui().getMessageText().setText("You are a bunny, you can only have two items at a time.\nI don't even know how you carry two items together, but that's what Team 7 said.");
+                }
 
-            catDistracted = true;
-            // TODO Here should populate the navigation buttons.
-        } else {
-            guiClient.getGui().getMessageText().setText("You can't use this item here.");
+            }
         }
     }
 
@@ -142,16 +145,53 @@ public class EventHandler {
             npcRmSetup(actionValue);
         } else if (characters.contains(actionValue)) { // When click on dog or cat, means talk to them.
             talkToCh(actionValue);
-        } else if (actionValue.equals("empty")) { // When click on dog or cat, means talk to them.
-            guiClient.getGui().getMessageText().setText("You don't have anything.");
+        } else if (actionValue.equals("box1")) {
+            if (currentLocation.equals("loft") && !dogDistracted) {
+                // If the item is clicked to distract dog.
+                dogDistracted = true;
+                npcRmSetup("loft");
+                inventory.remove(0);
+                guiClient.getGui().setBox1("empty");
+                box1 = false;
+
+            } else if (currentLocation.equals("lounge") && !catDistracted) {
+                // If the item is clicked to distract cat.
+                catDistracted = true;
+                npcRmSetup("lounge");
+                inventory.remove(0);
+                guiClient.getGui().setBox1("empty");
+                box1 = false;
+            } else {
+                guiClient.getGui().getMessageText().setText("You can't use this item here.");
+            }
+        } else if (actionValue.equals("box2")) {
+            if (currentLocation.equals("loft") && !dogDistracted) {
+                // If the item is clicked to distract dog.
+                dogDistracted = true;
+                npcRmSetup("loft");
+                inventory.remove(0);
+                guiClient.getGui().setBox2("empty");
+                box2 = false;
+
+            } else if (currentLocation.equals("lounge") && !catDistracted) {
+                // If the item is clicked to distract cat.
+                catDistracted = true;
+                npcRmSetup("lounge");
+                inventory.remove(0);
+                guiClient.getGui().setBox2("empty");
+                box2 = false;
+            } else {
+                guiClient.getGui().getMessageText().setText("You can't use this item here.");
+            }
         } else if (getAllItems().contains(actionValue)) { // When click on items, use or add to inventory.
-            itemAction(actionValue);
+            itemInventoryAction(actionValue);
         } else if (actionValue.equals("garden")) { // When try to go garden, if(key) win, no key, tell them find the key.
             if (inventory.contains("key")) {
                 guiClient.getGui().generateScreen(8);
-                guiClient.getGui().getMessageText().setText(getIntroductionWin());
+                guiClient.getGui().getMessageText().setText(getIntroductionWin()); //
+            } else {
+                guiClient.getGui().getMessageText().setText(getIntroductionPrompt());
             }
-            guiClient.getGui().getMessageText().setText(getIntroductionPrompt());
         }
     }
 

@@ -52,17 +52,16 @@ public class GUI {
         // window size should be:
         // width = width of background image,
         // height = height of image + chat bar + UI
-        window.setSize(1000, 863);
+        window.setSize(1000, 873); // Henry changed the height from 863 to 913.
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
         window.setLayout(null);
 
-        messageText.setBounds(50, 663, 700, 150);
+        messageText.setBounds(30, 663, 935, 170); // Henry changed the height from 150 to 170. x from 50 to 30. width 900 to 935
         messageText.setBackground(Color.BLUE);
         messageText.setForeground(Color.WHITE);
         messageText.setEditable(false);
         messageText.setLineWrap(true);
-        messageText.setAutoscrolls(true); // TODO Henry added this to try if it can scroll the txt.
         messageText.setFont(new Font("Book Antiqua", Font.PLAIN, 26));
         window.add(messageText);
 
@@ -283,31 +282,39 @@ public class GUI {
         }
 
         // Loop to setup the food objects in the game (objectlabel: items object positions 14 - 18)
-        for (int i = 14; i < 19; i++) {
+        for (int i = 14; i < 21; i++) {
             objLabel.add(new JLabel());
             JButton btn = new JButton();
             String fileName = "obj_" + (i - 13) + ".png";
 
             switch (i) {
                 case 14:
-                    objLabel.get(i).setBounds(750, 550, 90, 140);
+                    objLabel.get(i).setBounds(830, 250, 90, 140);
                     btn.setActionCommand("drumstick");
                     break;
                 case 15:
-                    objLabel.get(i).setBounds(850, 600, 100, 40);
+                    objLabel.get(i).setBounds(830, 400, 100, 40);
                     btn.setActionCommand("cucumber");
                     break;
                 case 16:
-                    objLabel.get(i).setBounds(7, 290, 100, 100);
+                    objLabel.get(i).setBounds(520, 417, 100, 100);
                     btn.setActionCommand("shoes");
                     break;
                 case 17:
-                    objLabel.get(i).setBounds(10, 290, 100, 100);
+                    objLabel.get(i).setBounds(220, 280, 100, 100);
                     btn.setActionCommand("wool");
                     break;
                 case 18:
-                    objLabel.get(i).setBounds(20, 290, 100, 70);
+                    objLabel.get(i).setBounds(750, 320, 100, 70);
                     btn.setActionCommand("key");
+                    break;
+                case 19:
+                    objLabel.get(i).setBounds(770, 535, 100, 140);
+                    btn.setActionCommand("box1");
+                    break;
+                case 20:
+                    objLabel.get(i).setBounds(875, 535, 100, 140);
+                    btn.setActionCommand("box2");
                     break;
             }
             ImageIcon objectIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)));
@@ -353,6 +360,8 @@ public class GUI {
             case 1:
                 bgPanel.get(bgNum).add(objLabel.get(4));
                 bgPanel.get(bgNum).add(objLabel.get(5));
+                bgPanel.get(bgNum).add(objLabel.get(19)); // 19 is the inventory box 1.
+                bgPanel.get(bgNum).add(objLabel.get(20)); // 20 is the inventory box 2.
                 break;
             case 2:
                 bgPanel.get(bgNum).add(objLabel.get(4));
@@ -360,6 +369,8 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(7));
                 bgPanel.get(bgNum).add(objLabel.get(14));
                 bgPanel.get(bgNum).add(objLabel.get(15));
+                bgPanel.get(bgNum).add(objLabel.get(19));
+                bgPanel.get(bgNum).add(objLabel.get(20));
                 break;
             case 3:
                 // mix between directional arrows 1-4 and 8-11
@@ -367,26 +378,36 @@ public class GUI {
 //                bgPanel.get(bgNum).add(objLabel.get(5));// TODO Henry should disable after inventory slots work.
 //                bgPanel.get(bgNum).add(objLabel.get(11));// TODO Henry should disable after inventory slots work.
                 bgPanel.get(bgNum).add(objLabel.get(12));
+                bgPanel.get(bgNum).add(objLabel.get(19));
+                bgPanel.get(bgNum).add(objLabel.get(20));
                 break;
             case 4:
                 bgPanel.get(bgNum).add(objLabel.get(10));
                 bgPanel.get(bgNum).add(objLabel.get(7));
                 bgPanel.get(bgNum).add(objLabel.get(18));
+                bgPanel.get(bgNum).add(objLabel.get(19));
+                bgPanel.get(bgNum).add(objLabel.get(20));
                 break;
             case 5:
 //                bgPanel.get(bgNum).add(objLabel.get(5));// TODO Henry should disable after inventory slots work.
 //                bgPanel.get(bgNum).add(objLabel.get(7));// TODO Henry should disable after inventory slots work.
 //                bgPanel.get(bgNum).add(objLabel.get(8));// TODO Henry should disable after inventory slots work.
                 bgPanel.get(bgNum).add(objLabel.get(13));
+                bgPanel.get(bgNum).add(objLabel.get(19));
+                bgPanel.get(bgNum).add(objLabel.get(20));
                 break;
             case 6:
                 bgPanel.get(bgNum).add(objLabel.get(4));
                 bgPanel.get(bgNum).add(objLabel.get(9));
+                bgPanel.get(bgNum).add(objLabel.get(19));
+                bgPanel.get(bgNum).add(objLabel.get(20));
                 break;
             case 7:
                 bgPanel.get(bgNum).add(objLabel.get(8));
                 bgPanel.get(bgNum).add(objLabel.get(16));
                 bgPanel.get(bgNum).add(objLabel.get(17));
+                bgPanel.get(bgNum).add(objLabel.get(19));
+                bgPanel.get(bgNum).add(objLabel.get(20));
                 break;
         }
 
@@ -456,11 +477,15 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(4));
                 bgPanel.get(bgNum).add(objLabel.get(5));
                 bgPanel.get(bgNum).add(objLabel.get(11));
+                bgPanel.get(bgNum).add(objLabel.get(19));
+                bgPanel.get(bgNum).add(objLabel.get(20));
                 bgPanel.get(bgNum).remove(objLabel.get(12));
             } else if (npc.equals("cat")) {
                 bgPanel.get(bgNum).add(objLabel.get(5));
                 bgPanel.get(bgNum).add(objLabel.get(7));
                 bgPanel.get(bgNum).add(objLabel.get(8));
+                bgPanel.get(bgNum).add(objLabel.get(19));
+                bgPanel.get(bgNum).add(objLabel.get(20));
                 bgPanel.get(bgNum).remove(objLabel.get(13));
             }
         }
@@ -470,49 +495,41 @@ public class GUI {
     }
 
     // TODO Henry try to add function to remove the item after added to inventory and make them stay at each page.
-    public void pickSaveItem(String itemName) {
-        boolean box1 = false;
-        boolean box2 = false;
-        List<String> items = new ArrayList<>(Arrays.asList("empty", "drumstick", "cucumber", "shoes", "wool", "key"));
+    public void setBox1(String itemName) {
+        // TODO change icon picture.
+        // itemName is actionValue.
+        List<String> items = new ArrayList<>(Arrays.asList("ph", "drumstick", "cucumber", "shoes", "wool", "key", "empty"));
 
-        objLabel.add(new JLabel());
-        JButton btn = new JButton();
         String fileName = "obj_" + items.indexOf(itemName) + ".png";
-        objLabel.get(0).setBounds(751, 563, 100, 140);
-        objLabel.get(1).setBounds(857, 563, 100, 140);
-        btn.setActionCommand("empty");
-        bgPanel.get(0).add(objLabel.get(0));
-        bgPanel.get(1).add(objLabel.get(1));
         ImageIcon objectIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)));
-        objLabel.get(1).setIcon(objectIcon);
-        objLabel.get(0).setIcon(objectIcon);
-        btn.addActionListener(guiClient.getaHandler());
-        objLabel.get(items.indexOf(itemName)).addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-            }
+        objLabel.get(19).setIcon(objectIcon);
 
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if (SwingUtilities.isLeftMouseButton(e)) {
-                    btn.doClick();
-                }
-            }
+    }
+    public void setBox2(String itemName) {
+        // TODO change icon picture.
+        // itemName is actionValue.
+        List<String> items = new ArrayList<>(Arrays.asList("ph", "drumstick", "cucumber", "shoes", "wool", "key", "empty"));
 
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-            }
-        });
+        String fileName = "obj_" + items.indexOf(itemName) + ".png";
+        ImageIcon objectIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)));
+        objLabel.get(20).setIcon(objectIcon);
     }
 
+    public void removeObj(String itemName){ // remove the Obj from the room after added to inventory.
+        // 14 - 18
+        // "drumstick", "cucumber", "shoes", "wool", "key"
+        if (itemName.equals("drumstick")){
+            bgPanel.get(2).add(objLabel.get(14)).setVisible(false);
+        } else if (itemName.equals("cucumber")) {
+            bgPanel.get(2).add(objLabel.get(15)).setVisible(false);
+        } else if (itemName.equals("shoes")) {
+            bgPanel.get(7).add(objLabel.get(16)).setVisible(false);
+        } else if (itemName.equals("wool")) {
+            bgPanel.get(7).add(objLabel.get(17)).setVisible(false);
+        } else if (itemName.equals("key")) {
+            bgPanel.get(4).add(objLabel.get(18)).setVisible(false);
+        }
+    }
 
     public JTextArea getMessageText() {
         return messageText;
