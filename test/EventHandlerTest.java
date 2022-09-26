@@ -1,13 +1,6 @@
 import com.game.controller.EventHandler;
-import org.assertj.core.internal.bytebuddy.implementation.bind.annotation.RuntimeType;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.Verifier;
-
-import java.util.Arrays;
-
-import static com.game.utility.JSONParser.getLocationDescription;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EventHandlerTest {
@@ -40,9 +33,5 @@ class EventHandlerTest {
 
     @Test
     void eventRequest() {
-    }
-
-    @Test
-    void winGame() {
     }
 }

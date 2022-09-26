@@ -32,8 +32,12 @@ public class Sound {
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
             clip = AudioSystem.getClip();
             clip.open(ais);
+            System.out.println("File Set");
 
-        }catch (Exception e) {}
+
+        }catch (Exception e) {
+            System.out.println("Invalid File");
+        }
     }
 
     public void play() {
