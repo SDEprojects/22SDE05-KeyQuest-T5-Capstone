@@ -1,6 +1,8 @@
 import com.game.controller.EventHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static com.game.utility.JSONParser.getIntroductionPlayer;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EventHandlerTest {

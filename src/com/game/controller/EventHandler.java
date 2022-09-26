@@ -239,11 +239,6 @@ public class EventHandler {
         return getIntroductionPlayer() + "\nUse the items you found to distract mean animals, \nfind the key to unlock the garden, \nthen enjoy the carrot.";
     }
 
-    public String eventRequest_help(String actionValue){
-
-        return getIntroductionPlayer() + "\nUse the items you found to distract mean animals, \nfind the key to unlock the garden, \nthen enjoy the carrot.";
-    }
-
     /*public void winGame(String actionValue) {
         //while the player is in the garage, if they have the key, game goes to win screen
         //while (location.equals("garage")) {
