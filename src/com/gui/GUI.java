@@ -290,23 +290,23 @@ public class GUI {
 
             switch (i) {
                 case 14:
-                    objLabel.get(i).setBounds(7, 150, 350, 100);
+                    objLabel.get(i).setBounds(750, 550, 90, 140);
                     btn.setActionCommand("drumstick");
                     break;
                 case 15:
-                    objLabel.get(i).setBounds(7, 220, 325, 100);
+                    objLabel.get(i).setBounds(850, 600, 100, 40);
                     btn.setActionCommand("cucumber");
                     break;
                 case 16:
-                    objLabel.get(i).setBounds(7, 290, 400, 100);
+                    objLabel.get(i).setBounds(7, 290, 100, 100);
                     btn.setActionCommand("shoes");
                     break;
                 case 17:
-                    objLabel.get(i).setBounds(10, 290, 400, 100);
+                    objLabel.get(i).setBounds(10, 290, 100, 100);
                     btn.setActionCommand("wool");
                     break;
                 case 18:
-                    objLabel.get(i).setBounds(20, 290, 400, 100);
+                    objLabel.get(i).setBounds(20, 290, 100, 70);
                     btn.setActionCommand("key");
                     break;
             }
@@ -363,9 +363,9 @@ public class GUI {
                 break;
             case 3:
                 // mix between directional arrows 1-4 and 8-11
-                bgPanel.get(bgNum).add(objLabel.get(4));// TODO Henry should disable after inventory slots work.
-                bgPanel.get(bgNum).add(objLabel.get(5));// TODO Henry should disable after inventory slots work.
-                bgPanel.get(bgNum).add(objLabel.get(11));// TODO Henry should disable after inventory slots work.
+//                bgPanel.get(bgNum).add(objLabel.get(4));// TODO Henry should disable after inventory slots work.
+//                bgPanel.get(bgNum).add(objLabel.get(5));// TODO Henry should disable after inventory slots work.
+//                bgPanel.get(bgNum).add(objLabel.get(11));// TODO Henry should disable after inventory slots work.
                 bgPanel.get(bgNum).add(objLabel.get(12));
                 break;
             case 4:
@@ -374,9 +374,9 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(18));
                 break;
             case 5:
-                bgPanel.get(bgNum).add(objLabel.get(5));// TODO Henry should disable after inventory slots work.
-                bgPanel.get(bgNum).add(objLabel.get(7));// TODO Henry should disable after inventory slots work.
-                bgPanel.get(bgNum).add(objLabel.get(8));// TODO Henry should disable after inventory slots work.
+//                bgPanel.get(bgNum).add(objLabel.get(5));// TODO Henry should disable after inventory slots work.
+//                bgPanel.get(bgNum).add(objLabel.get(7));// TODO Henry should disable after inventory slots work.
+//                bgPanel.get(bgNum).add(objLabel.get(8));// TODO Henry should disable after inventory slots work.
                 bgPanel.get(bgNum).add(objLabel.get(13));
                 break;
             case 6:
@@ -446,7 +446,6 @@ public class GUI {
     }
 
     // TODO Henry added this function to enable the navigation arrows after npc is distracted.
-    // Not able to test since the inventory object is not set up.
     public void generateNpcScreen(int bgNum, String npc) {
 
         messageText.setVisible(true);
@@ -457,20 +456,63 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(4));
                 bgPanel.get(bgNum).add(objLabel.get(5));
                 bgPanel.get(bgNum).add(objLabel.get(11));
+                bgPanel.get(bgNum).remove(objLabel.get(12));
             } else if (npc.equals("cat")) {
                 bgPanel.get(bgNum).add(objLabel.get(5));
                 bgPanel.get(bgNum).add(objLabel.get(7));
                 bgPanel.get(bgNum).add(objLabel.get(8));
+                bgPanel.get(bgNum).remove(objLabel.get(13));
             }
         }
-
-        // TODO: new action command values for the new arrow buttons, and any other object that's being created.
-
         bgPanel.get(bgNum).add(bgLabel.get(bgNum));
         bgPanel.get(bgNum).setVisible(true);
         window.add(bgPanel.get(bgNum));
-        //window.setVisible(true);
     }
+
+    // TODO Henry try to add function to remove the item after added to inventory and make them stay at each page.
+    public void pickSaveItem(String itemName) {
+        boolean box1 = false;
+        boolean box2 = false;
+        List<String> items = new ArrayList<>(Arrays.asList("empty", "drumstick", "cucumber", "shoes", "wool", "key"));
+
+        objLabel.add(new JLabel());
+        JButton btn = new JButton();
+        String fileName = "obj_" + items.indexOf(itemName) + ".png";
+        objLabel.get(0).setBounds(751, 563, 100, 140);
+        objLabel.get(1).setBounds(857, 563, 100, 140);
+        btn.setActionCommand("empty");
+        bgPanel.get(0).add(objLabel.get(0));
+        bgPanel.get(1).add(objLabel.get(1));
+        ImageIcon objectIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)));
+        objLabel.get(1).setIcon(objectIcon);
+        objLabel.get(0).setIcon(objectIcon);
+        btn.addActionListener(guiClient.getaHandler());
+        objLabel.get(items.indexOf(itemName)).addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    btn.doClick();
+                }
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
+    }
+
 
     public JTextArea getMessageText() {
         return messageText;

@@ -37,6 +37,7 @@ public class EventHandler {
     // Create function to setup rooms.
     public void roomSetup(String actionValue) {
         // Track location and items.
+//        guiClient.getGui().pickSaveItem("empty"); // TODO Not working right.
         guiClient.getGui().generateScreen(stdRm.indexOf(actionValue) + 1);
         currentLocation = actionValue;
         listNextLocations = getLocationDirections(actionValue);
@@ -53,19 +54,26 @@ public class EventHandler {
 
     // Create function to setup the rooms with dog and cat.
     public void npcRmSetup(String actionValue) {
-        guiClient.getGui().generateScreen(npcRm.indexOf(actionValue) + 1);
-        currentLocation = actionValue;
-        listNextLocations = getLocationDirections(actionValue);
+        if (inventory.size() > 0){ // Check player inventory to see if they are empty or not.
+            guiClient.getGui().generateScreen(npcRm.indexOf(actionValue) + 1);
+            guiClient.getGui().getMessageText().setText(getLocationDescription(actionValue));
+            currentLocation = actionValue;
+            listNextLocations = getLocationDirections(actionValue);
 
-        if (dogDistracted){
-            guiClient.getGui().generateNpcScreen(3, "dog");
-            guiClient.getGui().getMessageText().setText("You distracted the dog.\nYou can go to: " + Arrays.toString(listNextLocations));
-            dogDistracted = false;
-        } else if (catDistracted) {
-            guiClient.getGui().generateNpcScreen(5, "cat");
-            guiClient.getGui().getMessageText().setText("You distracted the cat.\nYou can go to: " + Arrays.toString(listNextLocations));
-            catDistracted = false;
+            if (dogDistracted){
+                guiClient.getGui().generateNpcScreen(3, "dog");
+                guiClient.getGui().getMessageText().setText("You distracted the dog.\nYou can go to: " + Arrays.toString(listNextLocations));
+                dogDistracted = false;
+            } else if (catDistracted) {
+                guiClient.getGui().generateNpcScreen(5, "cat");
+                guiClient.getGui().getMessageText().setText("You distracted the cat.\nYou can go to: " + Arrays.toString(listNextLocations));
+                catDistracted = false;
+            }
+        } else if (inventory.size() == 0) {
+            guiClient.getGui().generateScreen(9);
+            guiClient.getGui().getMessageText().setText(getIntroductionLose() + "\nGet items to distract cat or dog, before going to their territory.");
         }
+
     }
 
     // Use or pick the item.
@@ -134,6 +142,8 @@ public class EventHandler {
             npcRmSetup(actionValue);
         } else if (characters.contains(actionValue)) { // When click on dog or cat, means talk to them.
             talkToCh(actionValue);
+        } else if (actionValue.equals("empty")) { // When click on dog or cat, means talk to them.
+            guiClient.getGui().getMessageText().setText("You don't have anything.");
         } else if (getAllItems().contains(actionValue)) { // When click on items, use or add to inventory.
             itemAction(actionValue);
         } else if (actionValue.equals("garden")) { // When try to go garden, if(key) win, no key, tell them find the key.
