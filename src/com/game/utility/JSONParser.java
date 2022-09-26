@@ -189,7 +189,7 @@ public class JSONParser {
 
 
     public static int getRandomNumber(int numberOfKeys) {
-        return (int) (Math.random() * numberOfKeys + 1);
+        return (int) (Math.random() * numberOfKeys);
     }
 
     public static String getLookItem(String name) {
@@ -199,6 +199,11 @@ public class JSONParser {
     public static String getCharacterName(String character) {
         JSONObject information  = jsonObjectCharacter.getJSONObject(character);
         return information.getString("name");
+    }
+
+    public static String getCharacterRoom(String character){
+        JSONObject information  = jsonObjectCharacter.getJSONObject(character);
+        return information.getString("room");
     }
 
     public static String getCharacterDescription(String character) {

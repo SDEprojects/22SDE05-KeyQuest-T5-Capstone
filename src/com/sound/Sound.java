@@ -9,14 +9,22 @@ public class Sound {
 
 
     Clip clip;
-    URL[] soundURL =new URL[10]; //stores sound files
+    URL[] soundURL =new URL[11]; //stores sound files
 
     public Sound() {
 
 
-        soundURL[0] = getClass().getResource("/Sound/arcade-game.wav");
+        soundURL[0] = getClass().getResource("/Sound/Music/arcade-game.wav");
         soundURL[1] = getClass().getResource("/Sound/audio001.wav");
-        soundURL[2] = getClass().getResource("/Sound/fanfare2.wav");
+        soundURL[2] = getClass().getResource("/Sound/SE/cat_meow.wav");
+        soundURL[3] = getClass().getResource("/Sound/SE/cat_scream.wav");
+        soundURL[4] = getClass().getResource("/Sound/SE/chicken_bock_x.wav");
+        soundURL[5] = getClass().getResource("/Sound/SE/chime_up.wav");
+        soundURL[6] = getClass().getResource("/Sound/SE/click.wav");
+        soundURL[7] = getClass().getResource("/Sound/SE/dog_bark_x.wav");
+        soundURL[8] = getClass().getResource("/Sound/SE/dog_growl3.wav");
+        soundURL[9] = getClass().getResource("/Sound/SE/fanfare.wav");
+        soundURL[10] = getClass().getResource("/Sound/SE/whahwhah.wav");
     }
 
     public void setFile(int i) {
@@ -24,8 +32,12 @@ public class Sound {
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
             clip = AudioSystem.getClip();
             clip.open(ais);
+            System.out.println("File Set");
 
-        }catch (Exception e) {}
+
+        }catch (Exception e) {
+            System.out.println("Invalid File");
+        }
     }
 
     public void play() {
@@ -38,13 +50,5 @@ public class Sound {
 
     public void stop() {
         clip.stop();
-    }
-
-
-
-
-    public static void main(String[] args) {
-
-
     }
 }
