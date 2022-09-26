@@ -7,6 +7,7 @@ import org.junit.rules.Verifier;
 
 import java.util.Arrays;
 
+import static com.game.utility.JSONParser.getIntroductionPlayer;
 import static com.game.utility.JSONParser.getLocationDescription;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -46,6 +47,12 @@ class EventHandlerTest {
     @Test
     void roomSetup_int_backgroundNoMatch() {
         assertNotEquals(1, eHandler.roomSetup_int("kitchen"));
+    }
+
+    @Test
+    void eventRequest_testHelp(){
+        String help = getIntroductionPlayer() + "\nUse the items you found to distract mean animals, \nfind the key to unlock the garden, \nthen enjoy the carrot.";
+        assertEquals(help, eHandler.eventRequest_help("help"));
     }
 
     @Test

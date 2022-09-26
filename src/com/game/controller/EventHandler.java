@@ -94,7 +94,6 @@ public class EventHandler {
             guiClient.getGui().getMessageText().setText(roomName + ": " + getLocationDescription(actionValue) + ".\nItems that can be found in this room: " + Arrays.toString(itemsHere) + ".\nYou can go to: " + Arrays.toString(listNextLocations));
         }*/
         // TODO Will add Cat and dog later.
-        System.out.println(stdRm.indexOf(actionValue) + 1);
         return (stdRm.indexOf(actionValue) + 1);
     }
 
@@ -237,7 +236,12 @@ public class EventHandler {
 
     public String eventRequest_help(String actionValue){
 
-        return null;
+        return getIntroductionPlayer() + "\nUse the items you found to distract mean animals, \nfind the key to unlock the garden, \nthen enjoy the carrot.";
+    }
+
+    public String eventRequest_help(String actionValue){
+
+        return getIntroductionPlayer() + "\nUse the items you found to distract mean animals, \nfind the key to unlock the garden, \nthen enjoy the carrot.";
     }
 
     /*public void winGame(String actionValue) {
