@@ -48,16 +48,9 @@ public class GUI {
     public void restartGame() {
 
         // TODO reset visibility for cat and dog to true.
-        objLabel.get(16).setVisible(true);
-        objLabel.get(17).setVisible(true);
-        // TODO reset visibility of arrows. to false. no need to will see.
-
-        // TODO reset visibility of items. to true.
-        objLabel.get(18).setVisible(true);
-        objLabel.get(19).setVisible(true);
-        objLabel.get(20).setVisible(true);
-        objLabel.get(21).setVisible(true);
-        objLabel.get(22).setVisible(true);
+        for (int i = 0; i < objLabel.size(); i ++){
+            objLabel.get(i).setVisible(true);
+        }
         // TODO reset inventory box.
         setBox1("empty");
         setBox2("empty");
@@ -435,6 +428,7 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(17)); // Cat button.
                 objLabel.get(17).setVisible(true);
                 objLabel.get(5).setVisible(false); // Don't show arrows before cat is distracted.
+                objLabel.get(6).setVisible(false); // Don't show arrows before cat is distracted.
                 objLabel.get(7).setVisible(false); // Don't show arrows before cat is distracted.
                 objLabel.get(12).setVisible(false); // Don't show arrows before cat is distracted.
                 bgPanel.get(bgNum).add(objLabel.get(23)); // Inventory box 1.
