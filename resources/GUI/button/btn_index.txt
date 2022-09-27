@@ -7,7 +7,6 @@
 7. Up 
 8. Down
 9. Play again
-10. Quit
-backup Settings
-backup load game
-backup new game
+10. Play again
+11. Quit
+12. Quit
