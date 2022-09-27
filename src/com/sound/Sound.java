@@ -8,8 +8,9 @@ import java.net.URL;
 public class Sound {
 
 
-    Clip clip;
-    URL[] soundURL =new URL[14]; //stores sound files
+    private Clip clip;
+    private URL[] soundURL =new URL[14]; //stores sound files
+
 
     public Sound() {
 
@@ -30,6 +31,7 @@ public class Sound {
 
 
     }
+
 
     public void setFile(int i) {
         try {
@@ -55,4 +57,20 @@ public class Sound {
     public void stop() {
         clip.stop();
     }
+
+    /*public Clip getClip() {
+        return clip;
+    }
+
+    public void setClip(Clip clip) {
+        this.clip = clip;
+    }
+
+    public URL[] getSoundURL() {
+        return soundURL;
+    }
+
+    public void setSoundURL(URL[] soundURL) {
+        this.soundURL = soundURL;
+    }*/
 }

@@ -450,22 +450,21 @@ public class GUI {
 
     }
 
-    Sound sound = new Sound();
 
     public void playMusic(int i) {
-        sound.setFile(i);
-        sound.play();
-        sound.loop();
+        guiClient.getSound().setFile(i);
+        guiClient.getSound().play();
+        guiClient.getSound().loop();
     }
 
     public void stopMusic() {
-        sound.stop();
+        guiClient.getSound().stop();
     }
 
     //TODO add sound effects
     public void playSE(int i) { // for Sound Effects
-        sound.setFile(i);
-        sound.play();
+        guiClient.getSound().setFile(i);
+        guiClient.getSound().play();
     }
 
     // TODO Henry added this function to enable the navigation arrows after npc is distracted.

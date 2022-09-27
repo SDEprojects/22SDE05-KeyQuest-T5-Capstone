@@ -2,8 +2,11 @@ package com.gui;
 
 import com.game.controller.ActionHandler;
 import com.game.controller.EventHandler;
+import com.sound.Sound;
 
 public class GUIClient{
+
+    Sound sound = new Sound();
 
     private ActionHandler aHandler = new ActionHandler(this);
 
@@ -14,6 +17,9 @@ public class GUIClient{
     public static void main(String[] args){
         new GUIClient();
     }
+
+
+
 
     public GUIClient(){
         // intro to screen 1
@@ -45,4 +51,10 @@ public class GUIClient{
         this.eHandler = eHandler;
     }
 
+    public Sound getSound() {
+        return sound;
+    }
+    public void setSound(Sound sound) {
+        this.sound = sound;
+    }
 }
