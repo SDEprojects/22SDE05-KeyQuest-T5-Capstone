@@ -450,6 +450,7 @@ public class GUI {
 
     }
 
+    Sound sound = new Sound();
 
     public void playMusic(int i) {
         guiClient.getSound().setFile(i);

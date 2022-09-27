@@ -6,7 +6,7 @@ import com.sound.Sound;
 
 public class GUIClient{
 
-    Sound sound = new Sound();
+    private Sound sound = new Sound();
 
     private ActionHandler aHandler = new ActionHandler(this);
 
@@ -17,9 +17,6 @@ public class GUIClient{
     public static void main(String[] args){
         new GUIClient();
     }
-
-
-
 
     public GUIClient(){
         // intro to screen 1

@@ -58,7 +58,7 @@ public class Sound {
         clip.stop();
     }
 
-    /*public Clip getClip() {
+    public Clip getClip() {
         return clip;
     }
 
@@ -72,5 +72,5 @@ public class Sound {
 
     public void setSoundURL(URL[] soundURL) {
         this.soundURL = soundURL;
-    }*/
+    }
 }
