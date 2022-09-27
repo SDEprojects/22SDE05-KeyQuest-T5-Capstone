@@ -1,7 +1,5 @@
 package com.gui;
 
-import com.game.model.Character;
-import com.game.model.Location;
 import com.sound.Sound;
 
 import javax.swing.*;
@@ -12,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-
-import static com.game.utility.JSONParser.getStartingRoom;
 
 public class GUI {
     private static final int NUM_OF_BGS = 10;
@@ -43,6 +39,26 @@ public class GUI {
         bgPanel.get(0).add(objLabel.get(3)); // Help button.
         bgPanel.get(0).add(bgLabel.get(0)); // Main background.
 
+        bgPanel.get(0).setVisible(true);
+        window.add(bgPanel.get(0));
+        window.setVisible(true);
+    }
+
+    public void restartGame() {
+        this.guiClient = guiClient;
+        bgPanel = this.bgPanel;
+        bgLabel = new ArrayList<>();
+        objLabel = new ArrayList<>();
+        window = this.window;
+        messageText = this.messageText;
+        createMainField();
+        initializeBackgroundPanels();
+        initializeBackgroundObjects();
+        bgPanel.get(0).add(objLabel.get(0)); // Start button.
+        bgPanel.get(0).add(objLabel.get(1)); // Story button.
+        bgPanel.get(0).add(objLabel.get(2)); // Music button.
+        bgPanel.get(0).add(objLabel.get(3)); // Help button.
+        bgPanel.get(0).add(bgLabel.get(0)); // Main background.
         bgPanel.get(0).setVisible(true);
         window.add(bgPanel.get(0));
         window.setVisible(true);
@@ -538,6 +554,7 @@ public class GUI {
         objLabel.get(23).setIcon(objectIcon);
 
     }
+
     public void setBox2(String itemName) {
         // TODO change icon picture.
         // itemName is actionValue.
@@ -548,10 +565,10 @@ public class GUI {
         objLabel.get(24).setIcon(objectIcon);
     }
 
-    public void removeObj(String itemName){ // remove the Obj from the room after added to inventory.
+    public void removeObj(String itemName) { // remove the Obj from the room after added to inventory.
         // 14 - 18
         // "drumstick", "cucumber", "shoes", "wool", "key"
-        if (itemName.equals("drumstick")){
+        if (itemName.equals("drumstick")) {
             playSE(4);
             bgPanel.get(2).add(objLabel.get(18)).setVisible(false);
         } else if (itemName.equals("cucumber")) {
