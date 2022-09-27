@@ -12,8 +12,6 @@ public class EventHandler {
     private GUIClient guiClient;
     // To initialize game elements.
     private List<String> inventory = new ArrayList<>(); // Initialize the inventory slots.
-    private GUI gui;
-    private Set<String> listOfItems = getAllItems(); // Initialize the items.
     // Set up the game actions.
     private String currentLocation = getStartingRoom();
     private Location location = new Location(currentLocation);
@@ -66,11 +64,9 @@ public class EventHandler {
             if (dogDistracted && actionValue.equals("loft")){
                 guiClient.getGui().generateNpcScreen(3, "dog");
                 guiClient.getGui().getMessageText().setText("You distracted the dog.\nYou can go to: " + Arrays.toString(listNextLocations));
-//                dogDistracted = false;
             } else if (catDistracted && actionValue.equals("lounge")) {
                 guiClient.getGui().generateNpcScreen(5, "cat");
                 guiClient.getGui().getMessageText().setText("You distracted the cat.\nYou can go to: " + Arrays.toString(listNextLocations));
-//                catDistracted = false;
             }
         } else if (inventory.size() == 0) {
             guiClient.getGui().generateScreen(9);
