@@ -1,4 +1,6 @@
 package com.sound;
+import com.gui.GUIClient;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -8,11 +10,10 @@ import java.net.URL;
 public class Sound {
 
 
-    Clip clip;
-    URL[] soundURL =new URL[11]; //stores sound files
+    private Clip clip;
+    private URL[] soundURL = new URL[11]; //stores sound files
 
     public Sound() {
-
 
         soundURL[0] = getClass().getResource("/Sound/Music/arcade-game.wav");
         soundURL[1] = getClass().getResource("/Sound/audio001.wav");
@@ -50,5 +51,21 @@ public class Sound {
 
     public void stop() {
         clip.stop();
+    }
+
+    public Clip getClip() {
+        return clip;
+    }
+
+    public void setClip(Clip clip) {
+        this.clip = clip;
+    }
+
+    public URL[] getSoundURL() {
+        return soundURL;
+    }
+
+    public void setSoundURL(URL[] soundURL) {
+        this.soundURL = soundURL;
     }
 }
