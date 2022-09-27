@@ -12,8 +12,6 @@ public class EventHandler {
     private GUIClient guiClient;
     // To initialize game elements.
     private List<String> inventory = new ArrayList<>(); // Initialize the inventory slots.
-    private GUI gui;
-    private Set<String> listOfItems = getAllItems(); // Initialize the items.
     // Set up the game actions.
     private String currentLocation = getStartingRoom();
     private Location location = new Location(currentLocation);
@@ -49,9 +47,9 @@ public class EventHandler {
         String roomName = currentLocation.substring(0, 1).toUpperCase() + currentLocation.substring(1); // Capitalize the first letter of room name.
 //        guiClient.getGui().getMessageText().setText(getLocationDescription(actionValue));
         if (itemsHere.length == 0) {
-            guiClient.getGui().getMessageText().setText(roomName + ": " + getLocationDescription(actionValue) + ".\nNo items found here.\nYou can go to: " + Arrays.toString(listNextLocations));
+            guiClient.getGui().getMessageText().setText("Current location is " + roomName + ": " + getLocationDescription(actionValue) + ".\nNo items found here.\nYou can go to: " + Arrays.toString(listNextLocations));
         } else if (itemsHere.length > 0) {
-            guiClient.getGui().getMessageText().setText(roomName + ": " + getLocationDescription(actionValue) + ".\nItems that can be found in this room: " + Arrays.toString(itemsHere) + ".\nYou can go to: " + Arrays.toString(listNextLocations));
+            guiClient.getGui().getMessageText().setText("Current location is " + roomName + ": " + getLocationDescription(actionValue) + ".\nItems that can be found in this room: " + Arrays.toString(itemsHere) + ".\nYou can go to: " + Arrays.toString(listNextLocations));
         }
     }
 
@@ -66,15 +64,13 @@ public class EventHandler {
             if (dogDistracted && actionValue.equals("loft")){
                 guiClient.getGui().generateNpcScreen(3, "dog");
                 guiClient.getGui().getMessageText().setText("You distracted the dog.\nYou can go to: " + Arrays.toString(listNextLocations));
-//                dogDistracted = false;
             } else if (catDistracted && actionValue.equals("lounge")) {
                 guiClient.getGui().generateNpcScreen(5, "cat");
                 guiClient.getGui().getMessageText().setText("You distracted the cat.\nYou can go to: " + Arrays.toString(listNextLocations));
-//                catDistracted = false;
             }
         } else if (inventory.size() == 0) {
             guiClient.getGui().generateScreen(9);
-            guiClient.getGui().getMessageText().setText(getIntroductionLose() + "\nGet items to distract cat or dog, before going to their territory.");
+            guiClient.getGui().getMessageText().setText(getIntroductionLose() + "\nGet items to distract cat or dog, before going to their territory.\nDo you want to try again?");
         }
 
     }
@@ -178,7 +174,7 @@ public class EventHandler {
             guiClient.getGui().getMessageText().setVisible(true);
         } else if (actionValue.equals("quit")) { // Quit the game.
             System.exit(0);
-        } else if (actionValue.equals("play again")) { // Quit the game.
+        } else if (actionValue.equals("new game")) { // Start a new game.
             new GUIClient();
         } else if (stdRm.contains(actionValue)) { // Go through regular rooms.
             roomSetup(actionValue);
@@ -234,7 +230,7 @@ public class EventHandler {
             if (inventory.contains("key")) {
                 guiClient.getGui().playSE(9);
                 guiClient.getGui().generateScreen(8);
-                guiClient.getGui().getMessageText().setText(getIntroductionWin()); //
+                guiClient.getGui().getMessageText().setText(getIntroductionWin() + "\nStart a new game?");
             } else {
                 guiClient.getGui().getMessageText().setText(getIntroductionPrompt());
             }
