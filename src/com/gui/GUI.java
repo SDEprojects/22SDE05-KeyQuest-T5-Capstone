@@ -553,7 +553,6 @@ public class GUI {
         // "drumstick", "cucumber", "shoes", "wool", "key"
         if (itemName.equals("drumstick")){
             playSE(4);
-            bgPanel.get(2).add(objLabel.get(14)).setVisible(false);
             bgPanel.get(2).add(objLabel.get(18)).setVisible(false);
         } else if (itemName.equals("cucumber")) {
             bgPanel.get(2).add(objLabel.get(19)).setVisible(false);
@@ -563,7 +562,6 @@ public class GUI {
             bgPanel.get(7).add(objLabel.get(21)).setVisible(false);
         } else if (itemName.equals("key")) {
             playSE(5);
-            bgPanel.get(4).add(objLabel.get(18)).setVisible(false);
             bgPanel.get(4).add(objLabel.get(22)).setVisible(false);
         }
     }
