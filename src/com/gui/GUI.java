@@ -324,11 +324,13 @@ public class GUI {
             objLabel.get(i).addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    playSE(6);
                 }
 
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (SwingUtilities.isLeftMouseButton(e)) {
+                        playSE(6);
                         btn.doClick();
                     }
                 }
@@ -519,6 +521,7 @@ public class GUI {
         // 14 - 18
         // "drumstick", "cucumber", "shoes", "wool", "key"
         if (itemName.equals("drumstick")){
+            playSE(4);
             bgPanel.get(2).add(objLabel.get(14)).setVisible(false);
         } else if (itemName.equals("cucumber")) {
             bgPanel.get(2).add(objLabel.get(15)).setVisible(false);
@@ -527,6 +530,7 @@ public class GUI {
         } else if (itemName.equals("wool")) {
             bgPanel.get(7).add(objLabel.get(17)).setVisible(false);
         } else if (itemName.equals("key")) {
+            playSE(5);
             bgPanel.get(4).add(objLabel.get(18)).setVisible(false);
         }
     }
