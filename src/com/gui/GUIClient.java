@@ -6,13 +6,13 @@ import com.sound.Sound;
 
 public class GUIClient{
 
+    private Sound sound = new Sound();
+
     private ActionHandler aHandler = new ActionHandler(this);
 
     private EventHandler eHandler = new EventHandler(this);
 
     private GUI gui = new GUI(this);
-
-    private Sound sound = new Sound();
 
     public static void main(String[] args){
         new GUIClient();
@@ -51,7 +51,6 @@ public class GUIClient{
     public Sound getSound() {
         return sound;
     }
-
     public void setSound(Sound sound) {
         this.sound = sound;
     }
