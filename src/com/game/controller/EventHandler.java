@@ -36,6 +36,7 @@ public class EventHandler {
     // Create function to setup rooms.
     public void roomSetup(String actionValue) {
         // Track location and items.
+
         guiClient.getGui().generateScreen(stdRm.indexOf(actionValue) + 1);
         catDistracted = false;
         dogDistracted = false;
@@ -44,7 +45,6 @@ public class EventHandler {
         // Set text box.
         String[] itemsHere = getLocationItems(actionValue);
         String roomName = currentLocation.substring(0, 1).toUpperCase() + currentLocation.substring(1); // Capitalize the first letter of room name.
-//        guiClient.getGui().getMessageText().setText(getLocationDescription(actionValue));
         if (itemsHere.length == 0) {
             guiClient.getGui().getMessageText().setText("Current location is " + roomName + ": " + getLocationDescription(actionValue) + ".\nNo items found here.\nYou can go to: " + Arrays.toString(listNextLocations));
         } else if (itemsHere.length > 0) {
@@ -158,9 +158,7 @@ public class EventHandler {
             guiClient.getGui().getMessageText().setText(getIntroductionStory()); // TODO need to fix format, stroll or decrease the text.
             guiClient.getGui().getMessageText().setVisible(true);
         } else if (actionValue.equals("music player")) { // To start or stop background music.
-            System.out.println(musicCounter);
             musicCounter++;
-            System.out.println(musicCounter);
             if (musicCounter % 2 == 0) {
                 guiClient.getGui().stopMusic();
                 guiClient.getGui().getMessageText().setText("Music Off.");
@@ -176,7 +174,22 @@ public class EventHandler {
         } else if (actionValue.equals("quit")) { // Quit the game.
             System.exit(0);
         } else if (actionValue.equals("new game")) { // Start a new game.
+            dogDistracted = false;
+            catDistracted = false;
+            box1 = false;
+            box2 = false;
+            inventory.clear();
             guiClient.getGui().restartGame();
+            currentLocation = "foyer";
+            listNextLocations = getLocationDirections("foyer");
+            // Set text box.
+            String[] itemsHere = getLocationItems("foyer");
+            String roomName = currentLocation.substring(0, 1).toUpperCase() + currentLocation.substring(1); // Capitalize the first letter of room name.
+            if (itemsHere.length == 0) {
+                guiClient.getGui().getMessageText().setText("Current location is " + roomName + ": " + getLocationDescription("foyer") + ".\nNo items found here.\nYou can go to: " + Arrays.toString(listNextLocations));
+            } else if (itemsHere.length > 0) {
+                guiClient.getGui().getMessageText().setText("Current location is " + roomName + ": " + getLocationDescription("foyer") + ".\nItems that can be found in this room: " + Arrays.toString(itemsHere) + ".\nYou can go to: " + Arrays.toString(listNextLocations));
+            }
         } else if (stdRm.contains(actionValue)) { // Go through regular rooms.
             roomSetup(actionValue);
         } else if (npcRm.contains(actionValue)) { // Go through regular rooms.

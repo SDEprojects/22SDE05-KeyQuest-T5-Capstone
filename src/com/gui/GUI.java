@@ -1,6 +1,7 @@
 package com.gui;
 
 import com.sound.Sound;
+import org.w3c.dom.ls.LSOutput;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,23 +46,23 @@ public class GUI {
     }
 
     public void restartGame() {
-        this.guiClient = guiClient;
-        bgPanel = this.bgPanel;
-        bgLabel = new ArrayList<>();
-        objLabel = new ArrayList<>();
-        window = this.window;
-        messageText = this.messageText;
-        createMainField();
-        initializeBackgroundPanels();
-        initializeBackgroundObjects();
-        bgPanel.get(0).add(objLabel.get(0)); // Start button.
-        bgPanel.get(0).add(objLabel.get(1)); // Story button.
-        bgPanel.get(0).add(objLabel.get(2)); // Music button.
-        bgPanel.get(0).add(objLabel.get(3)); // Help button.
-        bgPanel.get(0).add(bgLabel.get(0)); // Main background.
-        bgPanel.get(0).setVisible(true);
-        window.add(bgPanel.get(0));
-        window.setVisible(true);
+
+        // TODO reset visibility for cat and dog to true.
+        objLabel.get(16).setVisible(true);
+        objLabel.get(17).setVisible(true);
+        // TODO reset visibility of arrows. to false. no need to will see.
+
+        // TODO reset visibility of items. to true.
+        objLabel.get(18).setVisible(true);
+        objLabel.get(19).setVisible(true);
+        objLabel.get(20).setVisible(true);
+        objLabel.get(21).setVisible(true);
+        objLabel.get(22).setVisible(true);
+        // TODO reset inventory box.
+        setBox1("empty");
+        setBox2("empty");
+        // TODO generate the foyer screen.
+        generateScreen(1);
     }
 
     private void createMainField() {
@@ -275,11 +276,11 @@ public class GUI {
             String fileName = "ch_" + (i - 16) + ".png";
             switch (i) {
                 case 16:
-                    objLabel.get(i).setBounds(0, 0, 600, 700);
+                    objLabel.get(i).setBounds(270, 480, 200, 149);
                     btn.setActionCommand("dog");
                     break;
                 case 17:
-                    objLabel.get(i).setBounds(0, 0, 600, 700);
+                    objLabel.get(i).setBounds(250, 350, 200, 278);
                     btn.setActionCommand("cat");
                     break;
             }
@@ -381,8 +382,6 @@ public class GUI {
             });
         }
     }
-
-
     public void generateScreen(int bgNum) {
 
         messageText.setVisible(true);
@@ -414,6 +413,10 @@ public class GUI {
                 // mix between directional arrows 1-4 and 12-15
 
                 bgPanel.get(bgNum).add(objLabel.get(16)); // Dog button.
+                objLabel.get(16).setVisible(true);
+                objLabel.get(4).setVisible(false); // Don't show arrows before dog is distracted.
+                objLabel.get(5).setVisible(false); // Don't show arrows before dog is distracted.
+                objLabel.get(15).setVisible(false); // Don't show arrows before dog is distracted.
                 bgPanel.get(bgNum).add(objLabel.get(23)); // Inventory box 1.
                 bgPanel.get(bgNum).add(objLabel.get(24)); // Inventory box 2.
                 bgPanel.get(bgNum).add(objLabel.get(8)); // Start over.
@@ -430,6 +433,10 @@ public class GUI {
                 break;
             case 5:
                 bgPanel.get(bgNum).add(objLabel.get(17)); // Cat button.
+                objLabel.get(17).setVisible(true);
+                objLabel.get(5).setVisible(false); // Don't show arrows before cat is distracted.
+                objLabel.get(7).setVisible(false); // Don't show arrows before cat is distracted.
+                objLabel.get(12).setVisible(false); // Don't show arrows before cat is distracted.
                 bgPanel.get(bgNum).add(objLabel.get(23)); // Inventory box 1.
                 bgPanel.get(bgNum).add(objLabel.get(24)); // Inventory box 2.
                 bgPanel.get(bgNum).add(objLabel.get(8)); // Start over.
@@ -524,18 +531,23 @@ public class GUI {
 
             if (npc.equals("dog")) {
                 bgPanel.get(bgNum).add(objLabel.get(4)); // L Btn to Lounge.
+                objLabel.get(4).setVisible(true);
                 bgPanel.get(bgNum).add(objLabel.get(5)); // R Btn to Kitchen.
+                objLabel.get(5).setVisible(true);
                 bgPanel.get(bgNum).add(objLabel.get(15)); // Btn to garage.
-                bgPanel.get(bgNum).add(objLabel.get(23)); // Inventory box 1.
-                bgPanel.get(bgNum).add(objLabel.get(24)); // Inventory box 2.
-                bgPanel.get(bgNum).remove(objLabel.get(16)); // Remove dog.
+                objLabel.get(15).setVisible(true);
+                objLabel.get(16).setVisible(false); // Remove dog.
             } else if (npc.equals("cat")) {
                 bgPanel.get(bgNum).add(objLabel.get(5)); // R Btn to Kitchen.
+                objLabel.get(5).setVisible(true);
                 bgPanel.get(bgNum).add(objLabel.get(7)); // D Btn to Loft.
+                objLabel.get(7).setVisible(true);
+                bgPanel.get(bgNum).add(objLabel.get(6)); // U Btn to Foyer.
+                objLabel.get(6).setVisible(true);
                 bgPanel.get(bgNum).add(objLabel.get(12));  // To bathroom.
-                bgPanel.get(bgNum).add(objLabel.get(23)); // Inventory box 1.
-                bgPanel.get(bgNum).add(objLabel.get(24)); // Inventory box 2.
-                bgPanel.get(bgNum).remove(objLabel.get(17)); // Remove cat.
+                objLabel.get(12).setVisible(true);
+                objLabel.get(17).setVisible(false);
+                ; // Remove cat.
             }
         }
         bgPanel.get(bgNum).add(bgLabel.get(bgNum));
