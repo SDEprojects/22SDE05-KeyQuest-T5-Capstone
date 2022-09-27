@@ -2,6 +2,7 @@ package com.sound;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.swing.*;
 import java.net.URL;
 
@@ -10,6 +11,10 @@ public class Sound {
 
     private Clip clip;
     private URL[] soundURL =new URL[14]; //stores sound files
+    private float previousVolume = 0;
+    private float currentVolume = 0;
+    private FloatControl fc;
+    private boolean mute = false;
 
 
     public Sound() {
@@ -38,15 +43,15 @@ public class Sound {
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
             clip = AudioSystem.getClip();
             clip.open(ais);
-            System.out.println("File Set");
+            fc = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 
 
         }catch (Exception e) {
-            System.out.println("Invalid File");
         }
     }
 
     public void play() {
+        clip.setFramePosition(0);
         clip.start();
     }
 
@@ -56,6 +61,36 @@ public class Sound {
 
     public void stop() {
         clip.stop();
+    }
+
+    public void volumeUp() {
+        currentVolume += 1.01f;
+        if(currentVolume > 6.0f) { //6.0 is highest FloatControl accepts
+            currentVolume = 6.0f;
+        }
+        fc.setValue(currentVolume);
+    }
+
+    public void volumeDown() {
+        currentVolume -= 1.01f;
+        if(currentVolume < -80.0f) { //-80.0f is lowest FloatControl accepts
+            currentVolume = -80.0f;
+        }
+        fc.setValue(currentVolume);
+    }
+
+    public void volumeMute() {
+        if(mute == false) {
+            previousVolume = currentVolume;
+            currentVolume = 80.0f;
+            fc.setValue(currentVolume);
+            mute = true;
+        }
+        else if(mute == true) {
+            currentVolume = previousVolume;
+            fc.setValue(currentVolume);
+            mute = false;
+        }
     }
 
     public Clip getClip() {

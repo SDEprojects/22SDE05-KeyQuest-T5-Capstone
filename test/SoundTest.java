@@ -30,12 +30,16 @@ class SoundTest {
     void setValidFile() {
         soundTest.setFile(3);
         Assertions.assertEquals(3,3);
+        System.out.println("File Set");
+
     }
 
     @Test
     void setInvalidFile() throws Exception {
         soundTest.setFile(2);
         Assertions.assertEquals(1,1);
+        System.out.println("Invalid File");
+
     }
 
     /*@Test
