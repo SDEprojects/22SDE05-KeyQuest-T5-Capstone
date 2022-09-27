@@ -144,8 +144,10 @@ public class EventHandler {
     public void talkToCh(String actionValue) {
         // Random speech.
         if (actionValue.equals("dog")) {
+            guiClient.getGui().playSE(8);
             guiClient.getGui().getMessageText().setText(getDogSpeech());
         } else if (actionValue.equals("cat")) {
+            guiClient.getGui().playSE(3);
             guiClient.getGui().getMessageText().setText(getCatSpeech());
         }
     }
@@ -183,6 +185,7 @@ public class EventHandler {
         } else if (actionValue.equals("box1")) {
             if (currentLocation.equals("loft") && !dogDistracted) {
                 // If the item is clicked to distract dog.
+                guiClient.getGui().playSE(12);
                 dogDistracted = true;
                 npcRmSetup("loft");
                 inventory.remove(0);
@@ -191,6 +194,7 @@ public class EventHandler {
 
             } else if (currentLocation.equals("lounge") && !catDistracted) {
                 // If the item is clicked to distract cat.
+                guiClient.getGui().playSE(11);
                 catDistracted = true;
                 npcRmSetup("lounge");
                 inventory.remove(0);
@@ -202,6 +206,7 @@ public class EventHandler {
         } else if (actionValue.equals("box2")) {
             if (currentLocation.equals("loft") && !dogDistracted) {
                 // If the item is clicked to distract dog.
+                guiClient.getGui().playSE(12);
                 dogDistracted = true;
                 npcRmSetup("loft");
                 inventory.remove(0);
@@ -210,6 +215,7 @@ public class EventHandler {
 
             } else if (currentLocation.equals("lounge") && !catDistracted) {
                 // If the item is clicked to distract cat.
+                guiClient.getGui().playSE(11);
                 catDistracted = true;
                 npcRmSetup("lounge");
                 inventory.remove(0);
@@ -222,6 +228,7 @@ public class EventHandler {
             itemInventoryAction(actionValue);
         } else if (actionValue.equals("garden")) { // When try to go garden, if(key) win, no key, tell them find the key.
             if (inventory.contains("key")) {
+                guiClient.getGui().playSE(9);
                 guiClient.getGui().generateScreen(8);
                 guiClient.getGui().getMessageText().setText(getIntroductionWin() + "\nStart a new game?");
             } else {
@@ -234,16 +241,4 @@ public class EventHandler {
 
         return getIntroductionPlayer() + "\nUse the items you found to distract mean animals, \nfind the key to unlock the garden, \nthen enjoy the carrot.";
     }
-
-    /*public void winGame(String actionValue) {
-        //while the player is in the garage, if they have the key, game goes to win screen
-        //while (location.equals("garage")) {
-            if (inventory.equals("key") && location.equals("garage")) {
-                guiClient.getGui().generateScreen(9);
-                guiClient.getGui().playSE(9);
-                guiClient.getGui().getMessageText().setText("Congratulations! You win the game!");
-
-            }else {
-                    ///stay in garage? with current inventory?
-    }*/
 }

@@ -8,15 +8,16 @@ import java.net.URL;
 public class Sound {
 
 
-    Clip clip;
-    URL[] soundURL =new URL[11]; //stores sound files
+    private Clip clip;
+    private URL[] soundURL =new URL[14]; //stores sound files
+
 
     public Sound() {
 
 
         soundURL[0] = getClass().getResource("/Sound/Music/arcade-game.wav");
         soundURL[1] = getClass().getResource("/Sound/audio001.wav");
-        soundURL[2] = getClass().getResource("/Sound/SE/cat_meow.wav");
+        soundURL[2] = getClass().getResource("/Sound/SE/cat_meow2.wav");
         soundURL[3] = getClass().getResource("/Sound/SE/cat_scream.wav");
         soundURL[4] = getClass().getResource("/Sound/SE/chicken_bock_x.wav");
         soundURL[5] = getClass().getResource("/Sound/SE/chime_up.wav");
@@ -25,7 +26,12 @@ public class Sound {
         soundURL[8] = getClass().getResource("/Sound/SE/dog_growl3.wav");
         soundURL[9] = getClass().getResource("/Sound/SE/fanfare.wav");
         soundURL[10] = getClass().getResource("/Sound/SE/whahwhah.wav");
+        soundURL[11] = getClass().getResource("/Sound/SE/happycat.wav");
+        soundURL[12] = getClass().getResource("/Sound/SE/happydog.wav");
+
+
     }
+
 
     public void setFile(int i) {
         try {
@@ -50,5 +56,21 @@ public class Sound {
 
     public void stop() {
         clip.stop();
+    }
+
+    public Clip getClip() {
+        return clip;
+    }
+
+    public void setClip(Clip clip) {
+        this.clip = clip;
+    }
+
+    public URL[] getSoundURL() {
+        return soundURL;
+    }
+
+    public void setSoundURL(URL[] soundURL) {
+        this.soundURL = soundURL;
     }
 }

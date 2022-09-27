@@ -2,8 +2,11 @@ package com.gui;
 
 import com.game.controller.ActionHandler;
 import com.game.controller.EventHandler;
+import com.sound.Sound;
 
 public class GUIClient{
+
+    private Sound sound = new Sound();
 
     private ActionHandler aHandler = new ActionHandler(this);
 
@@ -45,4 +48,10 @@ public class GUIClient{
         this.eHandler = eHandler;
     }
 
+    public Sound getSound() {
+        return sound;
+    }
+    public void setSound(Sound sound) {
+        this.sound = sound;
+    }
 }
