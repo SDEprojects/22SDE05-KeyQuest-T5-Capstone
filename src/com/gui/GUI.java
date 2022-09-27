@@ -324,11 +324,13 @@ public class GUI {
             objLabel.get(i).addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    playSE(6);
                 }
 
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (SwingUtilities.isLeftMouseButton(e)) {
+                        playSE(6);
                         btn.doClick();
                     }
                 }
@@ -448,22 +450,21 @@ public class GUI {
 
     }
 
-    Sound sound = new Sound();
 
     public void playMusic(int i) {
-        sound.setFile(i);
-        sound.play();
-        sound.loop();
+        guiClient.getSound().setFile(i);
+        guiClient.getSound().play();
+        guiClient.getSound().loop();
     }
 
     public void stopMusic() {
-        sound.stop();
+        guiClient.getSound().stop();
     }
 
     //TODO add sound effects
     public void playSE(int i) { // for Sound Effects
-        sound.setFile(i);
-        sound.play();
+        guiClient.getSound().setFile(i);
+        guiClient.getSound().play();
     }
 
     // TODO Henry added this function to enable the navigation arrows after npc is distracted.
@@ -519,6 +520,7 @@ public class GUI {
         // 14 - 18
         // "drumstick", "cucumber", "shoes", "wool", "key"
         if (itemName.equals("drumstick")){
+            playSE(4);
             bgPanel.get(2).add(objLabel.get(14)).setVisible(false);
         } else if (itemName.equals("cucumber")) {
             bgPanel.get(2).add(objLabel.get(15)).setVisible(false);
@@ -527,6 +529,7 @@ public class GUI {
         } else if (itemName.equals("wool")) {
             bgPanel.get(7).add(objLabel.get(17)).setVisible(false);
         } else if (itemName.equals("key")) {
+            playSE(5);
             bgPanel.get(4).add(objLabel.get(18)).setVisible(false);
         }
     }
