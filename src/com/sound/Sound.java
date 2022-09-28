@@ -51,7 +51,7 @@ public class Sound {
     }
 
     public void play() {
-        clip.setFramePosition(0);
+        //clip.setFramePosition(0);
         clip.start();
     }
 
@@ -64,7 +64,7 @@ public class Sound {
     }
 
     public void volumeUp() {
-        currentVolume += 1.01f;
+        currentVolume += 1.0f;
         if(currentVolume > 6.0f) { //6.0 is highest FloatControl accepts
             currentVolume = 6.0f;
         }
@@ -80,17 +80,18 @@ public class Sound {
     }
 
     public void volumeMute() {
-        if(mute == false) {
+       this.mute = mute;
+        if(!this.mute) {
             previousVolume = currentVolume;
-            currentVolume = 80.0f;
+            currentVolume = -80.0f;
             fc.setValue(currentVolume);
-            mute = true;
+
         }
-        else if(mute == true) {
+        else if(this.mute) {
             currentVolume = previousVolume;
             fc.setValue(currentVolume);
-            mute = false;
         }
+        System.out.println("this is" + mute);
     }
 
     public Clip getClip() {
@@ -107,5 +108,37 @@ public class Sound {
 
     public void setSoundURL(URL[] soundURL) {
         this.soundURL = soundURL;
+    }
+
+    public float getPreviousVolume() {
+        return previousVolume;
+    }
+
+    public void setPreviousVolume(float previousVolume) {
+        this.previousVolume = previousVolume;
+    }
+
+    public float getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public void setCurrentVolume(float currentVolume) {
+        this.currentVolume = currentVolume;
+    }
+
+    public FloatControl getFc() {
+        return fc;
+    }
+
+    public void setFc(FloatControl fc) {
+        this.fc = fc;
+    }
+
+    public boolean isMute() {
+        return mute;
+    }
+
+    public void setMute(boolean mute) {
+        this.mute = mute;
     }
 }

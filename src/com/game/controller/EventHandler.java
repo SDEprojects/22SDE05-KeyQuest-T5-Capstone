@@ -26,9 +26,10 @@ public class EventHandler {
     boolean box2 = false;
     // Set up game actions ends.
 
-    public EventHandler(){
+    public EventHandler() {
         super();
     }
+
     public EventHandler(GUIClient guiClient) {
         this.guiClient = guiClient;
     }
@@ -54,13 +55,13 @@ public class EventHandler {
 
     // Create function to setup the rooms with dog and cat.
     public void npcRmSetup(String actionValue) {
-        if (inventory.size() > 0){ // Check player inventory to see if they are empty or not.
+        if (inventory.size() > 0) { // Check player inventory to see if they are empty or not.
             guiClient.getGui().generateScreen(npcRm.indexOf(actionValue) + 1);
             guiClient.getGui().getMessageText().setText(getLocationDescription(actionValue));
             currentLocation = actionValue;
             listNextLocations = getLocationDirections(actionValue);
 
-            if (dogDistracted && actionValue.equals("loft")){
+            if (dogDistracted && actionValue.equals("loft")) {
                 guiClient.getGui().generateNpcScreen(3, "dog");
                 guiClient.getGui().getMessageText().setText("You distracted the dog.\nYou can go to: " + Arrays.toString(listNextLocations));
             } else if (catDistracted && actionValue.equals("lounge")) {
@@ -119,7 +120,7 @@ public class EventHandler {
                 guiClient.getGui().getMessageText().setText("You already have " + actionValue + " in your inventory.");
             } else {
                 // Don't have it yet
-                if (!box1){
+                if (!box1) {
                     inventory.add(actionValue);
                     guiClient.getGui().setBox1(actionValue);
                     guiClient.getGui().removeObj(actionValue);
@@ -168,6 +169,15 @@ public class EventHandler {
                 guiClient.getGui().getMessageText().setText("Music On.");
                 guiClient.getGui().getMessageText().setVisible(true);
             }
+        } else if (actionValue.equals("volume up")) {
+            guiClient.getGui().volumeUpGUI();
+            System.out.println("volume up!");
+        } else if (actionValue.equals("volume down")) {
+            guiClient.getGui().volumeDownGUI();
+            System.out.println("volume down!");
+        } else if (actionValue.equals("mute")) {
+            guiClient.getGui().volumeMuteGUI();
+            System.out.println("is muted");
         } else if (actionValue.equals("help")) { // Help in the main page.
             guiClient.getGui().getMessageText().setText(getIntroductionPlayer() + "\nUse the items you found to distract mean animals, \nfind the key to unlock the garden, \nthen enjoy the carrot.");
             guiClient.getGui().getMessageText().setVisible(true);
@@ -251,7 +261,7 @@ public class EventHandler {
         }
     }
 
-    public String eventRequest_help(String actionValue){
+    public String eventRequest_help(String actionValue) {
 
         return getIntroductionPlayer() + "\nUse the items you found to distract mean animals, \nfind the key to unlock the garden, \nthen enjoy the carrot.";
     }

@@ -42,11 +42,49 @@ class SoundTest {
 
     }
 
-    /*@Test
-    public void playMusic(int i) {
-        soundTest.setFile(3);
-        soundTest.play();
-        soundTest.loop();
-        System.out.println("Now Playing");
-    }*/
+    @Test
+    void play() {
+    }
+
+    @Test
+    void stop() {
+    }
+
+    @Test
+    void volumeUp() {
+    }
+
+    @Test
+    void volumeDown() {
+    }
+
+    @Test
+    void volumeMute() {
+    }
+
+
+    @Test
+    void getPreviousVolume() {
+    }
+
+    @Test
+    void setPreviousVolume() {
+    }
+
+    @Test
+    void getCurrentVolume() {
+    }
+
+    @Test
+    void setCurrentVolume() {
+    }
+
+
+    @Test
+    void isMute() {
+    }
+
+    @Test
+    void setMute() {
+    }
 }
