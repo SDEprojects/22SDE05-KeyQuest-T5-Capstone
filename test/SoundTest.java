@@ -30,19 +30,61 @@ class SoundTest {
     void setValidFile() {
         soundTest.setFile(3);
         Assertions.assertEquals(3,3);
+        System.out.println("File Set");
+
     }
 
     @Test
     void setInvalidFile() throws Exception {
         soundTest.setFile(2);
         Assertions.assertEquals(1,1);
+        System.out.println("Invalid File");
+
     }
 
-    /*@Test
-    public void playMusic(int i) {
-        soundTest.setFile(3);
-        soundTest.play();
-        soundTest.loop();
-        System.out.println("Now Playing");
-    }*/
+    @Test
+    void play() {
+    }
+
+    @Test
+    void stop() {
+    }
+
+    @Test
+    void volumeUp() {
+    }
+
+    @Test
+    void volumeDown() {
+    }
+
+    @Test
+    void volumeMute() {
+    }
+
+
+    @Test
+    void getPreviousVolume() {
+    }
+
+    @Test
+    void setPreviousVolume() {
+    }
+
+    @Test
+    void getCurrentVolume() {
+    }
+
+    @Test
+    void setCurrentVolume() {
+    }
+
+
+    @Test
+    void isMute() {
+    }
+
+    @Test
+    void setMute() {
+    }
 }
