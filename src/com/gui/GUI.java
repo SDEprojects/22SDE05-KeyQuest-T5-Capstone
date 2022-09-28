@@ -18,6 +18,7 @@ public class GUI {
     private List<JPanel> bgPanel;
     private List<JLabel> bgLabel;
     private List<JLabel> objLabel;
+    private boolean musicOn = false;
 
     public GUI(GUIClient guiClient) {
         this.guiClient = guiClient;
@@ -762,4 +763,9 @@ public class GUI {
     public void setObjLabel(List<JLabel> objLabel) {
         this.objLabel = objLabel;
     }
+
+    public void setMusicOn(boolean musicOn) {
+        this.musicOn = musicOn;
+    }
+
 }
