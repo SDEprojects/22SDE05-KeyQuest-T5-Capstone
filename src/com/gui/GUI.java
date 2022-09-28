@@ -620,4 +620,5 @@ public class GUI {
     public void setObjLabel(List<JLabel> objLabel) {
         this.objLabel = objLabel;
     }
+
 }
