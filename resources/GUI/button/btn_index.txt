@@ -1,13 +1,12 @@
-1. Start (foyer)
-2. Story
-3. Music
-4. Help 
-5. Left 
-6. Right 
-7. Up 
-8. Down
-9. Play again
-10. Quit
-backup Settings
-backup load game
-backup new game
+0. Start (foyer)
+1. Story
+2. Music
+3. Help 
+4. Left 
+5. Right 
+6. Up 
+7. Down
+8. Start over all page
+9. New Game W/L page
+10. Quit all page
+11. Quit W/L page

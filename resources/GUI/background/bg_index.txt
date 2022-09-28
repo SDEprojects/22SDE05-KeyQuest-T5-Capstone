@@ -1,10 +1,10 @@
-1. Main page
-2. Foyer
-3. Kitchen
-4. Loft
-5. Garage
-6. Lounge
-7. Bathroom
-8. Closet
-9. Garden
-10. GameOver
+0. Main page
+1. Foyer
+2. Kitchen
+3. Loft
+4. Garage
+5. Lounge
+6. Bathroom
+7. Closet
+8. Win
+9. Lose

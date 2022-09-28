@@ -1,8 +1,7 @@
-1. Chicken Leg
-2. Cucumber
-3. Shoes
-4. Wool
-5. Key
+0. Chicken Leg
+1. Cucumber
+2. Shoes
+3. Wool
+4. Key
+5. Empty icon
 6. Empty icon
-7. Empty icon
-8. Carrot
