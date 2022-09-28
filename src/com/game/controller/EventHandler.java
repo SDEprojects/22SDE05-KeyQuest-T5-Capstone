@@ -160,7 +160,8 @@ public class EventHandler {
     public void eventRequest(String actionValue) {
 
         if (actionValue.equals("story")) { // Main page, click "story".
-            guiClient.getGui().getMessageText().setText(getIntroductionStory()); // TODO need to fix format, stroll or decrease the text.
+            // guiClient.getGui().getMessageText().setText(getIntroductionStory()); // TODO need to fix format, stroll or decrease the text.
+            guiClient.getGui().getMessageText().setText("You are a rabbit trying to enter the garden.\nYou must enter the house; go room to room and try to find the key. \nYou will need to distract the mewer and barker that live in the house with items you find in the house. \nIf you do not distract them, they will capture you and you loose the game.");
             guiClient.getGui().getMessageText().setVisible(true);
         } else if (actionValue.equals("music player")) { // To start or stop background music.
             musicCounter++;
