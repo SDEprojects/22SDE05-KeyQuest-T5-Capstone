@@ -183,17 +183,13 @@ public class EventHandler {
         } else if (actionValue.equals("mute")) {
             guiClient.getGui().volumeMuteGUI();
 
-
-                if (muteCounter % 2 == 0) {
-                    guiClient.getGui().getMessageText().setText("Muted!");
-                    muteCounter++;
-                } else {
-                    guiClient.getGui().getMessageText().setText("Unmuted!");
-                    muteCounter++;
-                }
-
-
-
+            if (muteCounter % 2 == 0) {
+                guiClient.getGui().getMessageText().setText("Muted!");
+                muteCounter++;
+            } else {
+                guiClient.getGui().getMessageText().setText("Unmuted!");
+                muteCounter++;
+            }
 
 
         } else if (actionValue.equals("help")) { // Help in the main page.
@@ -280,7 +276,6 @@ public class EventHandler {
     }
 
     public String eventRequest_help(String actionValue) {
-
         return getIntroductionPlayer() + "\nUse the items you found to distract mean animals, \nfind the key to unlock the garden, \nthen enjoy the carrot.";
     }
 }

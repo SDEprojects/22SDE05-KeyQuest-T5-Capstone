@@ -176,11 +176,13 @@ public class GUI {
             objLabel.get(i).addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    playSE(6);
                 }
 
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (SwingUtilities.isLeftMouseButton(e)) {
+                        playSE(6);
                         btn.doClick();
                     }
                 }
@@ -234,11 +236,13 @@ public class GUI {
             objLabel.get(i).addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    playSE(6);
                 }
 
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (SwingUtilities.isLeftMouseButton(e)) {
+                        playSE(6);
                         btn.doClick();
                     }
                 }
@@ -280,11 +284,13 @@ public class GUI {
             objLabel.get(i).addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    playSE(6);
                 }
 
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (SwingUtilities.isLeftMouseButton(e)) {
+                        playSE(6);
                         btn.doClick();
                     }
                 }
@@ -402,14 +408,13 @@ public class GUI {
             objLabel.get(i).addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    //playSE(6);
+                    playSE(6);
                 }
 
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (SwingUtilities.isLeftMouseButton(e)) {
-                        // playSE(6);
-                        //System.out.println("just testing btns");
+                        playSE(6);
                         btn.doClick();
                     }
                 }
@@ -529,7 +534,7 @@ public class GUI {
     }
 
     /**
-     * TODO: create objects that can be added to the background as interactive items.
+     *objects that can be added to the background as interactive items.
      */
     public void createMenu() {
 
@@ -558,13 +563,25 @@ public class GUI {
 
 
     public void playMusic(int i) {
-        guiClient.getSound().setFile(i);
-        guiClient.getSound().play();
-        guiClient.getSound().loop();
+        guiClient.getMusic().setFile(i);
+        guiClient.getMusic().play();
+        guiClient.getMusic().loop();
     }
 
     public void stopMusic() {
-        guiClient.getSound().stop();
+        guiClient.getMusic().stop();
+    }
+
+    public void volumeUpGUI() {
+        guiClient.getMusic().volumeUp();
+    }
+
+    public void volumeDownGUI() {
+        guiClient.getMusic().volumeDown();
+    }
+
+    public void volumeMuteGUI() {
+        guiClient.getMusic().volumeMute();
     }
 
     public void playSE(int i) { // for Sound Effects
@@ -572,26 +589,8 @@ public class GUI {
         guiClient.getSound().play();
     }
 
-    public void volumeUpGUI() { // for Sound Effects
-        guiClient.getSound().volumeUp();
-    }
 
-    public void volumeDownGUI() { // for Sound Effects
-        guiClient.getSound().volumeDown();
-    }
-
-    public void volumeMuteGUI() {
-        guiClient.getSound().volumeMute();
-        /*if(guiClient.getSound().isMute()) {
-          guiClient.getSound().volumeMute(false);
-        } else {
-            guiClient.getSound().volumeMute(true);
-        }*/
-    }
-
-
-    // TODO Henry added this function to enable the navigation arrows after npc is distracted.
-    public void generateNpcScreen(int bgNum, String npc) {
+    public void generateNpcScreen(int bgNum, String npc) { //Henry added this function to enable the navigation arrows after npc is distracted.
 
         messageText.setVisible(true);
         for (JPanel panel : bgPanel) {
@@ -652,10 +651,13 @@ public class GUI {
             playSE(4);
             bgPanel.get(2).add(objLabel.get(18)).setVisible(false);
         } else if (itemName.equals("cucumber")) {
+            playSE(13);
             bgPanel.get(2).add(objLabel.get(19)).setVisible(false);
         } else if (itemName.equals("shoes")) {
+            playSE(13);
             bgPanel.get(7).add(objLabel.get(20)).setVisible(false);
         } else if (itemName.equals("wool")) {
+            playSE(13);
             bgPanel.get(7).add(objLabel.get(21)).setVisible(false);
         } else if (itemName.equals("key")) {
             playSE(5);

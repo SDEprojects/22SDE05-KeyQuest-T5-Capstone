@@ -8,6 +8,8 @@ public class GUIClient {
 
     private Sound sound = new Sound();
 
+    private Sound music = new Sound();
+
     private ActionHandler aHandler = new ActionHandler(this);
 
     private EventHandler eHandler = new EventHandler(this);
@@ -54,5 +56,13 @@ public class GUIClient {
 
     public void setSound(Sound sound) {
         this.sound = sound;
+    }
+
+    public Sound getMusic() {
+        return music;
+    }
+
+    public void setMusic(Sound music) {
+        this.music = music;
     }
 }

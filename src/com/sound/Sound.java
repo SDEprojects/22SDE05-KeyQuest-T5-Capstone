@@ -33,6 +33,7 @@ public class Sound {
         soundURL[10] = getClass().getResource("/Sound/SE/whahwhah.wav");
         soundURL[11] = getClass().getResource("/Sound/SE/happycat.wav");
         soundURL[12] = getClass().getResource("/Sound/SE/happydog.wav");
+        soundURL[13] = getClass().getResource("/Sound/SE/ping-82822.wav");
 
 
     }
