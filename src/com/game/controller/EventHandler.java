@@ -26,9 +26,10 @@ public class EventHandler {
     boolean box2 = false;
     // Set up game actions ends.
 
-    public EventHandler(){
+    public EventHandler() {
         super();
     }
+
     public EventHandler(GUIClient guiClient) {
         this.guiClient = guiClient;
     }
@@ -36,11 +37,13 @@ public class EventHandler {
     // Create function to setup rooms.
     public void roomSetup(String actionValue) {
         // Track location and items.
-
-        guiClient.getGui().generateScreen(stdRm.indexOf(actionValue) + 1);
+        guiClient.getGui().generateScreen(stdRm.indexOf(actionValue) + 1); // Generate the room background.
+        // Make sure the cat/dog is in the room before start.
         catDistracted = false;
         dogDistracted = false;
+        // Set value of current room based on user click from previous screen.
         currentLocation = actionValue;
+        //
         listNextLocations = getLocationDirections(actionValue);
         // Set text box.
         String[] itemsHere = getLocationItems(actionValue);
@@ -54,13 +57,13 @@ public class EventHandler {
 
     // Create function to setup the rooms with dog and cat.
     public void npcRmSetup(String actionValue) {
-        if (inventory.size() > 0){ // Check player inventory to see if they are empty or not.
+        if (inventory.size() > 0) { // Check player inventory to see if they are empty or not.
             guiClient.getGui().generateScreen(npcRm.indexOf(actionValue) + 1);
             guiClient.getGui().getMessageText().setText(getLocationDescription(actionValue));
             currentLocation = actionValue;
             listNextLocations = getLocationDirections(actionValue);
 
-            if (dogDistracted && actionValue.equals("loft")){
+            if (dogDistracted && actionValue.equals("loft")) {
                 guiClient.getGui().generateNpcScreen(3, "dog");
                 guiClient.getGui().getMessageText().setText("You distracted the dog.\nYou can go to: " + Arrays.toString(listNextLocations));
             } else if (catDistracted && actionValue.equals("lounge")) {
@@ -119,7 +122,7 @@ public class EventHandler {
                 guiClient.getGui().getMessageText().setText("You already have " + actionValue + " in your inventory.");
             } else {
                 // Don't have it yet
-                if (!box1){
+                if (!box1) {
                     inventory.add(actionValue);
                     guiClient.getGui().setBox1(actionValue);
                     guiClient.getGui().removeObj(actionValue);
@@ -251,7 +254,7 @@ public class EventHandler {
         }
     }
 
-    public String eventRequest_help(String actionValue){
+    public String eventRequest_help(String actionValue) {
 
         return getIntroductionPlayer() + "\nUse the items you found to distract mean animals, \nfind the key to unlock the garden, \nthen enjoy the carrot.";
     }
