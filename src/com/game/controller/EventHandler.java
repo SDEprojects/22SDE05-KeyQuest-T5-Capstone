@@ -163,14 +163,25 @@ public class EventHandler {
         } else if (actionValue.equals("music player")) { // To start or stop background music.
             musicCounter++;
             if (musicCounter % 2 == 0) {
+                guiClient.getGui().setMusicOn(false);
                 guiClient.getGui().stopMusic();
                 guiClient.getGui().getMessageText().setText("Music Off.");
                 guiClient.getGui().getMessageText().setVisible(true);
             } else {
+                guiClient.getGui().setMusicOn(true);
                 guiClient.getGui().playMusic(0);
                 guiClient.getGui().getMessageText().setText("Music On.");
                 guiClient.getGui().getMessageText().setVisible(true);
             }
+        } else if (actionValue.equals("volume up")) {
+            guiClient.getGui().volumeUpGUI();
+            System.out.println("volume up!");
+        } else if (actionValue.equals("volume down")) {
+            guiClient.getGui().volumeDownGUI();
+            System.out.println("volume down!");
+        } else if (actionValue.equals("mute")) {
+            guiClient.getGui().volumeMuteGUI();
+            System.out.println("is muted");
         } else if (actionValue.equals("help")) { // Help in the main page.
             guiClient.getGui().getMessageText().setText(getIntroductionPlayer() + "\nUse the items you found to distract mean animals, \nfind the key to unlock the garden, \nthen enjoy the carrot.");
             guiClient.getGui().getMessageText().setVisible(true);
