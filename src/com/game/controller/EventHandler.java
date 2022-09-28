@@ -72,6 +72,7 @@ public class EventHandler {
                 guiClient.getGui().getMessageText().setText("You distracted the cat.\nYou can go to: " + Arrays.toString(listNextLocations));
             }
         } else if (inventory.size() == 0) {
+            guiClient.getGui().playSE(10);
             guiClient.getGui().generateScreen(9);
             guiClient.getGui().getMessageText().setText(getIntroductionLose() + "\nGet items to distract cat or dog, before going to their territory.\nDo you want to try again?");
         }
