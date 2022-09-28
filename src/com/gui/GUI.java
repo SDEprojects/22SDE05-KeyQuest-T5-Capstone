@@ -1,5 +1,6 @@
 package com.gui;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -434,7 +435,10 @@ public class GUI {
         for (JPanel panel : bgPanel) {
             panel.setVisible(false);
         }
-
+        bgPanel.get(bgNum).add(objLabel.get(25));
+        bgPanel.get(bgNum).add(objLabel.get(26));
+        bgPanel.get(bgNum).add(objLabel.get(27));
+        volumeCtrlBtn();
         switch (bgNum) {
             case 1:
                 bgPanel.get(bgNum).add(objLabel.get(4)); // L Btn to Lounge.
@@ -443,16 +447,6 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(24)); // Inventory box 2.
                 bgPanel.get(bgNum).add(objLabel.get(8)); // Start over.
                 bgPanel.get(bgNum).add(objLabel.get(10)); // Quit
-                if (musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25));//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26));//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27));//Mute
-                } else if (!musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25)).setVisible(false);//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26)).setVisible(false);//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27)).setVisible(false);//Mute
-                }
-
                 break;
             case 2:
                 bgPanel.get(bgNum).add(objLabel.get(4)); // L Btn to Lounge.
@@ -464,15 +458,6 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(24)); // Inventory box 2.
                 bgPanel.get(bgNum).add(objLabel.get(8)); // Start over.
                 bgPanel.get(bgNum).add(objLabel.get(10)); // Quit
-                if (musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25));//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26));//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27));//Mute
-                } else if (!musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25)).setVisible(false);//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26)).setVisible(false);//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27)).setVisible(false);//Mute
-                }
                 break;
             case 3:
                 // mix between directional arrows 1-4 and 12-15
@@ -486,15 +471,6 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(24)); // Inventory box 2.
                 bgPanel.get(bgNum).add(objLabel.get(8)); // Start over.
                 bgPanel.get(bgNum).add(objLabel.get(10)); // Quit
-                if (musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25));//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26));//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27));//Mute
-                } else if (!musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25)).setVisible(false);//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26)).setVisible(false);//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27)).setVisible(false);//Mute
-                }
                 break;
             case 4:
                 bgPanel.get(bgNum).add(objLabel.get(14)); // Btn to garden.
@@ -504,15 +480,6 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(24)); // Inventory box 2.
                 bgPanel.get(bgNum).add(objLabel.get(8)); // Start over.
                 bgPanel.get(bgNum).add(objLabel.get(10)); // Quit
-                if (musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25));//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26));//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27));//Mute
-                } else if (!musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25)).setVisible(false);//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26)).setVisible(false);//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27)).setVisible(false);//Mute
-                }
                 break;
             case 5:
                 bgPanel.get(bgNum).add(objLabel.get(17)); // Cat button.
@@ -525,15 +492,7 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(24)); // Inventory box 2.
                 bgPanel.get(bgNum).add(objLabel.get(8)); // Start over.
                 bgPanel.get(bgNum).add(objLabel.get(10)); // Quit
-                if (musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25));//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26));//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27));//Mute
-                } else if (!musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25)).setVisible(false);//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26)).setVisible(false);//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27)).setVisible(false);//Mute
-                }
+
                 break;
             case 6:
                 bgPanel.get(bgNum).add(objLabel.get(4)); // L Btn to Lounge.
@@ -542,15 +501,6 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(24)); // Inventory box 2.
                 bgPanel.get(bgNum).add(objLabel.get(8)); // Start over.
                 bgPanel.get(bgNum).add(objLabel.get(10)); // Quit
-                if (musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25));//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26));//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27));//Mute
-                } else if (!musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25)).setVisible(false);//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26)).setVisible(false);//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27)).setVisible(false);//Mute
-                }
                 break;
             case 7:
                 bgPanel.get(bgNum).add(objLabel.get(12)); // Btn to Bathroom.
@@ -560,29 +510,11 @@ public class GUI {
                 bgPanel.get(bgNum).add(objLabel.get(24)); // Inventory box 2.
                 bgPanel.get(bgNum).add(objLabel.get(8)); // Start over.
                 bgPanel.get(bgNum).add(objLabel.get(10)); // Quit
-                if (musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25));//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26));//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27));//Mute
-                } else if (!musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25)).setVisible(false);//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26)).setVisible(false);//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27)).setVisible(false);//Mute
-                }
                 break;
             case 8:
             case 9:
                 bgPanel.get(bgNum).add(objLabel.get(9)); // New Game?
                 bgPanel.get(bgNum).add(objLabel.get(11)); // Quit.
-                if (musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25));//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26));//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27));//Mute
-                } else if (!musicOn) {
-                    bgPanel.get(bgNum).add(objLabel.get(25)).setVisible(false);//Volume Up
-                    bgPanel.get(bgNum).add(objLabel.get(26)).setVisible(false);//Volume Down
-                    bgPanel.get(bgNum).add(objLabel.get(27)).setVisible(false);//Mute
-                }
                 break;
 
         }
@@ -650,7 +582,6 @@ public class GUI {
 
     public void volumeMuteGUI() {
         guiClient.getSound().volumeMute();
-        System.out.println("volume should be muted " + guiClient.getSound().isMute());
         /*if(guiClient.getSound().isMute()) {
           guiClient.getSound().volumeMute(false);
         } else {
@@ -732,6 +663,18 @@ public class GUI {
         }
     }
 
+    public void volumeCtrlBtn(){
+
+        if (musicOn) {
+            objLabel.get(25).setVisible(true);// Show Volume Up
+            objLabel.get(26).setVisible(true);// Show Volume Down
+            objLabel.get(27).setVisible(true);// Show Mute
+        } else if (!musicOn) {
+            objLabel.get(25).setVisible(false);// Hide Volume Up
+            objLabel.get(26).setVisible(false);// Hide Volume Down
+            objLabel.get(27).setVisible(false);// Hide Mute
+        }
+    }
     public JTextArea getMessageText() {
         return messageText;
     }

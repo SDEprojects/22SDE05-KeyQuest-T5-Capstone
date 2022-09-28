@@ -20,6 +20,7 @@ public class EventHandler {
     private List<String> npcRm = new ArrayList<>(Arrays.asList("placeholder", "placeholder", "loft", "placeholder", "lounge")); // Use this to get the bgNum from the index number.
     private Set<String> characters = getCharacters();
     int musicCounter = 2;
+    int muteCounter = 2;
     boolean dogDistracted = false;
     boolean catDistracted = false;
     boolean box1 = false;
@@ -37,11 +38,13 @@ public class EventHandler {
     // Create function to setup rooms.
     public void roomSetup(String actionValue) {
         // Track location and items.
-
-        guiClient.getGui().generateScreen(stdRm.indexOf(actionValue) + 1);
+        guiClient.getGui().generateScreen(stdRm.indexOf(actionValue) + 1); // Generate the room background.
+        // Make sure the cat/dog is in the room before start.
         catDistracted = false;
         dogDistracted = false;
+        // Set value of current room based on user click from previous screen.
         currentLocation = actionValue;
+        //
         listNextLocations = getLocationDirections(actionValue);
         // Set text box.
         String[] itemsHere = getLocationItems(actionValue);
@@ -173,13 +176,26 @@ public class EventHandler {
             }
         } else if (actionValue.equals("volume up")) {
             guiClient.getGui().volumeUpGUI();
-            System.out.println("volume up!");
+            guiClient.getGui().getMessageText().setText("Volume up!");
         } else if (actionValue.equals("volume down")) {
             guiClient.getGui().volumeDownGUI();
-            System.out.println("volume down!");
+            guiClient.getGui().getMessageText().setText("Volume down!");
         } else if (actionValue.equals("mute")) {
             guiClient.getGui().volumeMuteGUI();
-            System.out.println("is muted");
+
+
+                if (muteCounter % 2 == 0) {
+                    guiClient.getGui().getMessageText().setText("Muted!");
+                    muteCounter++;
+                } else {
+                    guiClient.getGui().getMessageText().setText("Unmuted!");
+                    muteCounter++;
+                }
+
+
+
+
+
         } else if (actionValue.equals("help")) { // Help in the main page.
             guiClient.getGui().getMessageText().setText(getIntroductionPlayer() + "\nUse the items you found to distract mean animals, \nfind the key to unlock the garden, \nthen enjoy the carrot.");
             guiClient.getGui().getMessageText().setVisible(true);
