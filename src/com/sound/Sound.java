@@ -80,18 +80,12 @@ public class Sound {
     }
 
     public void volumeMute() {
-       this.mute = mute;
-        if(!this.mute) {
-            previousVolume = currentVolume;
-            currentVolume = -80.0f;
-            fc.setValue(currentVolume);
-
-        }
-        else if(this.mute) {
+        if (currentVolume == -80.0f){
             currentVolume = previousVolume;
-            fc.setValue(currentVolume);
+        } else {
+            currentVolume = -80.0f;
         }
-        System.out.println("this is" + mute);
+        fc.setValue(currentVolume);
     }
 
     public Clip getClip() {
