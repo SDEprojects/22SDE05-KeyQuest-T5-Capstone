@@ -4,7 +4,7 @@ import com.game.controller.ActionHandler;
 import com.game.controller.EventHandler;
 import com.sound.Sound;
 
-public class GUIClient{
+public class GUIClient {
 
     private Sound sound = new Sound();
 
@@ -14,11 +14,11 @@ public class GUIClient{
 
     private GUI gui = new GUI(this);
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new GUIClient();
     }
 
-    public GUIClient(){
+    public GUIClient() {
         // intro to screen 1
         // dialog to help player
         // tutorial
@@ -51,6 +51,7 @@ public class GUIClient{
     public Sound getSound() {
         return sound;
     }
+
     public void setSound(Sound sound) {
         this.sound = sound;
     }
